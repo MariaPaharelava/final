@@ -1,0 +1,19 @@
+2019-05-05 20:12:12 [main] INFO  finalTask.hr.dao.connectionpool.ConnectionPool - Can't find bundle for base name by.epam.finaltask.hr.dao.connectionpool.db, locale en_US
+2019-05-05 20:14:05 [main] INFO  finalTask.hr.dao.connectionpool.ConnectionPool - Can't find bundle for base name main.java.by.epam.finalTask.hr.dao.connectionpool.db, locale en_US
+2019-05-05 20:15:47 [main] INFO  finalTask.hr.dao.connectionpool.ConnectionPool - Can't find bundle for base name main.java.by.epam.finalTask.hr.dao.connectionpool.db, locale en_US
+2019-05-05 20:16:53 [main] INFO  finalTask.hr.dao.connectionpool.ConnectionPool - Can't find bundle for base name main.resources.db, locale en_US
+2019-05-05 20:19:17 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.driver - com.mysql.jdbc.Driver
+2019-05-05 20:19:17 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.url - jdbc:mysql://localhost:3306/company?useSSL=true&autoReconnect=true
+2019-05-05 20:19:17 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.user - root
+2019-05-05 20:19:17 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.password - 1111
+2019-05-05 20:19:17 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.poolSize - 5
+2019-05-05 21:33:52 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.driver - com.mysql.jdbc.Driver
+2019-05-05 21:33:52 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.url - jdbc:mysql://localhost:3306/company?useSSL=true&autoReconnect=true
+2019-05-05 21:33:52 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.user - root
+2019-05-05 21:33:52 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.password - 1111
+2019-05-05 21:33:52 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.poolSize - 5
+2019-05-05 21:35:46 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.driver - com.mysql.jdbc.Driver
+2019-05-05 21:35:46 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.url - jdbc:mysql://localhost:3306/company?useSSL=true&autoReconnect=true
+2019-05-05 21:35:46 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.user - root
+2019-05-05 21:35:46 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.password - 1111
+2019-05-05 21:35:46 [main] INFO  finalTask.hr.dao.connectionpool.DBResourceManager - db.poolSize - 5
