@@ -60,7 +60,7 @@ public class FontController extends HttpServlet {
         try {
             connection = ConnectionPool.getInstance().getConnection();
             CommandFactory commandFactory = createCommandFactory(connection);
-            //command = CommandHelper.getInstance().getCommand(commandName);
+            command = commandFactory.create(commandName);
             command.execute(request, response);
         } catch (CommandException e) {
             request.getRequestDispatcher(PageName.ERROR_505_PAGE).forward(request, response);

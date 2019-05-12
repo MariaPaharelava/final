@@ -30,7 +30,7 @@
     </style>
 
     <fmt:setLocale value="${sessionScope.local}"/>
-    <fmt:setBundle basename="localization.local" var="loc"/>
+    <fmt:setBundle basename="local" var="loc"/>
 
     <fmt:message bundle="${loc}" key="local.login" var="login"/>
     <fmt:message bundle="${loc}" key="local.create.akk" var="createAkk"/>
@@ -96,7 +96,7 @@
             <span onclick="document.getElementById('id01').style.display='none'"
                   class="w3-button w3-xlarge w3-white w3-display-topright" title="Close Modal">x</span>
         </div>
-        <form class="w3-container" action="Controller" method="post">
+        <form class="w3-container" action="FontController" method="post">
             <input name="command" value="authorization" type="hidden" />
 
             <div class="w3-section">
@@ -121,7 +121,7 @@
                   class="w3-button w3-xlarge w3-white w3-display-topright" title="Close Modal">x</span>
         </div>
 
-        <form role="form" class="w3-container" action="Controller" method="post">
+        <form role="form" class="w3-container" action="FontController" method="post">
             <div class="w3-section">
 
                 <input name="command" value="registration" type="hidden" />

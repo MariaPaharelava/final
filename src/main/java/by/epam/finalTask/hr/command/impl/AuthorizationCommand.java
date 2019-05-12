@@ -24,7 +24,7 @@ public class AuthorizationCommand implements Command {
     private static final String ENTER_PASSWORD     = "enterPassword";
     private static final String User               = "user";
     private static final String ERROR_MESSAGES     = "errorMessage";
-    private static final Logger LOGGER = LogManager.getLogger(FontController.class);
+    private static final Logger LOGGER = LogManager.getLogger(AuthorizationCommand.class);
 
     private UserService userService;
 
@@ -66,6 +66,8 @@ public class AuthorizationCommand implements Command {
             } catch (ServiceException e) {
                 throw new CommandException(e);
             }
+            request.setAttribute(ENTER_LOGIN, login);
+            request.setAttribute(ENTER_PASSWORD, password);
             request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
         } catch (ServletException | IOException e) {
             LOGGER.error(e.getMessage());
