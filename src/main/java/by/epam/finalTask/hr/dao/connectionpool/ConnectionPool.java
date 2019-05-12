@@ -87,7 +87,7 @@ public class ConnectionPool {
         clearConnectionQueue();
     }
 
-    public Connection takeConnection() throws ConnectionPoolException {
+    public Connection getConnection() throws ConnectionPoolException {
         Connection connection;
         try {
             connection = connectionQueue.take();

@@ -14,7 +14,7 @@ public class VacancyServiceImpl implements VacancyService {
     private final VacancyDAO vacancyDAO;
     private Optional<Vacancy> vacancyOptional;
 
-    VacancyServiceImpl(VacancyDAO vacancyDAO){
+    public VacancyServiceImpl(VacancyDAO vacancyDAO){
         this.vacancyDAO = vacancyDAO;
     }
 
