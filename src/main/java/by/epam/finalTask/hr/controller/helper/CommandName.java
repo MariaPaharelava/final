@@ -6,6 +6,6 @@ package by.epam.finalTask.hr.controller.helper;
 public enum CommandName {
     REGISTRATION,
     AUTHORIZATION,
+    CREATE_VACANCY,
     CHANGE_LOCAL,
-    GO_TO_FOR_USER
 }

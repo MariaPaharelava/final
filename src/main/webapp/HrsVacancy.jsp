@@ -25,11 +25,11 @@
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
         <form action="Controller" method="get">
-            <input name="command" value="go-to-for-user" type="hidden"/>
-            <input type="submit" name="goTo" class="w3-bar-item w3-button" value="${"Vacancy"}">
-            <input type="submit" name="goTo" class="w3-bar-item w3-button" value="${"My Info"}">
-            <input type="submit" name="goTo" class="w3-bar-item w3-button w3-theme-l1" value="${"Hiring"}">
-            <input type="submit" name="goTo" class="w3-bar-item w3-button" value="${"Add Vacancy"}">
+            <a name="command" value="go-to-for-user" type="hidden"/>
+            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
+            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My Info</a>
+            <a class="w3-bar-item w3-button w3-theme-l1" href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">Hiring</a>
+            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">Add Vacancy</a>
             <div class="w3-dropdown-hover w3-hide-small w3-right">
                 <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
@@ -37,11 +37,10 @@
                     <a class="w3-bar-item w3-button" onclick="">EN</a>
                 </div>
             </div>
-            <input type="submit" name="goTo" class="w3-bar-item w3-button w3-right" value="${"Out"}">
+            <a class="w3-bar-item w3-button w3-right" href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
         </form>
     </div>
 </div>
-
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main w3-animate-left" style="margin:3.75%">
     <div class="w3-row-padding">

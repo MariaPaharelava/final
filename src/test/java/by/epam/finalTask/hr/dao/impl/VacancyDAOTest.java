@@ -16,6 +16,7 @@ public class VacancyDAOTest {
 
     @Test
     public void test(){
+/*
         BuilderFactory builderFactory = new BuilderFactory();
         Connection connection = ConnectionPool.getInstance().getConnection();
         DAOFactory daoFactory = new DAOFactory(connection,builderFactory);
@@ -23,6 +24,7 @@ public class VacancyDAOTest {
         DAO<Vacancy> vacancyDAO = new VacancyDAO(connection,  vacancyBuilderDAO);
         List<Vacancy> vacancies = vacancyDAO.findAll();
         System.out.println(vacancies.get(0).getID() + " " + vacancies.get(0).getVacancyDescrintion());
+*/
     }
 
 }

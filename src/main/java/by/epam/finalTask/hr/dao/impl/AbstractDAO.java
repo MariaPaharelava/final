@@ -27,7 +27,7 @@ public abstract class AbstractDAO<T> implements DAO<T> {
         this.builder = builder;
     }
 
-    protected int executeUpdate(String query, Object... params) {
+    protected int executeUpdate(String query, Object... params) throws DAOException {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             prepareStatement(statement, params);
 
@@ -39,16 +39,15 @@ public abstract class AbstractDAO<T> implements DAO<T> {
         }
     }
 
-    protected List<T> executeQuery(String query, Object... params) {
+    protected List<T> executeQuery(String query, Object... params) throws DAOException {
         List<T> resultList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             prepareStatement(statement, params);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    if (!resultSet.wasNull()) {
-                        T builtObject = builder.buildEntity(resultSet);
-                        resultList.add(builtObject);
-                    }
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                if (!resultSet.wasNull()) {
+                    T builtObject = builder.buildEntity(resultSet);
+                    resultList.add(builtObject);
                 }
             }
         } catch (SQLException e) {
@@ -57,7 +56,7 @@ public abstract class AbstractDAO<T> implements DAO<T> {
         return resultList;
     }
 
-    protected Optional<T> executeQueryForSingleResult(String query, Object... params) {
+    protected Optional<T> executeQueryForSingleResult(String query, Object... params) throws DAOException {
         List<T> itemsList = executeQuery(query, params);
         Optional<T> result = Optional.empty();
         if (itemsList.size() == 1) {

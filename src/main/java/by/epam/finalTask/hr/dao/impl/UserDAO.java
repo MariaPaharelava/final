@@ -1,7 +1,9 @@
 package by.epam.finalTask.hr.dao.impl;
 
 import by.epam.finalTask.hr.dao.builder.BuilderDAO;
+import by.epam.finalTask.hr.dao.connectionpool.exception.DAOException;
 import by.epam.finalTask.hr.entity.User;
+import by.epam.finalTask.hr.util.Validator;
 
 import java.sql.Connection;
 import java.util.List;
@@ -20,32 +22,34 @@ public class UserDAO extends AbstractDAO<User> {
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAll() throws DAOException {
         return executeQuery(SQL_SEARCH_ALL_USER);
     }
 
-    public Optional<User> findUserByLogin(String login) {
+    public Optional<User> findUserByLogin(String login) throws DAOException {
         return executeQueryForSingleResult(SQL_SEARCH_USER_BY_LOGIN, login);
     }
 
     @Override
-    public Optional<User> findEntityById(int id) {
+    public Optional<User> findEntityById(int id) throws DAOException {
         return executeQueryForSingleResult(SQL_SEARCH_USER_BY_ID, id);
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws DAOException {
         executeUpdate(SQL_DELETE_USER_BY_ID, id);
     }
 
     @Override
-    public void save(User entity) {
+    public void save(User entity) throws DAOException {
+        Validator validator = new Validator();
+        String role = validator.validateFromUpperCaseToLowerCase(entity.getUserRole().toString());
         if (entity.getID() == null) {
             executeUpdate(SQL_ADD_USER, entity.getLogin(), entity.getPassword(),
-                    entity.getSurname(), entity.getName(), entity.getUserRole());
+                    entity.getSurname(), entity.getName(), role);
         } else {
             executeUpdate(SQL_UPDATE_USER_BY_ID, entity.getLogin(), entity.getPassword(),
-                    entity.getSurname(), entity.getName(), entity.getUserRole());
+                    entity.getSurname(), entity.getName(), role);
         }
     }
 }

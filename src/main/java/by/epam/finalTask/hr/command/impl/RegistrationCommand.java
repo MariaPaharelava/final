@@ -42,19 +42,11 @@ public class RegistrationCommand implements Command {
 
         try {
             User user = null;
-            try {
-                if (role == null) {
-                    user = userService.registerUser(login, password, surname, name, "candidate");
+            if (role == null) {
+                user = userService.registerUser(login, password, surname, name, "candidate");
 
-                } else {
-                    user = userService.registerUser(login, password, surname, name, role);
-                }
-                request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
-                return;
-            } catch (LoginAlreadyExistsException e) {
-                request.setAttribute(ERROR_MESSAGES, "The login already exists.");
-            } catch (ServiceException e) {
-                throw new CommandException(e);
+            } else {
+                user = userService.registerUser(login, password, surname, name, role);
             }
 
             // exception forwarding
@@ -69,6 +61,8 @@ public class RegistrationCommand implements Command {
         } catch (ServletException | IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);
+        } catch (ServiceException e) {
+            LOGGER.error(e.getMessage());
         }
     }
 }

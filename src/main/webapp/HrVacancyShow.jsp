@@ -23,11 +23,11 @@
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
         <form action="Controller" method="get">
-            <input name="command" value="go-to-for-user" type="hidden"/>
-            <input type="submit" name="goTo" class="w3-bar-item w3-button w3-theme-l1" value="${"Vacancy"}">
-            <input type="submit" name="goTo" class="w3-bar-item w3-button" value="${"My Info"}">
-            <input type="submit" name="goTo" class="w3-bar-item w3-button" value="${"Hiring"}">
-            <input type="submit" name="goTo" class="w3-bar-item w3-button" value="${"Add Vacancy"}">
+            <a name="command" value="go-to-for-user" type="hidden"/>
+            <a class="w3-bar-item w3-button w3-theme-l1" href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
+            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My Info</a>
+            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">Hiring</a>
+            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">Add Vacancy</a>
             <div class="w3-dropdown-hover w3-hide-small w3-right">
                 <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
@@ -35,7 +35,7 @@
                     <a class="w3-bar-item w3-button" onclick="">EN</a>
                 </div>
             </div>
-            <input type="submit" name="goTo" class="w3-bar-item w3-button w3-right" value="${"Out"}">
+            <a class="w3-bar-item w3-button w3-right" href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
         </form>
     </div>
 </div>
@@ -47,57 +47,16 @@
 
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main w3-animate-left" style="margin:3.7%">
-
-    <div class="w3-row">
-        <div class="w3-twothird w3-container">
-            <h1 class="w3-text-teal">Heading</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Lorem ipsum
-                dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat.</p>
-            <br/>
+    <c:forEach var="vacancies" items="${vacancies}">
+        <div class="w3-row">
+            <div class="w3-twothird w3-container">
+                <h1 class="w3-text-teal">${vacancies.vacancyPosition}</h1>
+                <p>${vacancies.vacancyDescrintion}</p>
+                <br/>
+            </div>
         </div>
-    </div>
-
-    <div class="w3-row">
-        <div class="w3-twothird w3-container">
-            <h1 class="w3-text-teal">Heading</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Lorem ipsum
-                dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat.</p>
-        </div>
-    </div>
-
-    <div class="w3-row">
-        <div class="w3-twothird w3-container">
-            <h1 class="w3-text-teal">Heading</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Lorem ipsum
-                dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat.</p>
-        </div>
-    </div>
-
+    </c:forEach>
     <!-- END MAIN -->
-</div>
-
-<!-- Pagination -->
-<div class="w3-center" style="margin:20px">
-    <div class="w3-bar">
-        <a class="w3-button w3-gray" href="#">1</a>
-        <a class="w3-button w3-hover-black" href="#">2</a>
-        <a class="w3-button w3-hover-black" href="#">3</a>
-        <a class="w3-button w3-hover-black" href="#">4</a>
-        <a class="w3-button w3-hover-black" href="#">5</a>
-        <a class="w3-button w3-hover-black" href="#">>></a>
-    </div>
 </div>
 
 <footer id="myFooter">

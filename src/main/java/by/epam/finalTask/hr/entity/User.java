@@ -5,7 +5,7 @@ import by.epam.finalTask.hr.entity.enums.UserRole;
 import java.util.Objects;
 
 public class User implements Indentifable {
-    private int userID;
+    private Integer userID = null;
     private String login;
     private String password;
     private String surname;
@@ -96,7 +96,7 @@ public class User implements Indentifable {
             return false;
         }
         User user = (User) o;
-        return userID == user.userID &&
+        return userID.equals(user.userID) &&
                 Objects.equals(login, user.login) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(surname, user.surname) &&

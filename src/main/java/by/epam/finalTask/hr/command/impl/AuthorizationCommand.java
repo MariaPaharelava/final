@@ -2,12 +2,11 @@ package by.epam.finalTask.hr.command.impl;
 
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
-import by.epam.finalTask.hr.controller.FontController;
 import by.epam.finalTask.hr.controller.PageName;
 import by.epam.finalTask.hr.entity.User;
-import by.epam.finalTask.hr.factory.ServiceFactory;
+import by.epam.finalTask.hr.entity.Vacancy;
 import by.epam.finalTask.hr.service.UserService;
-import by.epam.finalTask.hr.service.exception.LoginAlreadyExistsException;
+import by.epam.finalTask.hr.service.VacancyService;
 import by.epam.finalTask.hr.service.exception.LoginAlreadyNoExistsException;
 import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
@@ -18,17 +17,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 public class AuthorizationCommand implements Command {
     private static final String ENTER_LOGIN        = "enterLogin";
     private static final String ENTER_PASSWORD     = "enterPassword";
-    private static final String User               = "user";
+    private static final String VACANCIES          = "vacancies";
+    private static final String USER = "user";
     private static final String ERROR_MESSAGES     = "errorMessage";
     private static final Logger LOGGER = LogManager.getLogger(AuthorizationCommand.class);
 
     private UserService userService;
+    private VacancyService vacancyService;
 
-    public AuthorizationCommand(UserService userService) {
+    public AuthorizationCommand(UserService userService, VacancyService vacancyService) {
+        this.vacancyService = vacancyService;
         this.userService = userService;
     }
 
@@ -44,12 +47,14 @@ public class AuthorizationCommand implements Command {
             try {
                 user = userService.authorization(login, password);
 
-                session.setAttribute(User, user);
+                session.setAttribute(USER, user);
                 if (user == null) {
                     throw new LoginAlreadyNoExistsException("Not Exist");
                 }
                 switch (user.getUserRole()) {
                     case HR:
+                        List<Vacancy> vacancyList = vacancyService.getAllVacancies();
+                        session.setAttribute(VACANCIES, vacancyList);
                         request.getRequestDispatcher(PageName.HR_VACANCY_PAGE).forward(request, response);
                         break;
                     case ADMIN:
@@ -60,7 +65,7 @@ public class AuthorizationCommand implements Command {
                         break;
                 }
                 return;
-            } catch (LoginAlreadyExistsException e) {
+            } catch (LoginAlreadyNoExistsException e) {
                 LOGGER.error("The login already no exists.");
                 request.setAttribute(ERROR_MESSAGES, "The login already exists.");
             } catch (ServiceException e) {

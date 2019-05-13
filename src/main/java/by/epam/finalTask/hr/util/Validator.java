@@ -12,7 +12,16 @@ public class Validator {
             LOGGER.error("Error in command name");
             throw new CommandException("Error in command name");
         }
-        name = name.replace('-', '_');
-        return name.toUpperCase();
+        return validateFromLowerCaseToUpperCase(name);
+    }
+
+    public String validateFromLowerCaseToUpperCase(String string){
+        string = string.replace('-', '_');
+        return string.toUpperCase();
+    }
+
+    public String validateFromUpperCaseToLowerCase(String string){
+        string = string.replace('_', '-');
+        return string.toLowerCase();
     }
 }

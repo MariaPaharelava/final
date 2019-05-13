@@ -1,6 +1,7 @@
 package by.epam.finalTask.hr.dao.impl;
 
 import by.epam.finalTask.hr.dao.builder.BuilderDAO;
+import by.epam.finalTask.hr.dao.connectionpool.exception.DAOException;
 import by.epam.finalTask.hr.entity.Hiring;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,22 +22,22 @@ public class HiringDAO extends AbstractDAO<Hiring>{
     }
 
     @Override
-    public List<Hiring> findAll() {
+    public List<Hiring> findAll() throws DAOException {
         return executeQuery(SQL_SEARCH_ALL_HIRING);
     }
 
     @Override
-    public Optional<Hiring> findEntityById(int id) {
+    public Optional<Hiring> findEntityById(int id) throws DAOException {
         return executeQueryForSingleResult(SQL_SEARCH_HIRING_BY_ID, id);
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws DAOException {
         executeUpdate(SQL_DELETE_HIRING_BY_ID, id);
     }
 
     @Override
-    public void save(Hiring entity) {
+    public void save(Hiring entity) throws DAOException {
         if (entity.getID() == null) {
             executeUpdate(SQL_ADD_HIRING, entity.getHrId(), entity.getCandidateId(), entity.getCreationDate(),
                     entity.getHiringStatus(), entity.getVacancyId(), entity.getOfferEmount(), entity.getComment());

@@ -1,6 +1,7 @@
 package by.epam.finalTask.hr.dao.impl;
 
 import by.epam.finalTask.hr.dao.builder.BuilderDAO;
+import by.epam.finalTask.hr.dao.connectionpool.exception.DAOException;
 import by.epam.finalTask.hr.entity.Vacancy;
 
 import java.sql.Connection;
@@ -28,7 +29,7 @@ import java.util.Optional;
 public class VacancyDAO extends AbstractDAO<Vacancy>{
     private static final String SQL_SEARCH_ALL_VACANCY = "SELECT `vacancy_position_id`, `vacancy_position`, `vacancy_description`, `hr_id`  FROM `vacancy`;";
     private static final String SQL_SEARCH_VACANCY_BY_ID = "SELECT `vacancy_position_id`, `vacancy_position`, `vacancy_description`, `hr_id` FROM `vacancy` WHERE `vacancy_position_id` = ?;";
-    private static final String SQL_SEARCH_VACANCY_BY_VACANCY = "SELECT `vacancy_position_id`, `vacancy_position`, `vacancy_description`, `hr_id` FROM `vacancy` WHERE `vacancy_position` = ?, `vacancy_description` = ?, `hr_id` = ?;";
+    private static final String SQL_SEARCH_VACANCY_BY_VACANCY = "SELECT `vacancy_position_id`, `vacancy_position`, `vacancy_description`, `hr_id` FROM `vacancy` WHERE `vacancy_position` = ?, `vacancy_description` = ?,`hr_id` = ?;";
     private static final String SQL_DELETE_VACANCY_BY_ID = "DELETE FROM `vacancy` WHERE `vacancy_position_id` = ?;";
     private static final String SQL_ADD_VACANCY = "INSERT INTO `vacancy` (`vacancy_position_id`, `vacancy_position`, `vacancy_description`, `hr_id`) VALUES (? ,?, ?, ?);";
     private static final String SQL_UPDATE_VACANCY_BY_ID = "UPDATE `vacancy` SET `vacancy_position_id` =?, `vacancy_position`= ?, `vacancy_description`= ? , `hr_id` WHERE  `vacancy_position_id` = ?;";
@@ -38,26 +39,26 @@ public class VacancyDAO extends AbstractDAO<Vacancy>{
     }
 
     @Override
-    public List<Vacancy> findAll() {
+    public List<Vacancy> findAll() throws DAOException {
         return executeQuery(SQL_SEARCH_ALL_VACANCY);
     }
 
     @Override
-    public Optional<Vacancy> findEntityById(int id) {
+    public Optional<Vacancy> findEntityById(int id) throws DAOException {
         return executeQueryForSingleResult(SQL_SEARCH_VACANCY_BY_ID, id);
     }
 
-    public Optional<Vacancy> findEntityByEntity(String name, String description,  Integer hrId) {
+    public Optional<Vacancy> findEntityByEntity(String name, String description,  Integer hrId) throws DAOException {
         return executeQueryForSingleResult(SQL_SEARCH_VACANCY_BY_VACANCY, name, description, hrId);
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws DAOException {
         executeUpdate(SQL_DELETE_VACANCY_BY_ID, id);
     }
 
     @Override
-    public void save(Vacancy entity) {
+    public void save(Vacancy entity) throws DAOException {
         if (entity.getID() == null) {
             executeUpdate(SQL_ADD_VACANCY, entity.getUserId(), entity.getVacancyDescrintion(), entity.getVacancyPosition());
         } else {
