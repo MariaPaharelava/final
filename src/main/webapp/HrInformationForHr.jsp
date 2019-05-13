@@ -80,7 +80,7 @@
             <div class="w3-row w3-section">
                 <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
                 <div class="w3-rest">
-                    <a class="w3-input w3-border" name="email" type="text">${sessionScope.user.role}</a>
+                    <a class="w3-input w3-border" name="email" type="text">${sessionScope.user.userRole}</a>
                 </div>
             </div>
             </form>

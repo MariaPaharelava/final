@@ -26,10 +26,14 @@
     <div class="w3-bar w3-black w3-card">
         <form action="Controller" method="get">
             <a name="command" value="go-to-for-user" type="hidden"/>
-            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
-            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My Info</a>
-            <a class="w3-bar-item w3-button w3-theme-l1" href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">Hiring</a>
-            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">Add Vacancy</a>
+            <a class="w3-bar-item w3-button"
+               href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
+            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My
+                Info</a>
+            <a class="w3-bar-item w3-button w3-theme-l1"
+               href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">Hiring</a>
+            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">Add
+                Vacancy</a>
             <div class="w3-dropdown-hover w3-hide-small w3-right">
                 <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
@@ -37,34 +41,52 @@
                     <a class="w3-bar-item w3-button" onclick="">EN</a>
                 </div>
             </div>
-            <a class="w3-bar-item w3-button w3-right" href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
+            <a class="w3-bar-item w3-button w3-right"
+               href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
         </form>
     </div>
 </div>
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main w3-animate-left" style="margin:3.75%">
     <div class="w3-row-padding">
-        <div class="w3-quarter">
-            <c:forEach var="hirings" items="${hirings}">
-                <ul class="w3-ul w3-border w3-center w3-hover-shadow" \>
-                    <li class="w3-green w3-xlarge w3-padding-8">${hirings.vacancyId}</li>
-                    <li class="w3-padding-8"><b>${hirings.hrId}</b></li>
-                    <li class="w3-padding-8"><b>${hirings.candidateId}</b></li>
-                    <li class="w3-padding-8">${hirings.comment}</li>
-                    <li class="w3-padding-8">${hirings.hiringStatus}</li>
+        <c:forEach var="hiring" items="${sessionScope.hirings}">
+            <div class="w3-quarter">
+                <ul class="w3-ul w3-border w3-center w3-hover-shadow"
+                    onclick="window.location='${pageContext.servletContext.contextPath}/WorkWithInterview.jsp'">
+
+                    <li class="w3-green w3-xlarge w3-padding-8">${hiring.vacancyName}</li>
+                    <li class="w3-padding-8"><b>${hiring.candidateSurname} ${hiring.candidateName}</b></li>
+                    <li class="w3-padding-8"><b>${hiring.hrSurname} ${hiring.hrName}</b></li>
+
+                    <c:if test="${not empty hiring.comment}">
+                        <li class="w3-padding-8">${hiring.comment}</li>
+                    </c:if>
+                    <c:if test="${hiring.comment eq null}">
+                        <li class="w3-text-grey w3-padding-8">No Value Set</li>
+                    </c:if>
+
+                    <li class="w3-padding-8">${hiring.hiringStatus}</li>
+
                     <li class="w3-padding-4">
-                        <h3 class="w3-wide">$ ${hirings.offerEmount}</h3>
-                        <span class="w3-opacity">per month</span>
+                        <c:if test="${not empty hiring.offerEmount }">
+                            <h3 class="w3-wide">$ ${hiring.offerEmount}</h3>
+                            <span class="w3-opacity">per month</span>
+                        </c:if>
+                        <c:if test="${hiring.offerEmount eq null}">
+                            <h3 class="w3-text-grey w3-wide">No Value Set</h3>
+                            <span class="w3-opacity"> </span>
+                        </c:if>
                     </li>
+
                     <li class="w3-light-grey w3-padding-8">
-                        <input name="command" value="go-to-for-user" type="hidden"/>
-                        <input type="submit" name="goTo" class="w3-button w3-teal w3-padding-large"
-                               value="${"Edit"}">
+                        <a name="goTo" class="w3-button w3-red w3-padding-large"
+                           onclick="<c:remove var="hiring"/>">Delete</a>
+                        <a name="goTo" class="w3-button w3-teal w3-padding-large"
+                           href="${pageContext.servletContext.contextPath}/EditVacancy.jsp">Edit</a>
                     </li>
                 </ul>
-            </c:forEach>
-            </form>
-        </div>
+            </div>
+        </c:forEach>
     </div>
 
 

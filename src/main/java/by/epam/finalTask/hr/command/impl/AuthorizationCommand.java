@@ -27,7 +27,7 @@ public class AuthorizationCommand implements Command {
     private static final String ENTER_LOGIN = "enterLogin";
     private static final String ENTER_PASSWORD = "enterPassword";
     private static final String VACANCIES = "vacancies";
-    private static final String HIRINGS = "hirings";
+    private static final String HIRING = "hirings";
     private static final String USER = "user";
     private static final String ERROR_MESSAGES = "errorMessage";
     private static final Logger LOGGER = LogManager.getLogger(AuthorizationCommand.class);
@@ -90,7 +90,7 @@ public class AuthorizationCommand implements Command {
         List<Vacancy> vacancyList = vacancyService.getAllVacancies();
         session.setAttribute(VACANCIES, vacancyList);
         List<HiringForShow> hiringForShows = createHiringList();
-        session.setAttribute(HIRINGS, hiringForShows);
+        session.setAttribute(HIRING, hiringForShows);
     }
 
     private List<HiringForShow> createHiringList() throws ServiceException {
@@ -107,6 +107,7 @@ public class AuthorizationCommand implements Command {
         User hr = userService.findById(aHiringList.getHrId());
         Vacancy vacancy = vacancyService.findById(aHiringList.getVacancyId());
         return new HiringForShow(hr.getName(), hr.getSurname(), candidate.getName(),
-                candidate.getSurname(), vacancy.getVacancyPosition(), aHiringList.getHiringStatus());
+                candidate.getSurname(), vacancy.getVacancyPosition(),aHiringList.getOfferEmount(),
+                aHiringList.getComment(), aHiringList.getHiringStatus());
     }
 }
