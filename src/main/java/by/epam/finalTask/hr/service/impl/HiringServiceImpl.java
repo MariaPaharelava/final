@@ -5,11 +5,13 @@ import by.epam.finalTask.hr.dao.impl.HiringDAO;
 import by.epam.finalTask.hr.dao.impl.UserDAO;
 import by.epam.finalTask.hr.dao.impl.VacancyDAO;
 import by.epam.finalTask.hr.entity.Hiring;
+import by.epam.finalTask.hr.entity.Vacancy;
 import by.epam.finalTask.hr.service.HiringService;
 import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
 import java.util.Optional;
 
 public class HiringServiceImpl implements HiringService {
@@ -50,6 +52,15 @@ public class HiringServiceImpl implements HiringService {
             hiring.setComment(comment);
             hiring.setOfferEmount(salary);
             ((HiringDAO)hiringDAO).save(hiring);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<Hiring> getAllHirings() throws ServiceException {
+        try {
+            return  ((HiringDAO) hiringDAO).findAll();
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

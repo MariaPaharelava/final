@@ -23,7 +23,7 @@ public class BuilderDAOHiring implements BuilderDAO<Hiring> {
         searchedHiring.setHiringId(resultSet.getInt(SQL_HIRING_ID));
         searchedHiring.setHrId(resultSet.getInt(SQL_HR_ID));
         searchedHiring.setCandidateId(resultSet.getInt(SQL_CANDIDATE_ID));
-        searchedHiring.setCreationDate((Data) resultSet.getDate(SQL_CREATION_DATE));
+        searchedHiring.setCreationDate(resultSet.getDate(SQL_CREATION_DATE));
         searchedHiring.setHiringStatus(resultSet.getString(SQL_HIRING_STATUS));
         searchedHiring.setVacancyId(resultSet.getInt(SQL_VACANCY_ID));
         searchedHiring.setOfferEmount(resultSet.getDouble(SQL_OFFER_EMOUNT));

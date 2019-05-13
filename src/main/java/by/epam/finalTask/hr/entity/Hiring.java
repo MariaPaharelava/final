@@ -3,20 +3,20 @@ package by.epam.finalTask.hr.entity;
 
 import by.epam.finalTask.hr.entity.enums.HiringStatus;
 
-import javax.xml.crypto.Data;
+import java.sql.Date;
 import java.util.Objects;
 
 public class Hiring implements Indentifable{
-    private int          hiringId;
-    private int          hrId;
-    private int          candidateId;
-    private int          vacancyId;
-    private Data         creationDate;
+    private Integer        hiringId;
+    private Integer      hrId;
+    private Integer      candidateId;
+    private Integer      vacancyId;
+    private Date         creationDate;
     private Double       offerEmount;
     private String       comment;
     private HiringStatus hiringStatus;
 
-    public Hiring(int hiringId, int hrId, int candidateId, int vacancyId, Data creationDate, Double offerEmount, String comment, HiringStatus hiringStatus) {
+    public Hiring(int hiringId, int hrId, int candidateId, int vacancyId, Date creationDate, Double offerEmount, String comment, HiringStatus hiringStatus) {
         this.hiringId = hiringId;
         this.hrId = hrId;
         this.candidateId = candidateId;
@@ -32,7 +32,7 @@ public class Hiring implements Indentifable{
         this.vacancyId = vacancyId;
     }
 
-    public Hiring(int hrId, int candidateId, int vacancyId, Data creationDate, Double offerEmount, String comment, HiringStatus hiringStatus) {
+    public Hiring(int hrId, int candidateId, int vacancyId, Date creationDate, Double offerEmount, String comment, HiringStatus hiringStatus) {
         this.hrId = hrId;
         this.candidateId = candidateId;
         this.vacancyId = vacancyId;
@@ -46,11 +46,11 @@ public class Hiring implements Indentifable{
 
     }
 
-    public Data getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Data creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -143,10 +143,10 @@ public class Hiring implements Indentifable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Hiring hiring = (Hiring) o;
-        return hiringId == hiring.hiringId &&
-                hrId == hiring.hrId &&
-                candidateId == hiring.candidateId &&
-                vacancyId == hiring.vacancyId &&
+        return hiringId.equals(hiring.hiringId) &&
+                hrId.equals(hiring.hrId) &&
+                candidateId.equals(hiring.candidateId) &&
+                vacancyId.equals(hiring.vacancyId) &&
                 Objects.equals(creationDate, hiring.creationDate) &&
                 Objects.equals(offerEmount, hiring.offerEmount) &&
                 Objects.equals(comment, hiring.comment) &&

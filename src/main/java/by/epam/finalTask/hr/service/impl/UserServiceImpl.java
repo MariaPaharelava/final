@@ -68,5 +68,19 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public User findById(Integer id) throws ServiceException {
+        User user = null;
+        try {
+            userOptional = ((UserDAO) userDAO).findEntityById(id);
+            if (userOptional.isPresent()) {
+                user = userOptional.get();
+            }
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return user;
+    }
 }
 

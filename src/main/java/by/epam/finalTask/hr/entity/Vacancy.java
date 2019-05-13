@@ -3,7 +3,7 @@ package by.epam.finalTask.hr.entity;
 import java.util.Objects;
 
 public class Vacancy implements Indentifable {
-    private int vacancyID;
+    private Integer vacancyID;
     private String vacancyDescrintion;
     private String vacancyPosition;
     private int userId;
@@ -51,6 +51,22 @@ public class Vacancy implements Indentifable {
 
     public void setVacancyID(int vacancyID) {
         this.vacancyID = vacancyID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vacancy vacancy = (Vacancy) o;
+        return userId == vacancy.userId &&
+                Objects.equals(vacancyID, vacancy.vacancyID) &&
+                Objects.equals(vacancyDescrintion, vacancy.vacancyDescrintion) &&
+                Objects.equals(vacancyPosition, vacancy.vacancyPosition);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vacancyID, vacancyDescrintion, vacancyPosition, userId);
     }
 
     @Override

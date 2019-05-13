@@ -10,4 +10,5 @@ public interface VacancyService {
     Vacancy addVacancy(String name, String description, int hr_id) throws ServiceException;
     void removeVacancy(int id) throws ServiceException;
     List<Vacancy> getAllVacancies() throws ServiceException;
+    Vacancy findById(Integer id) throws ServiceException;
 }

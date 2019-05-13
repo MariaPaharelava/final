@@ -39,10 +39,8 @@ public class CreateVacancyCommand implements Command {
             User user = (User) session.getAttribute(USER);
             List<Vacancy> vacancyList = (List<Vacancy>) session.getAttribute(VACANCIES);
 
-            Vacancy vacancy = new Vacancy(ENTER_VACANCY_DESCRIPTION, ENTER_VACANCY_NAME, user.getUserID());
-            vacancyService.addVacancy(ENTER_VACANCY_NAME, ENTER_VACANCY_DESCRIPTION, user.getUserID());
-
-            LOGGER.info(ENTER_VACANCY_DESCRIPTION + " " + ENTER_VACANCY_NAME + " " + user.getUserID());
+            Vacancy vacancy = new Vacancy(vacancyName, vacancyDescription, user.getUserID());
+            vacancyService.addVacancy(vacancyName, vacancyDescription, user.getUserID());
 
             List<Vacancy> vacancyListNew = vacancyService.getAllVacancies();
             session.setAttribute(VACANCIES, vacancyListNew);

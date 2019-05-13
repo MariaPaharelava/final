@@ -45,27 +45,24 @@
 <div class="w3-main w3-animate-left" style="margin:3.75%">
     <div class="w3-row-padding">
         <div class="w3-quarter">
-            <form action="Controller" method="get">
-                <input name="command" value="go-to-for-user" type="hidden"/>
-                <ul class="w3-ul w3-border w3-center w3-hover-shadow"
-                \>
-                    <li class="w3-green w3-xlarge w3-padding-8">Vacancy</li>
-                    <li class="w3-padding-8"><b>Your Surname Name</b></li>
-                    <li class="w3-padding-8"><b>Candidate Surname Name</b></li>
-                    <li class="w3-padding-8">Status</li>
-                    <li class="w3-padding-8">Сomment</li>
+            <c:forEach var="hirings" items="${hirings}">
+                <ul class="w3-ul w3-border w3-center w3-hover-shadow" \>
+                    <li class="w3-green w3-xlarge w3-padding-8">${hirings.vacancyId}</li>
+                    <li class="w3-padding-8"><b>${hirings.hrId}</b></li>
+                    <li class="w3-padding-8"><b>${hirings.candidateId}</b></li>
+                    <li class="w3-padding-8">${hirings.comment}</li>
+                    <li class="w3-padding-8">${hirings.hiringStatus}</li>
                     <li class="w3-padding-4">
-                        <h3 class="w3-wide">$ Salary</h3>
+                        <h3 class="w3-wide">$ ${hirings.offerEmount}</h3>
                         <span class="w3-opacity">per month</span>
                     </li>
                     <li class="w3-light-grey w3-padding-8">
-                        <form action="Controller" method="get">
-                            <input name="command" value="go-to-for-user" type="hidden"/>
-                            <input type="submit" name="goTo" class="w3-button w3-teal w3-padding-large"
-                                   value="${"Edit"}">
-                        </form>
+                        <input name="command" value="go-to-for-user" type="hidden"/>
+                        <input type="submit" name="goTo" class="w3-button w3-teal w3-padding-large"
+                               value="${"Edit"}">
                     </li>
                 </ul>
+            </c:forEach>
             </form>
         </div>
     </div>
