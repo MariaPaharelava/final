@@ -3,6 +3,8 @@ package by.epam.finalTask.hr.factory;
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.command.impl.*;
+import by.epam.finalTask.hr.command.impl.admin.AddUser;
+import by.epam.finalTask.hr.command.impl.admin.DeleteUser;
 import by.epam.finalTask.hr.command.impl.hr.*;
 import by.epam.finalTask.hr.controller.helper.CommandName;
 import by.epam.finalTask.hr.service.HiringService;
@@ -30,43 +32,51 @@ public class CommandFactory {
         InterviewService interviewService = serviceFactory.getInterviewService();
 
         switch (commandName) {
-            case AUTHORIZATION:{
+            case AUTHORIZATION: {
                 command = new AuthorizationCommand(userService, vacancyService, hiringService);
                 break;
             }
-            case REGISTRATION:{
+            case REGISTRATION: {
                 command = new RegistrationCommand(userService);
                 break;
             }
-            case CREATE_VACANCY:{
+            case CREATE_VACANCY: {
                 command = new CreateVacancyCommand(vacancyService);
                 break;
             }
-            case DELETE_HIRING:{
+            case DELETE_HIRING: {
                 command = new DeleteHiringCommand(hiringService);
                 break;
             }
-            case EDIT_HIRING_BUTTON:{
+            case EDIT_HIRING_BUTTON: {
                 command = new EditHiringButtonCommand(hiringService);
                 break;
             }
-            case EDIT_HIRING:{
+            case EDIT_HIRING: {
                 command = new EditHiringCommand(userService, vacancyService, hiringService);
                 break;
             }
-            case TABLE_HIRING:{
+            case TABLE_HIRING: {
                 command = new TableHiringCommand(hiringService, interviewService);
-            break;
+                break;
             }
-            case DELETE_INTERVIEW:{
+            case DELETE_INTERVIEW: {
                 command = new DeleteInterviewCommand(interviewService);
                 break;
             }
-            case ADD_INTERVIEW:{
+            case ADD_INTERVIEW: {
                 command = new AddInterview(interviewService);
                 break;
             }
-            case CHANGE_LOCAL:{
+            case ADD_USER: {
+                command = new AddUser(userService);
+                break;
+            }
+            case DELETE_USER: {
+                command = new DeleteUser(userService);
+                break;
+            }
+            case CHANGE_LOCAL: {
 
                 break;
             }

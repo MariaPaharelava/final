@@ -23,8 +23,6 @@
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <form action="FontController" method="get">
-            <input name="command" value="go-to-for-user" type="hidden"/>
             <a class="w3-bar-item w3-button"
                href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
             <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My
@@ -42,14 +40,8 @@
             </div>
             <a class="w3-bar-item w3-button w3-right"
                href="${pageContext.servletContext.contextPath}/index.jsp" onclick="${sessionScope.clear()}">Logout</a>
-        </form>
     </div>
 </div>
-
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
-     id="myOverlay"></div>
 
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main w3-animate-left" style="margin:3.7%;">
@@ -103,7 +95,7 @@
 </div>
 
 <div id="id01" class="w3-modal">
-    <div class="w3-animate-left">
+    <div class="w3-main w3-animate-left">
 
         <form action="FontController" class="w3-container w3-card-4 w3-light-grey w3-text-blue"
               style="margin-left: 30%; margin-right: 30%;">

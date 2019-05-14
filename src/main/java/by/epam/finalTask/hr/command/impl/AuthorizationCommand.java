@@ -30,6 +30,7 @@ public class AuthorizationCommand implements Command {
     private static final String VACANCIES = "vacancies";
     private static final String HIRINGS = "hirings";
     private static final String USER = "user";
+    private static final String USERS = "users";
     private static final String ERROR_MESSAGES = "errorMessage";
     private static final Logger LOGGER = LogManager.getLogger(AuthorizationCommand.class);
 
@@ -61,10 +62,11 @@ public class AuthorizationCommand implements Command {
                 }
                 switch (user.getUserRole()) {
                     case HR:
-                        setAllNecessaryAttribute(session);
+                        setAllNecessaryAttributeForHR(session);
                         request.getRequestDispatcher(PageName.HR_VACANCY_PAGE).forward(request, response);
                         break;
                     case ADMIN:
+                        setAllNecessaryAttributeForAdmin(session);
                         request.getRequestDispatcher(PageName.WORK_WITH_USER).forward(request, response);
                         break;
                     case CANDIDATE:
@@ -84,7 +86,12 @@ public class AuthorizationCommand implements Command {
         }
     }
 
-    private void setAllNecessaryAttribute(HttpSession session) throws ServiceException {
+    private void setAllNecessaryAttributeForAdmin(HttpSession session) throws ServiceException {
+        List<User> userList = userService.getAllUsers();
+        session.setAttribute(USERS, userList);
+    }
+
+    private void setAllNecessaryAttributeForHR(HttpSession session) throws ServiceException {
         List<Vacancy> vacancyList = vacancyService.getAllVacancies();
         session.setAttribute(VACANCIES, vacancyList);
         List<HiringForShow> hiringForShows = createHiringList();

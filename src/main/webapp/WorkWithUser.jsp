@@ -24,101 +24,110 @@
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <form action="Controller" method="get">
-            <input name="command" value="go-to-for-user" type="hidden"/>
-            <a class="w3-bar-item w3-button w3-theme-l1" href="#">Users</a>
-            <div class="w3-dropdown-hover w3-hide-small w3-right">
-                <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                    <a class="w3-bar-item w3-button" onclick="">RU</a>
-                    <a class="w3-bar-item w3-button" onclick="">EN</a>
-                </div>
+        <a class="w3-bar-item w3-button w3-theme-l1" href="#">Users</a>
+        <div class="w3-dropdown-hover w3-hide-small w3-right">
+            <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a class="w3-bar-item w3-button" onclick="">RU</a>
+                <a class="w3-bar-item w3-button" onclick="">EN</a>
             </div>
-            <input type="submit" name="goTo" class="w3-bar-item w3-button w3-right" value="${"Out"}">
-        </form>
+        </div>
+        <a class="w3-bar-item w3-button w3-right"
+           href="${pageContext.servletContext.contextPath}/index.jsp" onclick="${sessionScope.clear()}">Logout</a>
     </div>
 </div>
-
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
-     id="myOverlay"></div>
 
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main w3-animate-left" style="margin:3.7%;">
 
-    <form action="/action_page.php" class="w3-container w3-card-4 w3-light-grey w3-text-blue"
-          style="margin-left: 10%; margin-right: 10%;">
-        <h2 class="w3-center">All Users</h2>
+    <h2 class="w3-center">All Users</h2>
 
-
-        <table class="w3-table-all w3-margin-top" id="myTable">
-            <tr>
-                <th style="width:5%;"></th>
-                <th style="width:30%;">Surname</th>
-                <th style="width:20%;">Name</th>
-                <th style="width:20%;">Role</th>
-                <th style="width:20%;">Login</th>
-                <th style="width:5%; ">Delete</th>
-            </tr>
-            <tr>
+    <table class="w3-table-all w3-margin-top" id="myTable">
+        <tr>
+            <th style="width:5%;"></th>
+            <th style="width:30%;">Surname</th>
+            <th style="width:20%;">Name</th>
+            <th style="width:20%;">Role</th>
+            <th style="width:20%;">Login</th>
+            <th style="width:5%; ">Delete</th>
+        </tr>
+        <c:forEach var="user" items="${sessionScope.users}" varStatus="theCount">
+            <tr id="${theCount.index}">
                 <td>
                     <div class="w3-col" style="width:50px"><i class="w3-xlarge fa fa-user-circle-o"></i></div>
                 </td>
-                <td>Futterkiste</td>
-                <td>Alfreds</td>
-                <td>Admin</td>
-                <td>qwerty</td>
+                <td>${user.surname}</td>
+                <td>${user.name}</td>
+                <td>${user.userRole}</td>
+                <td>${user.login}</td>
                 <td>
-                    <div style="width:50px"><a class="w3-text-red w3-right" href="#"><i
-                            class=" w3-xlarge fa fa-user-times"></i></a></div>
+                    <form action="FontController" method="get">
+                        <input name="command" value="delete-user" type="hidden"/>
+                        <input name="index" type="hidden" value="${theCount.index}"/>
+                        <div style="width:50px">
+                            <button class="w3-text-red w3-right w3-button w3-wight"><i
+                                    class=" w3-xlarge fa fa-user-times"></i></button>
+                        </div>
+                    </form>
                 </td>
             </tr>
-        </table>
+        </c:forEach>
+
+    </table>
 
 
-        <div class="w3-row w3-section">
-            <div class=" w3-right w3-rest">
-                <form action="Controller" method="get">
-                    <input name="command" value="go-to-for-user" type="hidden"/>
-                    <a href="#" style="margin-right:20%" onclick="document.getElementById('id01').style.display='block'"><i class="w3-xlarge fa fa-user-plus"></i></a>
-                </form>
-            </div>
+    <div class="w3-row w3-section">
+        <div class=" w3-right w3-rest">
+            <a href="#" style="margin-right:20%"
+               onclick="document.getElementById('id01').style.display='block'"><i
+                    class="w3-xlarge fa fa-user-plus"></i></a>
         </div>
-    </form>
+    </div>
     <!-- END MAIN -->
 </div>
 
 <div id="id01" class="w3-modal">
-    <div class="w3-main w3-animate-left w3-container ">
-        <form class="w3-container w3-card-4 w3-light-grey w3-card-4 w3-animate-zoom w3-modal-content"style="margin-left:20%; margin-right:20%;">
+    <div class="w3-main w3-animate-left ">
+        <form class=" w3-container w3-card-4 w3-light-grey" style="margin-left:20%; margin-right:20%;"
+              action="FontController" method="post">
+            <input name="command" value="add-user" type="hidden"/>
+
             <div class="w3-section">
                 <div class="w3-center"><br>
-                    <span onclick="document.getElementById('id01').style.display='none'"
-                          class="w3-button w3-xlarge w3-white w3-display-topright" title="Close Modal">x</span>
+                    <span onclick="document.getElementById('id01').style.display='none'" style="margin-right:20%;"
+                          class="w3-button w3-xlarge w3-light-grey w3-display-topright" title="Close Modal">x</span>
                 </div>
                 <label><b>Surname</b></label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Surname" name="usrname" required>
+                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Surname"
+                       name="enterSurname" required value="${requestScope.enterSurname}">
 
                 <label><b>Name</b></label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Name" name="usrname" required>
+                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Name"
+                       name="enterName" required value="${requestScope.enterName}">
 
                 <label><b>Login</b></label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="usrname" required>
+                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username"
+                       name="enterLogin" required value="${requestScope.enterLogin}">
 
                 <label><b>Password</b></label>
-                <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="psw" required>
+                <input class="w3-input w3-border" type="password" placeholder="Enter Password"
+                       name="enterPassword" required value="${requestScope.enterPassword}">
                 <div class="w3-row w3-section w3-text-black">
                     <h5 class="w3-left">Select role: </h5><br><br>
                     <div style="margin:1%;">
                         <p>
-                            <input class = "w3-radio" style="width:20%" name="status" type="radio" checked>  User<br>
-                            <input class = "w3-radio" style="width:20%" name="status" type="radio">  HR<br>
-                            <input class = "w3-radio" style="width:20%" name="status" type="radio">  Admin
+                            <input class="w3-radio" style="width:20%" name="enterStatus" type="radio" checked
+                                   value="${"USER"}"> User<br>
+                            <input class="w3-radio" style="width:20%" name="enterStatus" type="radio" value="${"HR"}">
+                            HR<br>
+                            <input class="w3-radio" style="width:20%" name="enterStatus" type="radio"
+                                   value="${"ADMIN"}"> Admin
                         </p>
                     </div>
                 </div>
-                <button class="w3-button w3-center w3-teal w3-section w3-padding" type="submit">OK</button>
+                <button class="w3-button w3-center w3-teal w3-section w3-padding" type="submit"
+                        style="width:100%;">OK
+                </button>
                 <!-- role -->
             </div>
         </form>

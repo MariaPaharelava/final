@@ -1,7 +1,9 @@
 package by.epam.finalTask.hr.service.impl;
 
 import by.epam.finalTask.hr.dao.connectionpool.exception.DAOException;
+import by.epam.finalTask.hr.dao.impl.HiringDAO;
 import by.epam.finalTask.hr.dao.impl.UserDAO;
+import by.epam.finalTask.hr.entity.Hiring;
 import by.epam.finalTask.hr.entity.User;
 import by.epam.finalTask.hr.service.UserService;
 import by.epam.finalTask.hr.service.exception.LoginAlreadyExistsException;
@@ -10,6 +12,7 @@ import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
 import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
@@ -81,6 +84,15 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e);
         }
         return user;
+    }
+
+    @Override
+    public List<User> getAllUsers() throws ServiceException {
+        try {
+            return  ((UserDAO) userDAO).findAll();
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 }
 
