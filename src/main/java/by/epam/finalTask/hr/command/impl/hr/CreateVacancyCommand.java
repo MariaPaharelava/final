@@ -1,4 +1,4 @@
-package by.epam.finalTask.hr.command.impl;
+package by.epam.finalTask.hr.command.impl.hr;
 
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
@@ -31,7 +31,7 @@ public class CreateVacancyCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
 
         String vacancyName = request.getParameter(ENTER_VACANCY_NAME);
         String vacancyDescription = request.getParameter(ENTER_VACANCY_DESCRIPTION);
@@ -43,6 +43,7 @@ public class CreateVacancyCommand implements Command {
             vacancyService.addVacancy(vacancyName, vacancyDescription, user.getUserID());
 
             List<Vacancy> vacancyListNew = vacancyService.getAllVacancies();
+            session.removeAttribute(VACANCIES);
             session.setAttribute(VACANCIES, vacancyListNew);
 
             request.getRequestDispatcher(PageName.CREATING_VACANCY).forward(request, response);

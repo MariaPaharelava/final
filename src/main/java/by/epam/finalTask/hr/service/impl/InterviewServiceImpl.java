@@ -21,9 +21,9 @@ public class InterviewServiceImpl implements InterviewService {
 
 
     @Override
-    public void addInterview(Date date, String comment, String type, String result, int hiring_id) throws ServiceException {
+    public void addInterview(String comment, String type, String result, int hiring_id) throws ServiceException {
         try {
-            Interview interview = new Interview(hiring_id, date, comment, type, result);
+            Interview interview = new Interview(hiring_id, type, comment, result);
             ((InterviewDAO) interviewDAO).save(interview);
         } catch (DAOException e) {
             throw new ServiceException(e);

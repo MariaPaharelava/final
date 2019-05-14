@@ -1,7 +1,8 @@
-package by.epam.finalTask.hr.command.impl;
+package by.epam.finalTask.hr.command.impl.hr;
 
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
+import by.epam.finalTask.hr.command.impl.hr.DeleteHiringCommand;
 import by.epam.finalTask.hr.controller.PageName;
 import by.epam.finalTask.hr.entity.Interview;
 import by.epam.finalTask.hr.service.InterviewService;
@@ -31,7 +32,7 @@ public class DeleteInterviewCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
 
         Integer numberOfHiring = (Integer)session.getAttribute(HIRING_ID);
         Integer numberOfInterview = Integer.parseInt(request.getParameter(NUMBER_OF_INTERVIEW));
@@ -40,13 +41,15 @@ public class DeleteInterviewCommand implements Command {
                 deleteFromDB(numberOfInterview, numberOfHiring);
                 deleteFromSession(session, numberOfInterview);
                 request.getRequestDispatcher(PageName.WORK_WITH_INTERVIEW).forward(request, response);
+                session.removeAttribute(HIRING_ID);
             } catch (ServiceException e) {
                 request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
                 LOGGER.error(e.getMessage());
                 throw new CommandException(e);
             }
         } catch (ServletException | IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+            throw new CommandException(e);
         }
     }
 
@@ -61,6 +64,5 @@ public class DeleteInterviewCommand implements Command {
         List<Interview> interviewArrayList = (ArrayList<Interview>)session.getAttribute(HIRINGS_INTERVIEW);
         interviewArrayList.remove(numberOfInterview.intValue());
         session.setAttribute(HIRINGS_INTERVIEW, interviewArrayList);
-
     }
 }

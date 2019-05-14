@@ -1,4 +1,4 @@
-package by.epam.finalTask.hr.command.impl;
+package by.epam.finalTask.hr.command.impl.hr;
 
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
@@ -6,7 +6,6 @@ import by.epam.finalTask.hr.controller.PageName;
 import by.epam.finalTask.hr.entity.Hiring;
 import by.epam.finalTask.hr.service.HiringService;
 import by.epam.finalTask.hr.util.HiringForShow;
-import by.epam.finalTask.hr.util.Validator;
 import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +31,7 @@ public class DeleteHiringCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
 
         Integer numberOfHiring = Integer.parseInt(request.getParameter(NUMBER_OF_HIRING));
         try {

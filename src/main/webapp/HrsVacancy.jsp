@@ -42,7 +42,7 @@
                 </div>
             </div>
             <a class="w3-bar-item w3-button w3-right"
-               href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
+               href="${pageContext.servletContext.contextPath}/index.jsp" onclick="${sessionScope.clear()}">Logout</a>
         </form>
     </div>
 </div>

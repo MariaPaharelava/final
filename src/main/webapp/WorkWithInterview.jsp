@@ -41,7 +41,7 @@
                 </div>
             </div>
             <a class="w3-bar-item w3-button w3-right"
-               href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
+               href="${pageContext.servletContext.contextPath}/index.jsp" onclick="${sessionScope.clear()}">Logout</a>
         </form>
     </div>
 </div>
@@ -79,7 +79,8 @@
                             <form action="FontController" method="get">
                                 <input name="command" value="delete-interview" type="hidden"/>
                                 <input name="index" type="hidden" value="${theCount.index}"/>
-                                <button class="w3-text-red w3-right" style="margin-right:20%" type="submit"><i
+                                <button class="w3-text-red w3-right w3-button w3-wight" style="margin-right:20%"
+                                        type="submit"><i
                                         class=" w3-xlarge fa fa-trash"></i>
                                 </button>
                             </form>
@@ -101,51 +102,58 @@
     <!-- END MAIN -->
 </div>
 
-
 <div id="id01" class="w3-modal">
+    <div class="w3-animate-left">
 
-    <form class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-card-4 w3-animate-zoom w3-modal-content"
-          style="margin-left: 30%; margin-right: 30%;">
-        <h2 class="w3-center">Create Interview <i class="fa fa-pencil-square-o"></i></h2>
-
-        <div class="w3-center"><br>
-            <span onclick="document.getElementById('id01').style.display='none'"
-                  class="w3-button w3-xlarge w3-white w3-display-topright" title="Close Modal">x</span>
-        </div>
-
-        <div class="w3-row w3-section">
-            <div class="w3-rest">
-                <h5 class="w3-left w3-text-black">Date: </h5>
-                <input class="w3-input w3-border" name="salary" type="text" placeholder="Enter Date">
+        <form action="FontController" class="w3-container w3-card-4 w3-light-grey w3-text-blue"
+              style="margin-left: 30%; margin-right: 30%;">
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id01').style.display='none'" style="margin-right: 30%;"
+                      class="w3-button w3-xlarge w3-light-grey w3-display-topright" title="Close Modal">x</span>
             </div>
-        </div>
+            <input name="command" value="add-interview" type="hidden"/>
 
-        <div class="w3-row w3-section w3-text-black">
-            <h5 class="w3-left">Type: </h5><br><br>
-            <div style="margin:1%;">
-                <p>
-                    <input class="w3-radio" name="status" type="radio" checked> Phone Interview<br>
-                    <input class="w3-radio" name="status" type="radio"> Fase-to-fase interview
-                </p>
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id01').style.display='none'" style="margin-right: 30%;"
+                      class="w3-button w3-xlarge w3-light-grey w3-display-topright" title="Close Modal">x</span>
             </div>
-        </div>
-        <div class="w3-row w3-section">
-            <div class="w3-rest">
-                <h5 class="w3-left w3-text-black">Result: </h5>
-                <input class="w3-input w3-border" name="comment" type="text" placeholder="Enter result">
-            </div>
-        </div>
 
-        <div class="w3-row w3-section">
-            <div class="w3-rest">
-                <h5 class="w3-left w3-text-black">Comment: </h5>
-                <input class="w3-input w3-border" name="comment" type="text" placeholder="Enter comment">
+            <h2 class="w3-center">Create Interview <i class="fa fa-pencil-square-o"></i></h2>
+
+            <div class="w3-row w3-section w3-text-black">
+                <h5 class="w3-left">Type: </h5><br><br>
+                <div style="margin:1%;">
+                    <p>
+                        <input name="enterType" class="w3-radio" type="radio"
+                               checked value="${"Phone_Interview"}"> Phone Interview<br>
+                        <input name="enterType" class="w3-radio" type="radio"
+                               value="${"Face_To_Face_Interview"}"> Face-To-Face Interview
+                    </p>
+                </div>
             </div>
-        </div>
-        <p>
-            <button class="w3-button w3-center w3-section w3-blue w3-ripple"> ОК</button>
-        </p>
-    </form>
+            <div class="w3-row w3-section">
+                <div class="w3-rest">
+                    <h5 class="w3-left w3-text-black">Result: </h5>
+                    <input class="w3-input w3-border" name="enterResult" type="text"
+                           value="${requestScope.enterResult}" placeholder="Enter result">
+                </div>
+            </div>
+
+            <div class="w3-row w3-section">
+                <div class="w3-rest">
+                    <h5 class="w3-left w3-text-black">Comment: </h5>
+                    <input class="w3-input w3-border" name="enterComment" type="text"
+                           value="${requestScope.enterComment}" placeholder="Enter comment">
+                </div>
+            </div>
+            <p>
+                <a class="w3-button w3-left w3-section w3-red w3-ripple"
+                   onclick="document.getElementById('id01').style.display='none'"> Cancel </a>
+                <button class="w3-button w3-right w3-section w3-blue w3-ripple"> Edit</button>
+            </p>
+        </form>
+        <!-- END MAIN -->
+    </div>
     <!-- END MAIN -->
 </div>
 

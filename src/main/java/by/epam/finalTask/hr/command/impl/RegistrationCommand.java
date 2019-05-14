@@ -5,7 +5,6 @@ import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.controller.PageName;
 import by.epam.finalTask.hr.entity.User;
 import by.epam.finalTask.hr.service.UserService;
-import by.epam.finalTask.hr.service.exception.LoginAlreadyExistsException;
 import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,16 +47,7 @@ public class RegistrationCommand implements Command {
             } else {
                 user = userService.registerUser(login, password, surname, name, role);
             }
-
-            // exception forwarding
-            request.setAttribute(ENTER_USER_SURNAME, surname);
-            request.setAttribute(ENTER_USER_NAME, name);
-            request.setAttribute(ENTER_LOGIN, login);
-            request.setAttribute(ENTER_PASSWORD, password);
-            request.setAttribute(ENTER_ROLE, role);
-
             request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
-
         } catch (ServletException | IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);

@@ -1,7 +1,8 @@
-package by.epam.finalTask.hr.command.impl;
+package by.epam.finalTask.hr.command.impl.hr;
 
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
+import by.epam.finalTask.hr.command.impl.AuthorizationCommand;
 import by.epam.finalTask.hr.controller.PageName;
 import by.epam.finalTask.hr.entity.Hiring;
 import by.epam.finalTask.hr.entity.User;
@@ -44,7 +45,7 @@ public class EditHiringCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
 
         String salary = request.getParameter(ENTER_SALARY);
         String status = request.getParameter(ENTER_STATUS);
@@ -58,6 +59,8 @@ public class EditHiringCommand implements Command {
                 Hiring hiringNew = hiringService.changeHiring(hiringID,
                         Double.valueOf(salary), status, comment);
                 changeHiringFromSession(session, numberOfHiring, hiringNew);
+                session.removeAttribute(NUMBER_OF_HIRING);
+                session.removeAttribute(HIRING_ID);
                 request.getRequestDispatcher(PageName.HRS_VACANCY).forward(request, response);
             } catch (ServiceException e) {
                 LOGGER.info(e.getMessage());

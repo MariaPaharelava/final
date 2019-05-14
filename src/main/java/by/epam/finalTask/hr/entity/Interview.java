@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Interview implements Indentifable {
-    private int interviewID;
+    private Integer interviewID;
     private int hiringId;
     private Date interviewDate;
     private InterviewType interviewType;
@@ -21,14 +21,21 @@ public class Interview implements Indentifable {
         this.comment = comment;
     }
 
+    public Interview(int hiringId, String interviewType, String result, String comment) {
+        this.hiringId = hiringId;
+        setInterviewType(interviewType);
+        this.result = result;
+        this.comment = comment;
+    }
+
     public Interview() {
     }
 
-    public int getInterviewID() {
+    public Integer getInterviewID() {
         return interviewID;
     }
 
-    public void setInterviewID(int interviewID) {
+    public void setInterviewID(Integer interviewID) {
         this.interviewID = interviewID;
     }
 
@@ -46,7 +53,7 @@ public class Interview implements Indentifable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Interview interview = (Interview) o;
-        return interviewID == interview.interviewID &&
+        return interviewID.equals(interview.interviewID) &&
                 hiringId == interview.hiringId &&
                 Objects.equals(interviewDate, interview.interviewDate) &&
                 interviewType == interview.interviewType &&

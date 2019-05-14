@@ -3,6 +3,7 @@ package by.epam.finalTask.hr.factory;
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.command.impl.*;
+import by.epam.finalTask.hr.command.impl.hr.*;
 import by.epam.finalTask.hr.controller.helper.CommandName;
 import by.epam.finalTask.hr.service.HiringService;
 import by.epam.finalTask.hr.service.InterviewService;
@@ -55,9 +56,14 @@ public class CommandFactory {
             }
             case TABLE_HIRING:{
                 command = new TableHiringCommand(hiringService, interviewService);
+            break;
             }
             case DELETE_INTERVIEW:{
                 command = new DeleteInterviewCommand(interviewService);
+                break;
+            }
+            case ADD_INTERVIEW:{
+                command = new AddInterview(interviewService);
                 break;
             }
             case CHANGE_LOCAL:{
