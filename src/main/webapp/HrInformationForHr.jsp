@@ -23,64 +23,58 @@
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-            <a class="w3-bar-item w3-button"
-               href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
-            <a class="w3-bar-item w3-button w3-theme-l1"
-               href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My Info</a>
-            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">Hiring</a>
-            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">Add
-                Vacancy</a>
-            <div class="w3-dropdown-hover w3-hide-small w3-right">
-                <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                    <a class="w3-bar-item w3-button" onclick="">RU</a>
-                    <a class="w3-bar-item w3-button" onclick="">EN</a>
-                </div>
+        <a class="w3-bar-item w3-button"
+           href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
+        <a class="w3-bar-item w3-button w3-theme-l1"
+           href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My Info</a>
+        <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">Hiring</a>
+        <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">Add
+            Vacancy</a>
+        <div class="w3-dropdown-hover w3-hide-small w3-right">
+            <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a class="w3-bar-item w3-button" onclick="">RU</a>
+                <a class="w3-bar-item w3-button" onclick="">EN</a>
             </div>
-            <a class="w3-bar-item w3-button w3-right"
-               href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
+        </div>
+        <a class="w3-bar-item w3-button w3-right"
+           href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
     </div>
 </div>
 
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
-     id="myOverlay"></div>
-
-<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main w3-animate-left" style="margin:3.7%;">
 
-    <form action="/action_page.php" class="w3-container w3-card-4 w3-light-grey w3-text-blue"
+    <form class="w3-container w3-card-4 w3-light-grey w3-text-blue"
           style="margin-left: 30%; margin-right: 30%;">
         <h2 class="w3-center">Your Information</h2>
 
-            <div class="w3-row w3-section">
-                <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
-                <div class="w3-rest">
-                    <a class="w3-input w3-border" name="first" type="text">${sessionScope.user.surname}</a>
-                </div>
+        <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+            <div class="w3-rest">
+                <a class="w3-input w3-border" name="first" type="text">Surname: ${sessionScope.user.surname}</a>
             </div>
+        </div>
 
-            <div class="w3-row w3-section">
-                <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
-                <div class="w3-rest">
-                    <a class="w3-input w3-border" name="last" type="text">${sessionScope.user.name}</a>
-                </div>
+        <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+            <div class="w3-rest">
+                <a class="w3-input" name="last" type="text">Name : ${sessionScope.user.name}</a>
             </div>
+        </div>
 
-            <div class="w3-row w3-section">
-                <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
-                <div class="w3-rest">
-                    <a class="w3-input w3-border" name="email" type="text">${sessionScope.user.login}</a>
-                </div>
+        <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
+            <div class="w3-rest">
+                <a class="w3-input" name="email" type="text">Login : ${sessionScope.user.login}</a>
             </div>
-            <div class="w3-row w3-section">
-                <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
-                <div class="w3-rest">
-                    <a class="w3-input w3-border" name="email" type="text">${sessionScope.user.userRole}</a>
-                </div>
+        </div>
+        <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+            <div class="w3-rest">
+                <a class="w3-input" name="email" type="text">Role : ${sessionScope.user.userRole}</a>
             </div>
-            </form>
+        </div>
+    </form>
     <!-- END MAIN -->
 </div>
 

@@ -42,28 +42,34 @@
 
 <div class="w3-main w3-animate-left" style="margin:3.7%;">
 
-    <form action="/action_page.php" class="w3-container w3-card-4 w3-light-grey w3-text-blue"
+    <form class="w3-container w3-card-4 w3-light-grey w3-text-blue"
           style="margin-left: 30%; margin-right: 30%;">
         <h2 class="w3-center">Your Information</h2>
 
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
             <div class="w3-rest">
-                <a class="w3-input w3-border" name="first" type="text">First Name</a>
+                <a class="w3-input w3-border" name="first" type="text">Surname: ${sessionScope.user.surname}</a>
             </div>
         </div>
 
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
             <div class="w3-rest">
-                <a class="w3-input w3-border" name="last" type="text">Last Name</a>
+                <a class="w3-input" name="last" type="text">Name : ${sessionScope.user.name}</a>
             </div>
         </div>
 
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
             <div class="w3-rest">
-                <a class="w3-input w3-border" name="email" type="text">Login</a>
+                <a class="w3-input" name="email" type="text">Login : ${sessionScope.user.login}</a>
+            </div>
+        </div>
+        <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+            <div class="w3-rest">
+                <a class="w3-input" name="email" type="text">Role : ${sessionScope.user.userRole}</a>
             </div>
         </div>
     </form>
