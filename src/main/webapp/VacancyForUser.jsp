@@ -9,20 +9,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     html,body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif;}
-    .w3-sidebar {
-        z-index: 3;
-        width: 250px;
-        top: 43px;
-        bottom: 0;
-        height: inherit;
-    }
 </style>
 <body>
 
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <form action="Controller" method="get">
             <input name="command" value="go-to-for-user" type="hidden"/>
             <input type="submit" name="goTo" class="w3-bar-item w3-button w3-theme-l1" value="${"Vacancy"}"/>
             <input type="submit" name="goTo" class="w3-bar-item w3-button" value="${"My Info"}"/>
@@ -35,7 +27,6 @@
                 </div>
             </div>
             <input type="submit" name="goTo" class="w3-bar-item w3-button w3-right" value="${"Out"}">
-        </form>
     </div>
 </div>
 

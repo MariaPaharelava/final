@@ -44,6 +44,11 @@ public class VacancyDAO extends AbstractDAO<Vacancy>{
         return executeQueryForSingleResult(SQL_SEARCH_VACANCY_BY_ID, id);
     }
 
+    public Optional<Vacancy> findEntityByPositionAndDescription(String position,
+                                                                String description) throws DAOException {
+        return executeQueryForSingleResult(SQL_SEARCH_VACANCY_BY_ID, position, description);
+    }
+
     public Optional<Vacancy> findEntityByEntity(String name, String description,  Integer hrId) throws DAOException {
         return executeQueryForSingleResult(SQL_SEARCH_VACANCY_BY_VACANCY, name, description, hrId);
     }

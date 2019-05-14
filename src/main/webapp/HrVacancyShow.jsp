@@ -17,37 +17,31 @@
 </style>
 <body>
 
-<c:set var="pageName" value="HrVacancyShow.jsp" scope="session"/>
-
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <form action="Controller" method="get">
-            <a name="command" value="go-to-for-user" type="hidden"/>
-            <a class="w3-bar-item w3-button w3-theme-l1" href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
-            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My Info</a>
-            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">Hiring</a>
-            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">Add Vacancy</a>
-            <div class="w3-dropdown-hover w3-hide-small w3-right">
-                <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                    <a class="w3-bar-item w3-button" onclick="">RU</a>
-                    <a class="w3-bar-item w3-button" onclick="">EN</a>
-                </div>
+        <a class="w3-bar-item w3-button w3-theme-l1"
+           href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
+        <a class="w3-bar-item w3-button"
+           href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My Info</a>
+        <a class="w3-bar-item w3-button"
+           href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">Hiring</a>
+        <a class="w3-bar-item w3-button"
+           href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">Add Vacancy</a>
+        <div class="w3-dropdown-hover w3-hide-small w3-right">
+            <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a class="w3-bar-item w3-button" onclick="">RU</a>
+                <a class="w3-bar-item w3-button" onclick="">EN</a>
             </div>
-            <a class="w3-bar-item w3-button w3-right" href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
-        </form>
+        </div>
+        <a class="w3-bar-item w3-button w3-right"
+           href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
     </div>
 </div>
 
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
-     id="myOverlay"></div>
-
-<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main w3-animate-left" style="margin:3.7%">
-    <c:forEach var="vacancies" items="${vacancies}">
+    <c:forEach var="vacancies" items="${sessionScope.vacancies}">
         <div class="w3-row">
             <div class="w3-twothird w3-container">
                 <h1 class="w3-text-teal">${vacancies.vacancyPosition}</h1>

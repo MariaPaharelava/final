@@ -23,8 +23,6 @@
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <form action="Controller" method="get">
-            <a name="command" value="go-to-for-user" type="hidden"/>
             <a class="w3-bar-item w3-button"
                href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
             <a class="w3-bar-item w3-button w3-theme-l1"
@@ -41,7 +39,6 @@
             </div>
             <a class="w3-bar-item w3-button w3-right"
                href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
-        </form>
     </div>
 </div>
 

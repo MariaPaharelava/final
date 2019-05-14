@@ -73,7 +73,7 @@
                onclick="document.getElementById('id02').style.display='block'">${createAkk}</a>
             <div class="w3-dropdown-hover w3-hide-small w3-right">
                 <button class="w3-button" title="More">${language} <i class="fa fa-caret-down"></i></button>
-                <form action="Controller" method="post">
+                <form action="FontController" method="post">
                     <div class="w3-dropdown-content w3-bar-block w3-card-4">
                         <input name="command" value="change-local" type="hidden">
 

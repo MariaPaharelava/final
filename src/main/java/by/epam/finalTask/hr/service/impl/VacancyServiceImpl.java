@@ -60,4 +60,19 @@ public class VacancyServiceImpl implements VacancyService {
         }
         return vacancy;
     }
+
+    @Override
+    public Vacancy findByPositionAndDescription(String position,
+                                                String description) throws ServiceException {
+        Vacancy vacancy = null;
+        try {
+            vacancyOptional = ((VacancyDAO) vacancyDAO).findEntityByPositionAndDescription(position, description);
+            if (vacancyOptional.isPresent()) {
+                vacancy = vacancyOptional.get();
+            }
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return vacancy;
+    }
 }

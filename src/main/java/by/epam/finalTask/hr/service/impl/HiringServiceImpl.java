@@ -2,10 +2,7 @@ package by.epam.finalTask.hr.service.impl;
 
 import by.epam.finalTask.hr.dao.connectionpool.exception.DAOException;
 import by.epam.finalTask.hr.dao.impl.HiringDAO;
-import by.epam.finalTask.hr.dao.impl.UserDAO;
-import by.epam.finalTask.hr.dao.impl.VacancyDAO;
 import by.epam.finalTask.hr.entity.Hiring;
-import by.epam.finalTask.hr.entity.Vacancy;
 import by.epam.finalTask.hr.service.HiringService;
 import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
@@ -51,7 +48,7 @@ public class HiringServiceImpl implements HiringService {
             hiring.setHiringStatus(status);
             hiring.setComment(comment);
             hiring.setOfferEmount(salary);
-            ((HiringDAO)hiringDAO).save(hiring);
+            ((HiringDAO) hiringDAO).save(hiring);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -61,7 +58,25 @@ public class HiringServiceImpl implements HiringService {
     @Override
     public List<Hiring> getAllHirings() throws ServiceException {
         try {
-            return  ((HiringDAO) hiringDAO).findAll();
+            return ((HiringDAO) hiringDAO).findAll();
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<Hiring> getAllHiringsByHrId(Integer id) throws ServiceException {
+        try {
+            return ((HiringDAO) hiringDAO).findAllBYUserId(id);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<Hiring> getAllHiringsByUserId(Integer id) throws ServiceException {
+        try {
+            return ((HiringDAO) hiringDAO).findAllByHrId(id);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

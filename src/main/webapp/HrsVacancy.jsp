@@ -1,8 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page info="HrsVacancy.jsp" language="java"
          contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <title>HRs Vacancies</title>
@@ -19,13 +17,10 @@
 </style>
 <body>
 
-<c:set var="pageName" value="HrsVacancy.jsp" scope="session"/>
 
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <form action="FontController" method="get">
-            <input name="command" value="go-to-for-user" type="hidden"/>
             <a class="w3-bar-item w3-button"
                href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
             <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My
@@ -43,7 +38,6 @@
             </div>
             <a class="w3-bar-item w3-button w3-right"
                href="${pageContext.servletContext.contextPath}/index.jsp" onclick="${sessionScope.clear()}">Logout</a>
-        </form>
     </div>
 </div>
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
@@ -104,13 +98,10 @@
             </div>
         </c:forEach>
     </div>
-
-
     <!-- END MAIN -->
 </div>
 
 <!-- Pagination -->
-
 <footer id="myFooter">
     <div class="w3-container w3-theme-l1 w3-center w3-display-bottommiddle" style="width:100%;">
         <p><a>Powered by Pogorelova Maria</a></p>

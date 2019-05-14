@@ -15,5 +15,6 @@ public enum CommandName {
     DELETE_INTERVIEW,
     ADD_INTERVIEW,
     ADD_USER,
-    DELETE_USER
+    DELETE_USER,
+    ADD_HIRING
 }

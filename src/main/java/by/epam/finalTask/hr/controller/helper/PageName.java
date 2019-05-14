@@ -1,4 +1,4 @@
-package by.epam.finalTask.hr.controller;
+package by.epam.finalTask.hr.controller.helper;
 
 /**
  * Contains all names of pages on view layer.

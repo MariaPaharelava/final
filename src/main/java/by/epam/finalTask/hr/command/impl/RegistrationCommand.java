@@ -2,7 +2,7 @@ package by.epam.finalTask.hr.command.impl;
 
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
-import by.epam.finalTask.hr.controller.PageName;
+import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.entity.User;
 import by.epam.finalTask.hr.service.UserService;
 import com.google.protobuf.ServiceException;

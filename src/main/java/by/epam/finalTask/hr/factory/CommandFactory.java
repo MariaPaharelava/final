@@ -6,6 +6,7 @@ import by.epam.finalTask.hr.command.impl.*;
 import by.epam.finalTask.hr.command.impl.admin.AddUser;
 import by.epam.finalTask.hr.command.impl.admin.DeleteUser;
 import by.epam.finalTask.hr.command.impl.hr.*;
+import by.epam.finalTask.hr.command.impl.user.AddHiring;
 import by.epam.finalTask.hr.controller.helper.CommandName;
 import by.epam.finalTask.hr.service.HiringService;
 import by.epam.finalTask.hr.service.InterviewService;
@@ -75,6 +76,9 @@ public class CommandFactory {
             case DELETE_USER: {
                 command = new DeleteUser(userService);
                 break;
+            }
+            case ADD_HIRING:{
+                command = new AddHiring(hiringService,vacancyService, userService);
             }
             case CHANGE_LOCAL: {
 

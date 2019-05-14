@@ -2,7 +2,7 @@ package by.epam.finalTask.hr.command.impl;
 
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
-import by.epam.finalTask.hr.controller.PageName;
+import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.entity.Hiring;
 import by.epam.finalTask.hr.entity.User;
 import by.epam.finalTask.hr.entity.Vacancy;
@@ -62,7 +62,8 @@ public class AuthorizationCommand implements Command {
                 }
                 switch (user.getUserRole()) {
                     case HR:
-                        setAllNecessaryAttributeForHR(session);
+                        List<Hiring> hiringListForHr = hiringService.getAllHiringsByHrId(user.getID());
+                        setAllNecessaryAttributeForUser(session, user, hiringListForHr);
                         request.getRequestDispatcher(PageName.HR_VACANCY_PAGE).forward(request, response);
                         break;
                     case ADMIN:
@@ -70,6 +71,8 @@ public class AuthorizationCommand implements Command {
                         request.getRequestDispatcher(PageName.WORK_WITH_USER).forward(request, response);
                         break;
                     case CANDIDATE:
+                        List<Hiring> hiringListForCandidate = hiringService.getAllHiringsByHrId(user.getID());
+                        setAllNecessaryAttributeForUser(session, user, hiringListForCandidate);
                         request.getRequestDispatcher(PageName.USER_VACANCY_PAGE).forward(request, response);
                         break;
                 }
@@ -86,20 +89,21 @@ public class AuthorizationCommand implements Command {
         }
     }
 
+
     private void setAllNecessaryAttributeForAdmin(HttpSession session) throws ServiceException {
         List<User> userList = userService.getAllUsers();
         session.setAttribute(USERS, userList);
     }
 
-    private void setAllNecessaryAttributeForHR(HttpSession session) throws ServiceException {
+    private void setAllNecessaryAttributeForUser(HttpSession session, User user, List<Hiring> hiringListForCandidate)
+            throws ServiceException {
         List<Vacancy> vacancyList = vacancyService.getAllVacancies();
         session.setAttribute(VACANCIES, vacancyList);
-        List<HiringForShow> hiringForShows = createHiringList();
+        List<HiringForShow> hiringForShows = createHiringList(hiringListForCandidate);
         session.setAttribute(HIRINGS, hiringForShows);
     }
 
-    private List<HiringForShow> createHiringList() throws ServiceException {
-        List<Hiring> hiringList = hiringService.getAllHirings();
+    private List<HiringForShow> createHiringList(List<Hiring> hiringList) throws ServiceException {
         List<HiringForShow> hiringForShows = new ArrayList<>();
         Validator validator = new Validator();
         for (Hiring aHiringList : hiringList) {

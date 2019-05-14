@@ -1,4 +1,4 @@
-package by.epam.finalTask.hr.command.impl.admin;
+package by.epam.finalTask.hr.command.impl.user;
 
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeleteUser implements Command {
+public class DeleteHiring implements Command {
     private static final String ENTER_SURNAME = "enterType";
     private static final String ENTER_NAME = "enterResult";
     private static final String ENTER_LOGIN = "enterComment";
@@ -25,10 +25,10 @@ public class DeleteUser implements Command {
     private static final String ENTER_ROLE = "hiringsInterview";
     private static final String USERS = "users";
     private static final String NUMBER_OF_USER = "index";
-    private static final Logger LOGGER = LogManager.getLogger(DeleteUser.class);
+    private static final Logger LOGGER = LogManager.getLogger(DeleteHiring.class);
     private UserService userService;
 
-    public DeleteUser(UserService userService) {
+    public DeleteHiring(UserService userService) {
         this.userService = userService;
     }
     @Override

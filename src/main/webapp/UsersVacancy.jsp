@@ -16,77 +16,72 @@
         font-family: "Raleway", sans-serif;
     }
 
-    .w3-sidebar {
-        z-index: 3;
-        width: 250px;
-        top: 43px;
-        bottom: 0;
-        height: inherit;
-    }
 </style>
 <body>
-
-<c:set var="pageName" value="UsersVacancy.jsp" scope="session"/>
 
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <form action="Controller" method="get">
-            <input name="command" value="go-to-for-user" type="hidden"/>
-            <input type="submit" name="goTo" class="w3-bar-item w3-button" value="${"Vacancy"}"/>
-            <input type="submit" name="goTo" class="w3-bar-item w3-button" value="${"My Info"}"/>
-            <input type="submit" name="goTo" class="w3-bar-item w3-button w3-theme-l1" value="${"Hiring"}"/>
-            <div class="w3-dropdown-hover w3-hide-small w3-right">
-                <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                    <a class="w3-bar-item w3-button" onclick="">RU</a>
-                    <a class="w3-bar-item w3-button" onclick="">EN</a>
-                </div>
+        <a class="w3-bar-item w3-button w3-theme-l1"
+           href="${pageContext.servletContext.contextPath}/UserVacancyShow.jsp">Vacancy</a>
+        <a class="w3-bar-item w3-button"
+           href="${pageContext.servletContext.contextPath}/UserInformationForUser.jsp">My Info</a>
+        <a class="w3-bar-item w3-button"
+           href="${pageContext.servletContext.contextPath}/UsersVacancy.jsp">Hiring</a>
+        <div class="w3-dropdown-hover w3-hide-small w3-right">
+            <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a class="w3-bar-item w3-button" onclick="">RU</a>
+                <a class="w3-bar-item w3-button" onclick="">EN</a>
             </div>
-            <input type="submit" name="goTo" class="w3-bar-item w3-button w3-right" value="${"Out"}">
-        </form>
+        </div>
+        <a class="w3-bar-item w3-button w3-right"
+           href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
     </div>
 </div>
 
-
-<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main w3-animate-left" style="margin:3.75%">
     <div class="w3-row-padding">
-        <div class="w3-third">
-            <ul class="w3-ul w3-border w3-center w3-hover-shadow">
-                <li class="w3-green w3-xlarge w3-padding-8">Vacancy</li>
-                <li class="w3-padding-16"><b>Your Surname Name</b></li>
-                <li class="w3-padding-16"><b>Hr Surname Name</b></li>
-                <li class="w3-padding-16">Status</li>
-                <li class="w3-padding-16">
-                    <h2 class="w3-wide">$ Salary</h2>
-                    <span class="w3-opacity">per month</span>
-                </li>
-                <li class="w3-light-grey w3-padding-24">
-                    <button class="w3-button w3-red w3-padding-large">Cancel</button>
-                </li>
-            </ul>
-        </div>
-        <div class="w3-third">
-            <ul class="w3-ul w3-border w3-center w3-hover-shadow">
-                <li class="w3-green w3-xlarge w3-padding-8">Vacancy</li>
-                <li class="w3-padding-16"><b>Your Surname Name</b></li>
-                <li class="w3-padding-16"><b>Hr Surname Name</b></li>
-                <li class="w3-padding-16">Status</li>
-                <li class="w3-padding-16">
-                    <h2 class="w3-wide">$ Salary</h2>
-                    <span class="w3-opacity">per month</span>
-                </li>
-                <li class="w3-light-grey w3-padding-24">
-                    <button class="w3-button w3-red w3-padding-large">Cancel</button>
-                </li>
-            </ul>
-        </div>
+        <c:forEach var="hiring" items="${sessionScope.hirings}" varStatus="theCount">
+            <div class="w3-quarter" id="${theCount.index}">
+                <ul class="w3-ul w3-border w3-center w3-hover-shadow">
+                    <li class="w3-green w3-xlarge w3-padding-8">${hiring.vacancyName}</li>
+                    <li class="w3-padding-8"><b>${hiring.candidateSurname} ${hiring.candidateName}</b></li>
+                    <li class="w3-padding-8"><b>${hiring.hrSurname} ${hiring.hrName}</b></li>
+
+                    <c:if test="${not empty hiring.comment}">
+                        <li class="w3-padding-8">${hiring.comment}</li>
+                    </c:if>
+                    <c:if test="${empty hiring.comment}">
+                        <li class="w3-text-grey w3-padding-8">No Value Set</li>
+                    </c:if>
+
+                    <li class="w3-padding-8">${hiring.hiringStatus}</li>
+
+                    <li class="w3-padding-4">
+                        <c:if test="${not empty hiring.offerEmount }">
+                            <h3 class="w3-wide">$ ${hiring.offerEmount}</h3>
+                            <span class="w3-opacity">per month</span>
+                        </c:if>
+                        <c:if test="${empty hiring.offerEmount}">
+                            <h3 class="w3-text-grey w3-wide">No Value Set</h3>
+                            <span class="w3-opacity w3-text-wight">___</span>
+                        </c:if>
+                    </li>
+                    <li class="w3-light-grey w3-padding-16">
+                        <form action="FontController" method="get" class="w3-row w3-container">
+                            <input name="command" value="add-hiring" type="hidden"/>
+                            <input name="index" type="hidden" value="${theCount.index}"/>
+                            <button class="w3-button w3-red w3-padding-large">Cancel</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </c:forEach>
+
     </div>
-
-
-    <!-- END MAIN -->
 </div>
+<!-- END MAIN -->
 
 <!-- Pagination -->
 
