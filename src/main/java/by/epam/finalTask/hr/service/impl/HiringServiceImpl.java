@@ -44,7 +44,7 @@ public class HiringServiceImpl implements HiringService {
     }
 
     @Override
-    public void changeHiring(Integer hiringId, double salary, String status, String comment) throws ServiceException {
+    public Hiring changeHiring(Integer hiringId, double salary, String status, String comment) throws ServiceException {
         try {
             Optional<Hiring> hiringOptional = ((HiringDAO) hiringDAO).findEntityById(hiringId);
             hiring = hiringOptional.get();
@@ -55,6 +55,7 @@ public class HiringServiceImpl implements HiringService {
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
+        return hiring;
     }
 
     @Override

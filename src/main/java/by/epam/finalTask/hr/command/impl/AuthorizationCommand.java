@@ -74,12 +74,9 @@ public class AuthorizationCommand implements Command {
                 return;
             } catch (LoginAlreadyNoExistsException e) {
                 LOGGER.error("The login already no exists.");
-                request.setAttribute(ERROR_MESSAGES, "The login already exists.");
             } catch (ServiceException e) {
                 throw new CommandException(e);
             }
-            request.setAttribute(ENTER_LOGIN, login);
-            request.setAttribute(ENTER_PASSWORD, password);
             request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
         } catch (ServletException | IOException e) {
             LOGGER.error(e.getMessage());

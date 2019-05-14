@@ -9,5 +9,6 @@ public enum CommandName {
     CREATE_VACANCY,
     CHANGE_LOCAL,
     DELETE_HIRING,
+    EDIT_HIRING_BUTTUN,
     EDIT_HIRING,
 }

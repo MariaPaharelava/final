@@ -101,4 +101,5 @@ public class HiringForShow {
     public void setHiringStatus(HiringStatus hiringStatus) {
         this.hiringStatus = hiringStatus;
     }
+
 }
