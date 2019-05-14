@@ -18,16 +18,16 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddInterview implements Command {
+public class AddInterviewCommand implements Command {
     private static final String ENTER_TYPE = "enterType";
     private static final String ENTER_RESULT = "enterResult";
     private static final String ENTER_COMMENT = "enterComment";
     private static final String HIRINGS_INTERVIEW = "hiringsInterview";
     private static final String HIRING_ID = "hiringID";
-    private static final Logger LOGGER = LogManager.getLogger(AddInterview.class);
+    private static final Logger LOGGER = LogManager.getLogger(AddInterviewCommand.class);
     private InterviewService interviewService;
 
-    public AddInterview(InterviewService interviewService) {
+    public AddInterviewCommand(InterviewService interviewService) {
         this.interviewService = interviewService;
     }
     @Override

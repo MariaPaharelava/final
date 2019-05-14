@@ -70,7 +70,7 @@
                     </li>
                     <li class="w3-light-grey w3-padding-16">
                         <form action="FontController" method="get" class="w3-row w3-container">
-                            <input name="command" value="add-hiring" type="hidden"/>
+                            <input name="command" value="delete-hiring-by-user" type="hidden"/>
                             <input name="index" type="hidden" value="${theCount.index}"/>
                             <button class="w3-button w3-red w3-padding-large">Cancel</button>
                         </form>

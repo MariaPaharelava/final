@@ -3,10 +3,11 @@ package by.epam.finalTask.hr.factory;
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.command.impl.*;
-import by.epam.finalTask.hr.command.impl.admin.AddUser;
-import by.epam.finalTask.hr.command.impl.admin.DeleteUser;
+import by.epam.finalTask.hr.command.impl.admin.AddUserCommand;
+import by.epam.finalTask.hr.command.impl.admin.DeleteUserCommand;
 import by.epam.finalTask.hr.command.impl.hr.*;
-import by.epam.finalTask.hr.command.impl.user.AddHiring;
+import by.epam.finalTask.hr.command.impl.user.AddHiringCommand;
+import by.epam.finalTask.hr.command.impl.user.DeleteHiringByUserCommand;
 import by.epam.finalTask.hr.controller.helper.CommandName;
 import by.epam.finalTask.hr.service.HiringService;
 import by.epam.finalTask.hr.service.InterviewService;
@@ -45,8 +46,8 @@ public class CommandFactory {
                 command = new CreateVacancyCommand(vacancyService);
                 break;
             }
-            case DELETE_HIRING: {
-                command = new DeleteHiringCommand(hiringService);
+            case DELETE_HIRING_BY_HR: {
+                command = new DeleteHiringByHrCommand(hiringService);
                 break;
             }
             case EDIT_HIRING_BUTTON: {
@@ -66,19 +67,24 @@ public class CommandFactory {
                 break;
             }
             case ADD_INTERVIEW: {
-                command = new AddInterview(interviewService);
+                command = new AddInterviewCommand(interviewService);
                 break;
             }
             case ADD_USER: {
-                command = new AddUser(userService);
+                command = new AddUserCommand(userService);
                 break;
             }
             case DELETE_USER: {
-                command = new DeleteUser(userService);
+                command = new DeleteUserCommand(userService);
                 break;
             }
             case ADD_HIRING:{
-                command = new AddHiring(hiringService,vacancyService, userService);
+                command = new AddHiringCommand(hiringService,vacancyService, userService);
+                break;
+            }
+            case DELETE_HIRING_BY_USER:{
+                command = new DeleteHiringByUserCommand(hiringService);
+                break;
             }
             case CHANGE_LOCAL: {
 

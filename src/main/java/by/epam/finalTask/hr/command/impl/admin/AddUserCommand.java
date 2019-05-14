@@ -1,4 +1,4 @@
-package by.epam.finalTask.hr.command.impl.user;
+package by.epam.finalTask.hr.command.impl.admin;
 
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
@@ -17,30 +17,33 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeleteHiring implements Command {
-    private static final String ENTER_SURNAME = "enterType";
-    private static final String ENTER_NAME = "enterResult";
-    private static final String ENTER_LOGIN = "enterComment";
-    private static final String ENTER_PASSWORD = "hiringsInterview";
-    private static final String ENTER_ROLE = "hiringsInterview";
+public class AddUserCommand implements Command {
+    private static final String ENTER_SURNAME = "enterSurname";
+    private static final String ENTER_NAME = "enterName";
+    private static final String ENTER_LOGIN = "enterLogin";
+    private static final String ENTER_PASSWORD = "enterPassword";
+    private static final String ENTER_ROLE = "enterStatus";
     private static final String USERS = "users";
-    private static final String NUMBER_OF_USER = "index";
-    private static final Logger LOGGER = LogManager.getLogger(DeleteHiring.class);
+    private static final Logger LOGGER = LogManager.getLogger(AddUserCommand.class);
     private UserService userService;
 
-    public DeleteHiring(UserService userService) {
+    public AddUserCommand(UserService userService) {
         this.userService = userService;
     }
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         HttpSession session = request.getSession(false);
 
-        Integer numberOfUser = Integer.parseInt(request.getParameter(NUMBER_OF_USER));
-
+        String surname = request.getParameter(ENTER_SURNAME);
+        String name = request.getParameter(ENTER_NAME);
+        String login = request.getParameter(ENTER_LOGIN);
+        String password = request.getParameter(ENTER_PASSWORD);
+        String role = request.getParameter(ENTER_ROLE);
         try {
             try {
-                deleteUserfromDB(numberOfUser);
-                deleteUserfromSession(session,numberOfUser);
+                User user = new User(login, password, surname, name, role);
+                addUserToSession(session, user);
+                addUserToDB(user);
                 request.getRequestDispatcher(PageName.WORK_WITH_USER).forward(request, response);
             } catch (ServiceException e) {
                 request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
@@ -53,16 +56,15 @@ public class DeleteHiring implements Command {
 
 
     }
-    private void deleteUserfromSession(HttpSession session, Integer numberOfUser){
-        List<User> userList = (ArrayList<User>)session.getAttribute(USERS);
-        userList.remove(numberOfUser.intValue());
-        session.setAttribute(USERS, userList);
+    private void addUserToSession(HttpSession session, User user){
+        List<User> userArrayList = (ArrayList<User>)session.getAttribute(USERS);
+        userArrayList.add(user);
+        session.setAttribute(USERS, userArrayList);
     }
 
-    private void deleteUserfromDB(Integer numberOfUser) throws ServiceException {
-        List<User> userList = userService.getAllUsers();
-        User user = userList.get(numberOfUser);
-        userService.removeUser(user.getLogin(), user.getPassword());
+    private void addUserToDB(User user) throws ServiceException {
 
+        userService.registerUser(user.getSurname(), user.getName(), user.getLogin(),
+                user.getPassword(), user.getUserRole().toString());
     }
 }

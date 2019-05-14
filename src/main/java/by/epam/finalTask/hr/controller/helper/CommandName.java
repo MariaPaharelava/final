@@ -8,7 +8,7 @@ public enum CommandName {
     AUTHORIZATION,
     CREATE_VACANCY,
     CHANGE_LOCAL,
-    DELETE_HIRING,
+    DELETE_HIRING_BY_HR,
     EDIT_HIRING_BUTTON,
     EDIT_HIRING,
     TABLE_HIRING,
@@ -16,5 +16,6 @@ public enum CommandName {
     ADD_INTERVIEW,
     ADD_USER,
     DELETE_USER,
-    ADD_HIRING
+    ADD_HIRING,
+    DELETE_HIRING_BY_USER
 }

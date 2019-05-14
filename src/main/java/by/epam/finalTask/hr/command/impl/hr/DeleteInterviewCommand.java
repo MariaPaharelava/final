@@ -21,7 +21,7 @@ public class DeleteInterviewCommand implements Command {
     private static final String NUMBER_OF_INTERVIEW = "index";
     private static final String HIRINGS_INTERVIEW = "hiringsInterview";
     private static final String HIRING_ID = "hiringID";
-    private static final Logger LOGGER = LogManager.getLogger(DeleteHiringCommand.class);
+    private static final Logger LOGGER = LogManager.getLogger(DeleteHiringByHrCommand.class);
     private InterviewService interviewService;
 
     public DeleteInterviewCommand(InterviewService interviewService) {

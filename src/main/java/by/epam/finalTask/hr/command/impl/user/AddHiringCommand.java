@@ -22,17 +22,17 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-public class AddHiring implements Command {
+public class AddHiringCommand implements Command {
     private static final String NUMBER_OF_HIRING = "index";
     private static final String VACANCIES = "vacancies";
     private static final String USER = "user";
     private static final String HIRINGS = "hirings";
-    private static final Logger LOGGER = LogManager.getLogger(AddHiring.class);
+    private static final Logger LOGGER = LogManager.getLogger(AddHiringCommand.class);
     private HiringService hiringService;
     private VacancyService vacancyService;
     private UserService userService;
 
-    public AddHiring(HiringService hiringService, VacancyService vacancyService, UserService userService) {
+    public AddHiringCommand(HiringService hiringService, VacancyService vacancyService, UserService userService) {
         this.hiringService = hiringService;
         this.vacancyService = vacancyService;
         this.userService = userService;

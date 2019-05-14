@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeleteUser implements Command {
+public class DeleteUserCommand implements Command {
     private static final String ENTER_SURNAME = "enterType";
     private static final String ENTER_NAME = "enterResult";
     private static final String ENTER_LOGIN = "enterComment";
@@ -25,10 +25,10 @@ public class DeleteUser implements Command {
     private static final String ENTER_ROLE = "hiringsInterview";
     private static final String USERS = "users";
     private static final String NUMBER_OF_USER = "index";
-    private static final Logger LOGGER = LogManager.getLogger(DeleteUser.class);
+    private static final Logger LOGGER = LogManager.getLogger(DeleteUserCommand.class);
     private UserService userService;
 
-    public DeleteUser(UserService userService) {
+    public DeleteUserCommand(UserService userService) {
         this.userService = userService;
     }
     @Override

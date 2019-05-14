@@ -82,7 +82,7 @@
 
                     <li class="w3-light-grey w3-padding-8 w3-container">
                         <form action="FontController" method="get">
-                            <input name="command" value="delete-hiring" type="hidden"/>
+                            <input name="command" value="delete-hiring-by-hr" type="hidden"/>
                             <input name="index" type="hidden" value="${theCount.index}"/>
                             <button class="w3-button w3-red w3-left w3-padding-large" type="submit">Delete
                             </button>
