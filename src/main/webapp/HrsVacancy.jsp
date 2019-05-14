@@ -49,8 +49,8 @@
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main w3-animate-left" style="margin:3.75%">
     <div class="w3-row-padding">
-        <c:forEach var="hiring" items="${sessionScope.hirings}">
-            <div class="w3-quarter">
+        <c:forEach var="hiring" items="${sessionScope.hirings}" varStatus="theCount">
+            <div class="w3-quarter" id="${theCount.index}">
                 <ul class="w3-ul w3-border w3-center w3-hover-shadow"
                     onclick="window.location='${pageContext.servletContext.contextPath}/WorkWithInterview.jsp'">
 
@@ -78,12 +78,19 @@
                         </c:if>
                     </li>
 
-                    <li class="w3-light-grey w3-padding-8">
-                        <a name="goTo" class="w3-button w3-red w3-padding-large"
-                           onclick="<c:remove var="hiring"/>">Delete</a>
-                        <a name="goTo" class="w3-button w3-teal w3-padding-large"
-                           href="${pageContext.servletContext.contextPath}/EditVacancy.jsp">Edit</a>
+                    <li class="w3-light-grey w3-padding-8 w3-container">
+                        <form action="FontController" method="get">
+                            <input name="command" value="delete-hiring" type="hidden"/>
+                            <input name="index" type="hidden" value="${theCount.index}"/>
+                            <button class="w3-button w3-red w3-left w3-padding-large" type="submit">Delete</button>
+                        </form>
+                        <form action="FontController" method="get">
+                            <input name="command" value="edit-hiring" type="hidden"/>
+                            <input name="index" type="hidden" value="${theCount.index}"/>
+                            <button class="w3-button w3-teal w3-right w3-padding-large" type="submit">Edit</button>
+                        </form>
                     </li>
+
                 </ul>
             </div>
         </c:forEach>

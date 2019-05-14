@@ -11,6 +11,7 @@ import by.epam.finalTask.hr.service.UserService;
 import by.epam.finalTask.hr.service.VacancyService;
 import by.epam.finalTask.hr.service.exception.LoginAlreadyNoExistsException;
 import by.epam.finalTask.hr.util.HiringForShow;
+import by.epam.finalTask.hr.util.Validator;
 import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,7 +28,7 @@ public class AuthorizationCommand implements Command {
     private static final String ENTER_LOGIN = "enterLogin";
     private static final String ENTER_PASSWORD = "enterPassword";
     private static final String VACANCIES = "vacancies";
-    private static final String HIRING = "hirings";
+    private static final String HIRINGS = "hirings";
     private static final String USER = "user";
     private static final String ERROR_MESSAGES = "errorMessage";
     private static final Logger LOGGER = LogManager.getLogger(AuthorizationCommand.class);
@@ -90,24 +91,19 @@ public class AuthorizationCommand implements Command {
         List<Vacancy> vacancyList = vacancyService.getAllVacancies();
         session.setAttribute(VACANCIES, vacancyList);
         List<HiringForShow> hiringForShows = createHiringList();
-        session.setAttribute(HIRING, hiringForShows);
+        session.setAttribute(HIRINGS, hiringForShows);
     }
 
     private List<HiringForShow> createHiringList() throws ServiceException {
         List<Hiring> hiringList = hiringService.getAllHirings();
         List<HiringForShow> hiringForShows = new ArrayList<>();
+        Validator validator = new Validator();
         for (Hiring aHiringList : hiringList) {
-            hiringForShows.add(createHiringForShow(aHiringList));
+            HiringForShow hiringForShow = validator.validateFromHiringToHiringForShow(aHiringList,
+                    vacancyService, userService);
+            hiringForShows.add(hiringForShow);
         }
         return hiringForShows;
     }
 
-    private HiringForShow createHiringForShow(Hiring aHiringList) throws ServiceException {
-        User candidate = userService.findById(aHiringList.getCandidateId());
-        User hr = userService.findById(aHiringList.getHrId());
-        Vacancy vacancy = vacancyService.findById(aHiringList.getVacancyId());
-        return new HiringForShow(hr.getName(), hr.getSurname(), candidate.getName(),
-                candidate.getSurname(), vacancy.getVacancyPosition(),aHiringList.getOfferEmount(),
-                aHiringList.getComment(), aHiringList.getHiringStatus());
-    }
 }

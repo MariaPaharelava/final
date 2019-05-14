@@ -2,9 +2,7 @@ package by.epam.finalTask.hr.factory;
 
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
-import by.epam.finalTask.hr.command.impl.AuthorizationCommand;
-import by.epam.finalTask.hr.command.impl.CreateVacancyCommand;
-import by.epam.finalTask.hr.command.impl.RegistrationCommand;
+import by.epam.finalTask.hr.command.impl.*;
 import by.epam.finalTask.hr.controller.helper.CommandName;
 import by.epam.finalTask.hr.service.HiringService;
 import by.epam.finalTask.hr.service.InterviewService;
@@ -41,6 +39,14 @@ public class CommandFactory {
             }
             case CREATE_VACANCY:{
                 command = new CreateVacancyCommand(vacancyService);
+                break;
+            }
+            case DELETE_HIRING:{
+                command = new DeleteHiringCommand(hiringService);
+                break;
+            }
+            case EDIT_HIRING:{
+                command = new EditHiringCommand(hiringService);
                 break;
             }
             case CHANGE_LOCAL:{

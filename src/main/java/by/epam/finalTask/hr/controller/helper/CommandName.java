@@ -7,6 +7,7 @@ public enum CommandName {
     REGISTRATION,
     AUTHORIZATION,
     CREATE_VACANCY,
-    SHOW_HR_HIRINGS,
-    CHANGE_LOCAL
+    CHANGE_LOCAL,
+    DELETE_HIRING,
+    EDIT_HIRING,
 }

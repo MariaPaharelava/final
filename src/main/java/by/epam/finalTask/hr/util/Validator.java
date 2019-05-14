@@ -1,8 +1,16 @@
 package by.epam.finalTask.hr.util;
 
 import by.epam.finalTask.hr.command.exception.CommandException;
+import by.epam.finalTask.hr.entity.Hiring;
+import by.epam.finalTask.hr.entity.User;
+import by.epam.finalTask.hr.entity.Vacancy;
+import by.epam.finalTask.hr.service.UserService;
+import by.epam.finalTask.hr.service.VacancyService;
+import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.List;
 
 public class Validator {
     private static final Logger LOGGER = LogManager.getLogger(Validator.class);
@@ -23,5 +31,15 @@ public class Validator {
     public String validateFromUpperCaseToLowerCase(String string){
         string = string.replace('_', '-');
         return string.toLowerCase();
+    }
+
+    public HiringForShow validateFromHiringToHiringForShow(Hiring aHiringList, VacancyService vacancyService,
+                                                           UserService userService) throws ServiceException {
+        User candidate = userService.findById(aHiringList.getCandidateId());
+        User hr = userService.findById(aHiringList.getHrId());
+        Vacancy vacancy = vacancyService.findById(aHiringList.getVacancyId());
+        return new HiringForShow(hr.getName(), hr.getSurname(), candidate.getName(),
+                candidate.getSurname(), vacancy.getVacancyPosition(),aHiringList.getOfferEmount(),
+                aHiringList.getComment(), aHiringList.getHiringStatus());
     }
 }
