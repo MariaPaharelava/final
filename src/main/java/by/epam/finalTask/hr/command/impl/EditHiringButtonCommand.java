@@ -38,8 +38,8 @@ public class EditHiringButtonCommand implements Command {
                 List<Hiring> hiringList = hiringService.getAllHirings();
                 Hiring hiring = hiringList.get(numberOfHiring);
                 session.setAttribute(HIRING_ID, hiring.getID());
-                System.out.println(hiring.getID());
                 session.setAttribute(NUMBER_OF_HIRING, numberOfHiring);
+                System.out.println(hiring.getID() +" "+ numberOfHiring);
                 request.getRequestDispatcher(PageName.EDIT_VACANCY).forward(request, response);
             } catch (ServiceException e) {
                 request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);

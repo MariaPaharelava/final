@@ -52,7 +52,9 @@
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main w3-animate-left" style="margin:3.7%;">
 
-    <form action="Controller" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue" style="margin-left: 30%; margin-right: 30%;">
+    <form action="FontController" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue" style="margin-left: 30%; margin-right: 30%;">
+        <input name="command" value="edit-hiring" type="hidden"/>
+
         <h2 class="w3-center">Edit Vacancy <i class="fa fa-pencil-square-o"></i></h2>
 
         <div class="w3-row w3-section">
@@ -66,12 +68,18 @@
             <h5 class="w3-left">Select status: </h5><br><br>
             <div style="margin:1%;">
                 <p>
-                    <input class = "w3-radio" name="status" type="radio" checked>  In Anticipation<br>
-                    <input class = "w3-radio" name="status" type="radio">  InitalContact<br>
-                    <input class = "w3-radio" name="status" type="radio">  Screening Interview<br>
-                    <input class = "w3-radio" name="status" type="radio">  Technical Interview<br>
-                    <input class = "w3-radio" name="status" type="radio">  Offer Made<br>
-                    <input class = "w3-radio" name="status" type="radio">  Employed
+                    <input class = "w3-radio" name="status" type="radio"
+                           value="${"In_Anticipation"}" checked>  In Anticipation<br>
+                    <input class = "w3-radio" name="status" type="radio"
+                           value="${"Inital_Contact"}">  Inital Contact<br>
+                    <input class = "w3-radio" name="status" type="radio"
+                           value="${"Screening_Interview"}">  Screening Interview<br>
+                    <input class = "w3-radio" name="status" type="radio"
+                           value="${"Technical_Interview"}">  Technical Interview<br>
+                    <input class = "w3-radio" name="status" type="radio"
+                           value="${"Offer_Made"}">  Offer Made<br>
+                    <input class = "w3-radio" name="status" type="radio"
+                           value="${"Employed"}">  Employed
                 </p>
             </div>
         </div>

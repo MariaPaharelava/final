@@ -3,6 +3,7 @@ package by.epam.finalTask.hr.dao.impl;
 import by.epam.finalTask.hr.dao.builder.BuilderDAO;
 import by.epam.finalTask.hr.dao.connectionpool.exception.DAOException;
 import by.epam.finalTask.hr.entity.Hiring;
+import by.epam.finalTask.hr.util.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,12 +39,15 @@ public class HiringDAO extends AbstractDAO<Hiring>{
 
     @Override
     public void save(Hiring entity) throws DAOException {
+        Validator validator = new Validator();
+        String status = validator.validateFromUpperCaseToLowerCase(entity.getHiringStatus().toString());
         if (entity.getID() == null) {
             executeUpdate(SQL_ADD_HIRING, entity.getHrId(), entity.getCandidateId(), entity.getCreationDate(),
                     entity.getHiringStatus(), entity.getVacancyId(), entity.getOfferEmount(), entity.getComment());
         } else {
-            executeUpdate(SQL_UPDATE_HIRING_BY_ID, entity.getHrId(), entity.getCandidateId(), entity.getCreationDate(),
-                    entity.getHiringStatus(), entity.getVacancyId(), entity.getOfferEmount(), entity.getComment());
+            executeUpdate(SQL_UPDATE_HIRING_BY_ID,entity.getID(), entity.getHrId(), entity.getCandidateId(),
+                    entity.getCreationDate(), status, entity.getVacancyId(),
+                    entity.getOfferEmount(), entity.getComment(), entity.getID());
         }
     }
 }

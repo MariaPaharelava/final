@@ -34,8 +34,9 @@ public class EditHiringCommand implements Command {
     private UserService userService;
     private VacancyService vacancyService;
     private HiringService hiringService;
+    private Validator validator = new Validator();
 
-    public EditHiringCommand (UserService userService, VacancyService vacancyService, HiringService hiringService) {
+    public EditHiringCommand(UserService userService, VacancyService vacancyService, HiringService hiringService) {
         this.vacancyService = vacancyService;
         this.userService = userService;
         this.hiringService = hiringService;
@@ -49,17 +50,20 @@ public class EditHiringCommand implements Command {
         String status = request.getParameter(ENTER_STATUS);
         String comment = request.getParameter(ENTER_COMMENT);
 
+        status = validator.validateFromLowerCaseToUpperCase(status);
         try {
             try {
                 Integer hiringID = (Integer) session.getAttribute(HIRING_ID);
-                Integer numberOfHiring = Integer.parseInt(request.getParameter(NUMBER_OF_HIRING));
+                Integer numberOfHiring = (Integer) session.getAttribute(NUMBER_OF_HIRING);
+
                 Hiring hiringNew = hiringService.changeHiring(hiringID,
                         Double.valueOf(salary), status, comment);
                 changeHiringFromSession(session, numberOfHiring, hiringNew);
+                request.getRequestDispatcher(PageName.HRS_VACANCY).forward(request, response);
             } catch (ServiceException e) {
+                request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
                 throw new CommandException(e);
             }
-            request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
         } catch (ServletException | IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);
@@ -68,10 +72,9 @@ public class EditHiringCommand implements Command {
 
     private void changeHiringFromSession(HttpSession session, Integer numberOfHiring,
                                          Hiring hiringNew) throws ServiceException {
-        Validator validator = new Validator();
         HiringForShow hiringForShow = validator.validateFromHiringToHiringForShow(hiringNew,
                 vacancyService, userService);
-        List<HiringForShow> hiringForShowList = (ArrayList<HiringForShow>)session.getAttribute(HIRINGS);
+        List<HiringForShow> hiringForShowList = (ArrayList<HiringForShow>) session.getAttribute(HIRINGS);
         hiringForShowList.set(numberOfHiring, hiringForShow);
         session.setAttribute(HIRINGS, hiringForShowList);
     }

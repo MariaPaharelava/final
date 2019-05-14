@@ -45,7 +45,7 @@ public class CommandFactory {
                 command = new DeleteHiringCommand(hiringService);
                 break;
             }
-            case EDIT_HIRING_BUTTUN:{
+            case EDIT_HIRING_BUTTON:{
                 command = new EditHiringButtonCommand(hiringService);
                 break;
             }

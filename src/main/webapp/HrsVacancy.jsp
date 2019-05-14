@@ -24,8 +24,8 @@
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <form action="Controller" method="get">
-            <a name="command" value="go-to-for-user" type="hidden"/>
+        <form action="FontController" method="get">
+            <input name="command" value="go-to-for-user" type="hidden"/>
             <a class="w3-bar-item w3-button"
                href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
             <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My
@@ -61,7 +61,7 @@
                     <c:if test="${not empty hiring.comment}">
                         <li class="w3-padding-8">${hiring.comment}</li>
                     </c:if>
-                    <c:if test="${hiring.comment eq null}">
+                    <c:if test="${empty hiring.comment}">
                         <li class="w3-text-grey w3-padding-8">No Value Set</li>
                     </c:if>
 
@@ -85,7 +85,7 @@
                             <button class="w3-button w3-red w3-left w3-padding-large" type="submit">Delete</button>
                         </form>
                         <form action="FontController" method="get">
-                            <input name="command" value="edit-hiring" type="hidden"/>
+                            <input name="command" value="edit-hiring_button" type="hidden"/>
                             <input name="index" type="hidden" value="${theCount.index}"/>
                             <button class="w3-button w3-teal w3-right w3-padding-large" type="submit">Edit</button>
                         </form>
