@@ -55,12 +55,12 @@ public class EditHiringCommand implements Command {
             try {
                 Integer hiringID = (Integer) session.getAttribute(HIRING_ID);
                 Integer numberOfHiring = (Integer) session.getAttribute(NUMBER_OF_HIRING);
-
                 Hiring hiringNew = hiringService.changeHiring(hiringID,
                         Double.valueOf(salary), status, comment);
                 changeHiringFromSession(session, numberOfHiring, hiringNew);
                 request.getRequestDispatcher(PageName.HRS_VACANCY).forward(request, response);
             } catch (ServiceException e) {
+                LOGGER.info(e.getMessage());
                 request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
                 throw new CommandException(e);
             }

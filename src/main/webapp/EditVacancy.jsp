@@ -69,17 +69,17 @@
             <div style="margin:1%;">
                 <p>
                     <input class = "w3-radio" name="status" type="radio"
-                           value="${"In_Anticipation"}" checked>  In Anticipation<br>
+                           value="${"IN_ANTICIPATION"}" checked>  In Anticipation<br>
                     <input class = "w3-radio" name="status" type="radio"
-                           value="${"Inital_Contact"}">  Inital Contact<br>
+                           value="${"INITAL_CONTACT"}">  Inital Contact<br>
                     <input class = "w3-radio" name="status" type="radio"
-                           value="${"Screening_Interview"}">  Screening Interview<br>
+                           value="${"SCREENING_INTERVIEWS"}">  Screening Interview<br>
                     <input class = "w3-radio" name="status" type="radio"
-                           value="${"Technical_Interview"}">  Technical Interview<br>
+                           value="${"TECHNICAL_INTERVIEWS"}">  Technical Interview<br>
                     <input class = "w3-radio" name="status" type="radio"
-                           value="${"Offer_Made"}">  Offer Made<br>
+                           value="${"OFFER_MADE"}">  Offer Made<br>
                     <input class = "w3-radio" name="status" type="radio"
-                           value="${"Employed"}">  Employed
+                           value="${"EMPLOYED"}">  Employed
                 </p>
             </div>
         </div>
@@ -90,9 +90,10 @@
             </div>
         </div>
         <p>
-            <button class="w3-button w3-left w3-section w3-red w3-ripple"> Cancel </button></p>
-        <p>
-            <button class="w3-button w3-right w3-section w3-blue w3-ripple"> Edit </button></p>
+            <a class="w3-button w3-left w3-section w3-red w3-ripple"
+               href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp"> Cancel </a>
+            <button class="w3-button w3-right w3-section w3-blue w3-ripple"> Edit </button>
+        </p>
     </form>
     <!-- END MAIN -->
 </div>

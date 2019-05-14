@@ -12,7 +12,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-    html,body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif;}
+    html, body, h1, h2, h3, h4, h5, h6 {
+        font-family: "Raleway", sans-serif;
+    }
 </style>
 <body>
 
@@ -21,12 +23,16 @@
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <form action="Controller" method="get">
+        <form action="FontController" method="get">
             <input name="command" value="go-to-for-user" type="hidden"/>
-            <input type="submit" name="goTo" class="w3-bar-item w3-button" value="${"Vacancy"}">
-            <input type="submit" name="goTo" class="w3-bar-item w3-button" value="${"My Info"}">
-            <input type="submit" name="goTo" class="w3-bar-item w3-button w3-theme-l1" value="${"Hiring"}">
-            <input type="submit" name="goTo" class="w3-bar-item w3-button" value="${"Add Vacancy"}">
+            <a class="w3-bar-item w3-button"
+               href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
+            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My
+                Info</a>
+            <a class="w3-bar-item w3-button w3-theme-l1"
+               href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">Hiring</a>
+            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">Add
+                Vacancy</a>
             <div class="w3-dropdown-hover w3-hide-small w3-right">
                 <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
@@ -34,15 +40,16 @@
                     <a class="w3-bar-item w3-button" onclick="">EN</a>
                 </div>
             </div>
-            <input type="submit" name="goTo" class="w3-bar-item w3-button w3-right" value="${"Out"}">
+            <a class="w3-bar-item w3-button w3-right"
+               href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
         </form>
     </div>
 </div>
 
 
-
 <!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+     id="myOverlay"></div>
 
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main w3-animate-left" style="margin:3.7%;">
@@ -54,20 +61,32 @@
         <table class="w3-table-all w3-margin-top" id="myTable">
             <tr>
                 <th style="width:5%;"></th>
-                <th style="width:20%;">Date</th>
-                <th style="width:70%;">Comment</th>
+                <th style="width:12%;">Date</th>
+                <th style="width:18%;">Type</th>
+                <th style="width:60%;">Comment</th>
                 <th style="width:5%; ">Delete</th>
             </tr>
-            <tr>
-                <td> <div class="w3-col" style="width:50px"><i class="w3-xlarge fa fa-laptop"></i></div></td>
-                <td>Alfreds</td>
-                <td>qwerty</td>
-                <td><div style="width:50px">
-                    <a href="#" class="w3-text-red w3-right" style="margin-right:20%"
-                       onclick="document.getElementById('id02').style.display='block'"><i class=" w3-xlarge fa fa-trash"></i></a>
-                </div>
-                </td>
-            </tr>
+            <c:forEach var="hiringsInterview" items="${sessionScope.hiringsInterview}" varStatus="theCount">
+                <tr id="${theCount.index}">
+                    <td>
+                        <div class="w3-col" style="width:50px"><i class="w3-xlarge fa fa-laptop"></i></div>
+                    </td>
+                    <td>${hiringsInterview.interviewDate}</td>
+                    <td>${hiringsInterview.interviewType}</td>
+                    <td>${hiringsInterview.comment}</td>
+                    <td>
+                        <div style="width:50px">
+                            <form action="FontController" method="get">
+                                <input name="command" value="delete-interview" type="hidden"/>
+                                <input name="index" type="hidden" value="${theCount.index}"/>
+                                <button class="w3-text-red w3-right" style="margin-right:20%" type="submit"><i
+                                        class=" w3-xlarge fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </c:forEach>
         </table>
 
 
@@ -85,7 +104,8 @@
 
 <div id="id01" class="w3-modal">
 
-    <form class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-card-4 w3-animate-zoom w3-modal-content" style="margin-left: 30%; margin-right: 30%;">
+    <form class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-card-4 w3-animate-zoom w3-modal-content"
+          style="margin-left: 30%; margin-right: 30%;">
         <h2 class="w3-center">Create Interview <i class="fa fa-pencil-square-o"></i></h2>
 
         <div class="w3-center"><br>
@@ -104,8 +124,8 @@
             <h5 class="w3-left">Type: </h5><br><br>
             <div style="margin:1%;">
                 <p>
-                    <input class = "w3-radio" name="status" type="radio" checked>  Phone Interview<br>
-                    <input class = "w3-radio" name="status" type="radio">  Fase-to-fase interview
+                    <input class="w3-radio" name="status" type="radio" checked> Phone Interview<br>
+                    <input class="w3-radio" name="status" type="radio"> Fase-to-fase interview
                 </p>
             </div>
         </div>
@@ -123,15 +143,12 @@
             </div>
         </div>
         <p>
-            <button class="w3-button w3-center w3-section w3-blue w3-ripple"> ОК </button>
+            <button class="w3-button w3-center w3-section w3-blue w3-ripple"> ОК</button>
         </p>
     </form>
     <!-- END MAIN -->
 </div>
 
-<div id="id02" class="w3-modal">
-
-</div>
 <!-- Pagination -->
 
 <footer id="myFooter">

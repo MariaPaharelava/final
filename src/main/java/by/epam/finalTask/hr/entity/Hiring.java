@@ -75,16 +75,13 @@ public class Hiring implements Indentifable{
             case "INITAL_CONTACT":
                 this.hiringStatus = HiringStatus.INITAL_CONTACT;
                 break;
-            case "NOT_ACCEPTED":
-                this.hiringStatus = HiringStatus.NOT_ACCEPTED;
-                break;
             case "OFFER_MADE":
                 this.hiringStatus = HiringStatus.OFFER_MADE;
                 break;
-            case "SCRENING_INTERVIEW":
+            case "SCREENING_INTERVIEWS":
                 this.hiringStatus = HiringStatus.SCRENING_INTERVIEW;
                 break;
-            case "TECHNICAL_INTERVIEW":
+            case "TECHNICAL_INTERVIEWS":
                 this.hiringStatus = HiringStatus.TECHNICAL_INTERVIEW;
                 break;
         }

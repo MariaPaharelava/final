@@ -30,8 +30,8 @@ public class InterviewDAO extends AbstractDAO<Interview> {
         return executeQueryForSingleResult(SQL_SEARCH_INTERVIEW_BY_ID, id);
     }
 
-    public Optional<Interview> findEntityByHiringId(int id) throws DAOException {
-        return executeQueryForSingleResult(SQL_SEARCH_INTERVIEW_BY_HIRING_ID, id);
+    public List<Interview> findEntityByHiringId(int id) throws DAOException {
+        return executeQuery(SQL_SEARCH_INTERVIEW_BY_HIRING_ID, id);
     }
 
     @Override

@@ -11,4 +11,6 @@ public enum CommandName {
     DELETE_HIRING,
     EDIT_HIRING_BUTTON,
     EDIT_HIRING,
+    TABLE_HIRING,
+    DELETE_INTERVIEW
 }

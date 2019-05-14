@@ -33,6 +33,10 @@ public class Validator {
         return string.toLowerCase();
     }
 
+    public String validateFromUpperCaseToLowerCaseForDB(String string){
+        return string.toLowerCase();
+    }
+
     public HiringForShow validateFromHiringToHiringForShow(Hiring aHiringList, VacancyService vacancyService,
                                                            UserService userService) throws ServiceException {
         User candidate = userService.findById(aHiringList.getCandidateId());

@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Date;
+import java.util.List;
 
 public class InterviewServiceImpl implements InterviewService {
     private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
@@ -40,13 +41,12 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
     @Override
-    public void getAllInterviewByHiringId(Integer id) throws ServiceException {
+    public List<Interview> getAllInterviewByHiringId(Integer id) throws ServiceException {
         try {
-            ((InterviewDAO) interviewDAO).findEntityByHiringId(id);
+            return ((InterviewDAO) interviewDAO).findEntityByHiringId(id);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
-
     }
 
     @Override

@@ -53,6 +53,13 @@ public class CommandFactory {
                 command = new EditHiringCommand(userService, vacancyService, hiringService);
                 break;
             }
+            case TABLE_HIRING:{
+                command = new TableHiringCommand(hiringService, interviewService);
+            }
+            case DELETE_INTERVIEW:{
+                command = new DeleteInterviewCommand(interviewService);
+                break;
+            }
             case CHANGE_LOCAL:{
 
                 break;

@@ -43,7 +43,7 @@ public class UserDAO extends AbstractDAO<User> {
     @Override
     public void save(User entity) throws DAOException {
         Validator validator = new Validator();
-        String role = validator.validateFromUpperCaseToLowerCase(entity.getUserRole().toString());
+        String role = validator.validateFromUpperCaseToLowerCaseForDB(entity.getUserRole().toString());
         if (entity.getID() == null) {
             executeUpdate(SQL_ADD_USER, entity.getLogin(), entity.getPassword(),
                     entity.getSurname(), entity.getName(), role);
