@@ -54,8 +54,10 @@
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
                     <form action="FontController" method="get">
                         <input type="hidden" name="command" value="change-local">
-                        <button class="w3-bar-item w3-button" value="RU"><fmt:message key="local.button.ru"/></button>
-                        <button class="w3-bar-item w3-button" value="EN"><fmt:message key="local.button.en"/></button>
+                        <button name="local" class="w3-bar-item w3-button" value="RU">
+                            <fmt:message key="local.button.ru"/></button>
+                        <button name="local" class="w3-bar-item w3-button" value="EN">
+                            <fmt:message key="local.button.en"/></button>
                     </form>
                 </div>
             </div>

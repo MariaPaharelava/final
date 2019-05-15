@@ -15,7 +15,7 @@ import java.io.IOException;
 public class SetLocalCommand implements Command {
     private static final Logger LOGGER = LogManager.getLogger(SetLocalCommand.class);
 
-    private static final String LANGUAGE_ATTRIBUTE = "language";
+    private static final String LANGUAGE_ATTRIBUTE = "local";
     private static final String PAGE_NAME = "pageName";
     private final LanguageFactory languageFactory;
 
