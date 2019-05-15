@@ -49,13 +49,13 @@ public class AddHiringCommand implements Command {
                 Hiring hiring = createObjectOfHiring(session, numberOfHiring);
                 addHiringToDB(numberOfHiring, hiring);
                 addHiringToSession(session, hiring);
-                request.getRequestDispatcher(PageName.USER_VACANCY_PAGE).forward(request, response);
+                response.sendRedirect(PageName.USER_VACANCY_PAGE);
             } catch (ServiceException e) {
-                request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
+                response.sendRedirect(PageName.INDEX_PAGE);
                 LOGGER.error(e.getMessage());
                 throw new CommandException(e);
             }
-        } catch (ServletException | IOException e) {
+        } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);
         }

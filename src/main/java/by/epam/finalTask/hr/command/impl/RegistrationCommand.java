@@ -9,7 +9,6 @@ import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,8 +46,8 @@ public class RegistrationCommand implements Command {
             } else {
                 user = userService.registerUser(login, password, surname, name, role);
             }
-            request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
-        } catch (ServletException | IOException e) {
+            response.sendRedirect(PageName.INDEX_PAGE);
+        } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);
         } catch (ServiceException e) {

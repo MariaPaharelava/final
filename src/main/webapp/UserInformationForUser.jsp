@@ -22,12 +22,19 @@
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
+
+        <c:url value="UserVacancyShow.jsp" var="newUrlVacancy"/>
+        <a class="w3-bar-item w3-button"
+           href="<c:out value="${ newUrlVacancy }"/>">Vacancy</a>
+
+        <c:url value="UserInformationForUser.jsp" var="newUrlInfo"/>
         <a class="w3-bar-item w3-button w3-theme-l1"
-           href="${pageContext.servletContext.contextPath}/UserVacancyShow.jsp">Vacancy</a>
+           href="<c:out value="${ newUrlInfo }"/>">My Info</a>
+
+        <c:url value="UsersVacancy.jsp" var="newUrlHiring"/>
         <a class="w3-bar-item w3-button"
-           href="${pageContext.servletContext.contextPath}/UserInformationForUser.jsp">My Info</a>
-        <a class="w3-bar-item w3-button"
-           href="${pageContext.servletContext.contextPath}/UsersVacancy.jsp">Hiring</a>
+           href="<c:out value="${ newUrlHiring }"/>">Hiring</a>
+
         <div class="w3-dropdown-hover w3-hide-small w3-right">
             <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
@@ -35,8 +42,9 @@
                 <a class="w3-bar-item w3-button" onclick="">EN</a>
             </div>
         </div>
-        <a class="w3-bar-item w3-button w3-right"
-           href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
+
+        <c:url value="index.jsp" var="newUrlIndex"/>
+        <a class="w3-bar-item w3-button w3-right" href="<c:out value="${ newUrlIndex }"/>">Logout</a>
     </div>
 </div>
 
@@ -49,7 +57,7 @@
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
             <div class="w3-rest">
-                <a class="w3-input w3-border" name="first" type="text">Surname: ${sessionScope.user.surname}</a>
+                <a class="w3-input" name="first" type="text">Surname: ${sessionScope.user.surname}</a>
             </div>
         </div>
 

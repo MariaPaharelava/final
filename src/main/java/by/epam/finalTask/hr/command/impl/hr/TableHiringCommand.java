@@ -44,13 +44,13 @@ public class TableHiringCommand implements Command {
                 List<Interview> interviewList = interviewService.getAllInterviewByHiringId(hiring.getID());
                 session.setAttribute(HIRINGS_INTERVIEW, interviewList);
                 session.setAttribute(HIRING_ID, hiring.getID());
-                request.getRequestDispatcher(PageName.WORK_WITH_INTERVIEW).include(request, response);
+                response.sendRedirect(PageName.WORK_WITH_INTERVIEW);
             } catch (ServiceException e) {
-                request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
+                response.sendRedirect(PageName.INDEX_PAGE);
                 LOGGER.error(e.getMessage());
                 throw new CommandException(e);
             }
-        } catch (ServletException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

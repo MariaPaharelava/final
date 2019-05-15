@@ -59,13 +59,13 @@ public class EditHiringCommand implements Command {
                 changeHiringFromSession(session, numberOfHiring, hiringNew);
                 session.removeAttribute(NUMBER_OF_HIRING);
                 session.removeAttribute(HIRING_ID);
-                request.getRequestDispatcher(PageName.HRS_VACANCY).forward(request, response);
+                response.sendRedirect(PageName.HRS_VACANCY);
             } catch (ServiceException e) {
                 LOGGER.info(e.getMessage());
-                request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
+                response.sendRedirect(PageName.INDEX_PAGE);
                 throw new CommandException(e);
             }
-        } catch (ServletException | IOException e) {
+        } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);
         }

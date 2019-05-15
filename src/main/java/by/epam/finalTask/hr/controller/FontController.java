@@ -26,6 +26,7 @@ import java.sql.Connection;
 @WebServlet(asyncSupported = true, urlPatterns = {"/FontController"})
 @MultipartConfig
 public class FontController extends HttpServlet {
+    private static final int SERVER_ERROR = 500;
     private static final String COMMAND = "command";
     private static final Logger LOGGER = LogManager.getLogger(FontController.class);
 
@@ -64,7 +65,7 @@ public class FontController extends HttpServlet {
             command = commandFactory.create(commandName);
             command.execute(request, response);
         } catch (CommandException e) {
-            request.getRequestDispatcher(PageName.ERROR_505_PAGE).forward(request, response);
+            response.sendError(SERVER_ERROR);
             LOGGER.error(e.getMessage());
         }
     }

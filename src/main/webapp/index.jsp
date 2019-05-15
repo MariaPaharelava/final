@@ -97,19 +97,21 @@
                   class="w3-button w3-xlarge w3-white w3-display-topright" title="Close Modal">x</span>
         </div>
         <form class="w3-container" action="FontController" method="post">
-            <input name="command" value="authorization" type="hidden" />
+            <input name="command" value="authorization" type="hidden"/>
 
             <div class="w3-section">
                 <label class="w3-white"><b>${loginLogin}</b></label>
                 <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="${createAkkEnterLogin}"
-                       name="enterLogin" required  value="${requestScope.createAkkEnterLogin}">
+                       name="enterLogin" required value="${requestScope.createAkkEnterLogin}">
                 <label class="w3-white"><b>${loginPassword}</b></label>
                 <input class="w3-input w3-border" type="password" placeholder="${createAkkEnterPassword}"
                        name="enterPassword" required value="${requestScope.createAkkEnterPassword}">
+
                 <button class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
                         type="submit">${loginEnterLogin}</button>
             </div>
         </form>
+
     </div>
 </div>
 <!-- LOGIN IN END-->
@@ -124,7 +126,7 @@
         <form role="form" class="w3-container" action="FontController" method="post">
             <div class="w3-section">
 
-                <input name="command" value="registration" type="hidden" />
+                <input name="command" value="registration" type="hidden"/>
 
                 <label class="w3-white"><b>${createAkkSurname}</b></label>
                 <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="${createAkkEnterSurname}"
@@ -141,6 +143,7 @@
                 <label class="w3-white"><b>${createAkkPassword}</b></label>
                 <input class="w3-input w3-border" type="password" placeholder="${createAkkEnterPassword}"
                        name="enterPassword" required value="${requestScope.enterPassword}">
+
 
                 <button class="w3-button w3-block w3-teal w3-right w3-section w3-padding" type="submit">OK</button>
             </div>

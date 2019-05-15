@@ -39,14 +39,14 @@ public class DeleteInterviewCommand implements Command {
             try {
                 deleteFromDB(numberOfInterview, numberOfHiring);
                 deleteFromSession(session, numberOfInterview);
-                request.getRequestDispatcher(PageName.WORK_WITH_INTERVIEW).forward(request, response);
+                response.sendRedirect(PageName.WORK_WITH_INTERVIEW);
                 session.removeAttribute(HIRING_ID);
             } catch (ServiceException e) {
-                request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
+                response.sendRedirect(PageName.INDEX_PAGE);
                 LOGGER.error(e.getMessage());
                 throw new CommandException(e);
             }
-        } catch (ServletException | IOException e) {
+        } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);
         }

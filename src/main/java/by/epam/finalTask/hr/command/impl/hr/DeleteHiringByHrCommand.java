@@ -10,7 +10,6 @@ import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,14 +37,15 @@ public class DeleteHiringByHrCommand implements Command {
             try {
                 deleteFromDB(numberOfHiring);
                 deleteFromSession(session, numberOfHiring);
-                request.getRequestDispatcher(PageName.HRS_VACANCY).forward(request, response);
+                response.sendRedirect(PageName.HRS_VACANCY);
             } catch (ServiceException e) {
-                request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
+                response.sendRedirect(PageName.INDEX_PAGE);
                 LOGGER.error(e.getMessage());
                 throw new CommandException(e);
             }
-        } catch (ServletException | IOException e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage());
+            throw new CommandException(e);
         }
     }
 

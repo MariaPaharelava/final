@@ -38,13 +38,13 @@ public class DeleteHiringByUserCommand implements Command {
             try {
                 deleteHiringfromDB(numberOfHiring);
                 deleteHiringfromSession(session, numberOfHiring);
-                request.getRequestDispatcher(PageName.USERS_VACANCY).forward(request, response);
+                response.sendRedirect(PageName.USERS_VACANCY);
             } catch (ServiceException e) {
-                request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
+                response.sendRedirect(PageName.INDEX_PAGE);
                 LOGGER.error(e.getMessage());
                 throw new CommandException(e);
             }
-        } catch (ServletException | IOException e) {
+        } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);
         }

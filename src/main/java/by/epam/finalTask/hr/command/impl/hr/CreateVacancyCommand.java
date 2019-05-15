@@ -45,12 +45,8 @@ public class CreateVacancyCommand implements Command {
             List<Vacancy> vacancyListNew = vacancyService.getAllVacancies();
             session.removeAttribute(VACANCIES);
             session.setAttribute(VACANCIES, vacancyListNew);
-
-            request.getRequestDispatcher(PageName.CREATING_VACANCY).forward(request, response);
-        } catch (ServletException | IOException e) {
-            LOGGER.info(e.getMessage());
-            throw new CommandException(e);
-        } catch (ServiceException e) {
+            response.sendRedirect(PageName.CREATING_VACANCY);
+        } catch (IOException | ServiceException e) {
             LOGGER.info(e.getMessage());
             throw new CommandException(e);
         }

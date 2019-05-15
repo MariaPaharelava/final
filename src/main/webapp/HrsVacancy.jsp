@@ -61,13 +61,13 @@
                     <li class="w3-padding-8">${hiring.hiringStatus}</li>
 
                     <li class="w3-padding-4">
-                        <c:if test="${not empty hiring.offerEmount }">
+                        <c:if test="${not empty hiring.offerEmount and hiring.offerEmount != 0}">
                             <h3 class="w3-wide">$ ${hiring.offerEmount}</h3>
                             <span class="w3-opacity">per month</span>
                         </c:if>
-                        <c:if test="${hiring.offerEmount eq null}">
+                        <c:if test="${empty hiring.offerEmount and hiring.offerEmount == 0}">
                             <h3 class="w3-text-grey w3-wide">No Value Set</h3>
-                            <span class="w3-opacity"> </span>
+                            <span class="w3-opacity w3-text-wight">___</span>
                         </c:if>
                     </li>
 

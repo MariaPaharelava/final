@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AuthorizationCommand implements Command {
+    private static final String SERVER_ERROR = "500";
     private static final String ENTER_LOGIN = "enterLogin";
     private static final String ENTER_PASSWORD = "enterPassword";
     private static final String VACANCIES = "vacancies";
@@ -50,40 +51,35 @@ public class AuthorizationCommand implements Command {
 
         String login = request.getParameter(ENTER_LOGIN);
         String password = request.getParameter(ENTER_PASSWORD);
+        User user = null;
 
         try {
-            User user = null;
-            try {
-                user = userService.authorization(login, password);
 
-                session.setAttribute(USER, user);
-                if (user == null) {
-                    throw new LoginAlreadyNoExistsException("Not Exist");
-                }
-                switch (user.getUserRole()) {
-                    case HR:
-                        List<Hiring> hiringListForHr = hiringService.getAllHiringsByHrId(user.getID());
-                        setAllNecessaryAttributeForUser(session, user, hiringListForHr);
-                        request.getRequestDispatcher(PageName.HR_VACANCY_PAGE).forward(request, response);
-                        break;
-                    case ADMIN:
-                        setAllNecessaryAttributeForAdmin(session);
-                        request.getRequestDispatcher(PageName.WORK_WITH_USER).forward(request, response);
-                        break;
-                    case CANDIDATE:
-                        List<Hiring> hiringListForCandidate = hiringService.getAllHiringsByHrId(user.getID());
-                        setAllNecessaryAttributeForUser(session, user, hiringListForCandidate);
-                        request.getRequestDispatcher(PageName.USER_VACANCY_PAGE).forward(request, response);
-                        break;
-                }
-                return;
-            } catch (LoginAlreadyNoExistsException e) {
-                LOGGER.error("The login already no exists.");
-            } catch (ServiceException e) {
-                throw new CommandException(e);
+            user = userService.authorization(login, password);
+
+            session.setAttribute(USER, user);
+
+            switch (user.getUserRole()) {
+                case HR:
+                    List<Hiring> hiringListForHr = hiringService.getAllHiringsByHrId(user.getID());
+                    setAllNecessaryAttributeForUser(session, hiringListForHr);
+                    response.sendRedirect(PageName.HR_VACANCY_PAGE);
+                    break;
+                case ADMIN:
+                    setAllNecessaryAttributeForAdmin(session);
+                    response.sendRedirect(PageName.WORK_WITH_USER);
+                    break;
+                case CANDIDATE:
+                    List<Hiring> hiringListForCandidate = hiringService.getAllHiringsByHrId(user.getID());
+                    setAllNecessaryAttributeForUser(session, hiringListForCandidate);
+                    response.sendRedirect(PageName.USER_VACANCY_PAGE);
+                    break;
             }
-            request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
-        } catch (ServletException | IOException e) {
+            response.sendRedirect(PageName.INDEX_PAGE);
+        } catch (ServiceException e) {
+            LOGGER.error(e.getMessage());
+            throw new CommandException(e);
+        } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);
         }
@@ -95,7 +91,7 @@ public class AuthorizationCommand implements Command {
         session.setAttribute(USERS, userList);
     }
 
-    private void setAllNecessaryAttributeForUser(HttpSession session, User user, List<Hiring> hiringListForCandidate)
+    private void setAllNecessaryAttributeForUser(HttpSession session, List<Hiring> hiringListForCandidate)
             throws ServiceException {
         List<Vacancy> vacancyList = vacancyService.getAllVacancies();
         session.setAttribute(VACANCIES, vacancyList);

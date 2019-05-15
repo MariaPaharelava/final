@@ -9,7 +9,6 @@ import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,11 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeleteUserCommand implements Command {
-    private static final String ENTER_SURNAME = "enterType";
-    private static final String ENTER_NAME = "enterResult";
-    private static final String ENTER_LOGIN = "enterComment";
-    private static final String ENTER_PASSWORD = "hiringsInterview";
-    private static final String ENTER_ROLE = "hiringsInterview";
     private static final String USERS = "users";
     private static final String NUMBER_OF_USER = "index";
     private static final Logger LOGGER = LogManager.getLogger(DeleteUserCommand.class);
@@ -40,29 +34,27 @@ public class DeleteUserCommand implements Command {
 
         try {
             try {
-                deleteUserfromDB(numberOfUser);
-                deleteUserfromSession(session, numberOfUser);
-                request.getRequestDispatcher(PageName.WORK_WITH_USER).forward(request, response);
+                deleteUserFromDB(numberOfUser);
+                deleteUserFromSession(session, numberOfUser);
+                response.sendRedirect(PageName.WORK_WITH_USER);
             } catch (ServiceException e) {
-                request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
+                response.sendRedirect(PageName.INDEX_PAGE);
                 LOGGER.error(e.getMessage());
                 throw new CommandException(e);
             }
-        } catch (ServletException | IOException e) {
+        } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);
         }
-
-
     }
 
-    private void deleteUserfromSession(HttpSession session, Integer numberOfUser) {
+    private void deleteUserFromSession(HttpSession session, Integer numberOfUser) {
         List<User> userList = (ArrayList<User>) session.getAttribute(USERS);
         userList.remove(numberOfUser.intValue());
         session.setAttribute(USERS, userList);
     }
 
-    private void deleteUserfromDB(Integer numberOfUser) throws ServiceException {
+    private void deleteUserFromDB(Integer numberOfUser) throws ServiceException {
         List<User> userList = userService.getAllUsers();
         User user = userList.get(numberOfUser);
         userService.removeUser(user.getLogin(), user.getPassword());

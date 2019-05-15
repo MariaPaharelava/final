@@ -39,14 +39,13 @@ public class EditHiringButtonCommand implements Command {
                 Hiring hiring = hiringList.get(numberOfHiring);
                 session.setAttribute(HIRING_ID, hiring.getID());
                 session.setAttribute(NUMBER_OF_HIRING, numberOfHiring);
-                System.out.println(hiring.getID() + " " + numberOfHiring);
-                request.getRequestDispatcher(PageName.EDIT_VACANCY).forward(request, response);
+                response.sendRedirect(PageName.EDIT_VACANCY);
             } catch (ServiceException e) {
-                request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
+                response.sendRedirect(PageName.INDEX_PAGE);
                 LOGGER.error(e.getMessage());
                 throw new CommandException(e);
             }
-        } catch (ServletException | IOException e) {
+        } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);
         }
