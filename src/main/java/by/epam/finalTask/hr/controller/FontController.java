@@ -64,6 +64,7 @@ public class FontController extends HttpServlet {
             CommandFactory commandFactory = createCommandFactory(connection);
             command = commandFactory.create(commandName);
             command.execute(request, response);
+            ConnectionPool.getInstance().closeConnection(connection);
         } catch (CommandException e) {
             response.sendError(SERVER_ERROR);
             LOGGER.error(e.getMessage());
@@ -78,4 +79,12 @@ public class FontController extends HttpServlet {
         return new CommandFactory(serviceFactory, languageFactory);
     }
 
+    @Override
+    public void destroy() {
+        try {
+            ConnectionPool.getInstance().dispose();
+        } catch (Exception e) {
+            LOGGER.error(e);
+        }
+    }
 }

@@ -34,7 +34,7 @@
 
     <fmt:message bundle="${loc}" key="local.login" var="login"/>
     <fmt:message bundle="${loc}" key="local.create.akk" var="createAkk"/>
-    <fmt:message bundle="${loc}" key="local.language" var="language"/>
+    <fmt:message bundle="${loc}" key="local.button.language" var="language"/>
 
     <fmt:message bundle="${loc}" key="local.login.login" var="loginLogin"/>
     <fmt:message bundle="${loc}" key="local.login.password" var="loginPassword"/>
@@ -50,12 +50,10 @@
     <fmt:message bundle="${loc}" key="local.create.akk.password" var="createAkkPassword"/>
 
     <fmt:message bundle="${loc}" key="local.lable" var="lable"/>
-    <fmt:message bundle="${loc}" key="local.out" var="out"/>
+    <fmt:message bundle="${loc}" key="local.button.out" var="out"/>
 
 </head>
 <body>
-
-<c:set var="pageName" value="index.jsp" scope="session"/>
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
 

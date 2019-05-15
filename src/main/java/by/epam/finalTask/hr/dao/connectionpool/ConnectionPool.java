@@ -131,6 +131,14 @@ public class ConnectionPool {
         }
     }
 
+    public void closeConnection(Connection con) {
+        try {
+            con.close();
+        } catch (SQLException e) {
+            LOGGER.error("Error closing connection.", e);
+        }
+    }
+
     private void clearConnectionQueue() {
         try {
             closeConnectionsQueue(givenAwayConnectionQueue);

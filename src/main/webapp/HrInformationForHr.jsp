@@ -51,7 +51,7 @@
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
             <div class="w3-rest">
-                <a class="w3-input w3-border" name="first" type="text">Surname: ${sessionScope.user.surname}</a>
+                <a class="w3-input" name="first" type="text">Surname: ${sessionScope.user.surname}</a>
             </div>
         </div>
 

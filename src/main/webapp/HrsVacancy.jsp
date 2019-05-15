@@ -1,9 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page info="HrsVacancy.jsp" language="java"
          contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<fmt:setLocale value="${sessionScope.local}"/>
+<fmt:setBundle basename="local"/>
+
 <!DOCTYPE html>
 <html lang="en">
-<title>HRs Vacancies</title>
+<title><fmt:message key="local.button.hiring"/></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -21,26 +26,37 @@
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-            <a class="w3-bar-item w3-button"
-               href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
-            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My
-                Info</a>
-            <a class="w3-bar-item w3-button w3-theme-l1"
-               href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">Hiring</a>
-            <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">Add
-                Vacancy</a>
-            <div class="w3-dropdown-hover w3-hide-small w3-right">
-                <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                    <a class="w3-bar-item w3-button" onclick="">RU</a>
-                    <a class="w3-bar-item w3-button" onclick="">EN</a>
-                </div>
+        <a class="w3-bar-item w3-button"
+           href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">
+            <fmt:message key="local.button.vacancy"/></a>
+
+        <a class="w3-bar-item w3-button"
+           href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">
+            <fmt:message key="local.button.info"/></a>
+
+        <a class="w3-bar-item w3-button w3-theme-l1"
+           href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">
+            <fmt:message key="local.button.hiring"/></a>
+
+        <a class="w3-bar-item w3-button"
+           href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">
+            <fmt:message key="local.button.add.vacancy"/></a>
+
+        <div class="w3-dropdown-hover w3-hide-small w3-right">
+            <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
+                <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a class="w3-bar-item w3-button" onclick=""><fmt:message key="local.button.ru"/></a>
+                <a class="w3-bar-item w3-button" onclick=""><fmt:message key="local.button.en"/></a>
             </div>
-            <a class="w3-bar-item w3-button w3-right"
-               href="${pageContext.servletContext.contextPath}/index.jsp" onclick="${sessionScope.clear()}">Logout</a>
+        </div>
+
+        <a class="w3-bar-item w3-button w3-right"
+           href="${pageContext.servletContext.contextPath}/index.jsp">
+            <fmt:message key="local.button.out"/></a>
     </div>
 </div>
-<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+
 <div class="w3-main w3-animate-left" style="margin:3.75%">
     <div class="w3-row-padding">
         <c:forEach var="hiring" items="${sessionScope.hirings}" varStatus="theCount">
@@ -55,7 +71,8 @@
                         <li class="w3-padding-8">${hiring.comment}</li>
                     </c:if>
                     <c:if test="${empty hiring.comment}">
-                        <li class="w3-text-grey w3-padding-8">No Value Set</li>
+                        <li class="w3-text-grey w3-padding-8">
+                            <fmt:message key="local.lable.no.value"/></li>
                     </c:if>
 
                     <li class="w3-padding-8">${hiring.hiringStatus}</li>
@@ -66,7 +83,8 @@
                             <span class="w3-opacity">per month</span>
                         </c:if>
                         <c:if test="${empty hiring.offerEmount and hiring.offerEmount == 0}">
-                            <h3 class="w3-text-grey w3-wide">No Value Set</h3>
+                            <h3 class="w3-text-grey w3-wide">
+                                <fmt:message key="local.lable.no.value"/></h3>
                             <span class="w3-opacity w3-text-wight">___</span>
                         </c:if>
                     </li>
@@ -75,7 +93,8 @@
                         <form action="FontController" method="get">
                             <input name="command" value="table-hiring" type="hidden"/>
                             <input name="table" type="hidden" value="${theCount.index}"/>
-                            <button class="w3-button w3-teal w3-left w3-center w3-padding-large" style="width:100%;" type="submit">Interview
+                            <button class="w3-button w3-teal w3-left w3-center w3-padding-large" style="width:100%;" type="submit">
+                                <fmt:message key="local.button.interview"/>
                             </button>
                         </form>
                     </li>
@@ -84,7 +103,8 @@
                         <form action="FontController" method="get">
                             <input name="command" value="delete-hiring-by-hr" type="hidden"/>
                             <input name="index" type="hidden" value="${theCount.index}"/>
-                            <button class="w3-button w3-red w3-left w3-padding-large" type="submit">Delete
+                            <button class="w3-button w3-red w3-left w3-padding-large" type="submit">
+                                <fmt:message key="local.button.delete"/>
                             </button>
                         </form>
                         <form action="FontController" method="get">
@@ -104,7 +124,7 @@
 <!-- Pagination -->
 <footer id="myFooter">
     <div class="w3-container w3-theme-l1 w3-center w3-display-bottommiddle" style="width:100%;">
-        <p><a>Powered by Pogorelova Maria</a></p>
+        <p><a><fmt:message key="local.footer"/></a></p>
     </div>
 </footer>
 

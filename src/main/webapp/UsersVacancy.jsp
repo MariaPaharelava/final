@@ -1,10 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page info="UsersVacancy.jsp" language="java"
          contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<fmt:setLocale value="${sessionScope.local}"/>
+<fmt:setBundle basename="local"/>
+
 <!DOCTYPE html>
-<html lang="en">
-<title>Hiring</title>
+<title><fmt:message key="local.button.hiring"/></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -24,28 +27,34 @@
     <div class="w3-bar w3-black w3-card">
         <c:url value="UserVacancyShow.jsp" var="newUrlVacancy" />
         <a class="w3-bar-item w3-button"
-           href="<c:out value="${ newUrlVacancy }"/>">Vacancy</a>
+           href="<c:out value="${ newUrlVacancy }"/>">
+            <fmt:message key="local.button.vacancy"/></a>
 
         <c:url value="UserInformationForUser.jsp" var="newUrlInfo" />
         <a class="w3-bar-item w3-button"
-           href="<c:out value="${ newUrlInfo }"/>">My Info</a>
+           href="<c:out value="${ newUrlInfo }"/>">
+            <fmt:message key="local.button.info"/></a>
 
         <c:url value="UsersVacancy.jsp" var="newUrlHiring" />
         <a class="w3-bar-item w3-button w3-theme-l1"
-           href="<c:out value="${ newUrlHiring }"/>">Hiring</a>
+           href="<c:out value="${ newUrlHiring }"/>">
+            <fmt:message key="local.button.hiring"/></a>
 
         <div class="w3-dropdown-hover w3-hide-small w3-right">
-            <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
+            <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
+                <i class="fa fa-caret-down"></i></button>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <a class="w3-bar-item w3-button" onclick="">RU</a>
-                <a class="w3-bar-item w3-button" onclick="">EN</a>
+                <a class="w3-bar-item w3-button" onclick=""><fmt:message key="local.button.ru"/></a>
+                <a class="w3-bar-item w3-button" onclick=""><fmt:message key="local.button.en"/></a>
             </div>
         </div>
 
-        <c:url value="index.jsp" var="newUrlIndex" />
-        <a class="w3-bar-item w3-button w3-right" href="<c:out value="${ newUrlIndex }"/>">Logout</a>
+        <a class="w3-bar-item w3-button w3-right"
+           href="${pageContext.servletContext.contextPath}/index.jsp">
+            <fmt:message key="local.button.out"/></a>
     </div>
 </div>
+
 
 <div class="w3-main w3-animate-left" style="margin:3.75%">
     <div class="w3-row-padding">
@@ -60,7 +69,7 @@
                         <li class="w3-padding-8">${hiring.comment}</li>
                     </c:if>
                     <c:if test="${empty hiring.comment}">
-                        <li class="w3-text-grey w3-padding-8">No Value Set</li>
+                        <li class="w3-text-grey w3-padding-8"><fmt:message key="local.lable.no.value"/></li>
                     </c:if>
 
                     <li class="w3-padding-8">${hiring.hiringStatus}</li>
@@ -70,8 +79,9 @@
                             <h3 class="w3-wide">$ ${hiring.offerEmount}</h3>
                             <span class="w3-opacity">per month</span>
                         </c:if>
-                        <c:if test="${empty hiring.offerEmount and hiring.offerEmount == 0}">
-                            <h3 class="w3-text-grey w3-wide">No Value Set</h3>
+                        <c:if test="${empty hiring.offerEmount or hiring.offerEmount == 0}">
+                            <h3 class="w3-text-grey w3-wide">
+                                <fmt:message key="local.lable.no.value"/></h3>
                             <span class="w3-opacity w3-text-wight">___</span>
                         </c:if>
                     </li>
@@ -79,7 +89,9 @@
                         <form action="FontController" method="get" class="w3-row w3-container">
                             <input name="command" value="delete-hiring-by-user" type="hidden"/>
                             <input name="index" type="hidden" value="${theCount.index}"/>
-                            <button class="w3-button w3-red w3-padding-large">Cancel</button>
+                            <button class="w3-button w3-red w3-padding-large">
+                                <fmt:message key="local.button.delete"/>
+                            </button>
                         </form>
                     </li>
                 </ul>
@@ -94,7 +106,7 @@
 
 <footer id="myFooter">
     <div class="w3-container w3-theme-l1 w3-center w3-display-bottommiddle" style="width:100%;">
-        <p><a>Powered by Pogorelova Maria</a></p>
+        <p><a><fmt:message key="local.footer"/></a></p>
     </div>
 </footer>
 

@@ -16,8 +16,6 @@ import java.util.Optional;
 
 public abstract class AbstractDAO<T> implements DAO<T> {
     private static final Logger LOGGER = LogManager.getLogger(AbstractDAO.class);
-    private static final String DELETE_BY_ID_QUERY = "DELETE FROM %s WHERE id = ?";
-    private static final String GET_COUNT_QUERY = "SELECT COUNT(*) row_count FROM ";
 
     private final Connection connection;
     private final BuilderDAO<T> builder;
@@ -32,7 +30,7 @@ public abstract class AbstractDAO<T> implements DAO<T> {
             prepareStatement(statement, params);
 
             LOGGER.debug("Prepared statement: {}", statement);
-
+            System.out.println(connection.isClosed());
             return statement.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -50,6 +48,7 @@ public abstract class AbstractDAO<T> implements DAO<T> {
                     resultList.add(builtObject);
                 }
             }
+            System.out.println(connection.isClosed());
         } catch (SQLException e) {
             throw new DAOException(e);
         }
@@ -63,6 +62,7 @@ public abstract class AbstractDAO<T> implements DAO<T> {
             T firstItem = itemsList.get(0);
             result = Optional.of(firstItem);
         }
+
         return result;
     }
 

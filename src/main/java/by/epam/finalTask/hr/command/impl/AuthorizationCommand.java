@@ -54,31 +54,33 @@ public class AuthorizationCommand implements Command {
         User user = null;
 
         try {
+            try {
+                user = userService.authorization(login, password);
 
-            user = userService.authorization(login, password);
+                session.setAttribute(USER, user);
 
-            session.setAttribute(USER, user);
-
-            switch (user.getUserRole()) {
-                case HR:
-                    List<Hiring> hiringListForHr = hiringService.getAllHiringsByHrId(user.getID());
-                    setAllNecessaryAttributeForUser(session, hiringListForHr);
-                    response.sendRedirect(PageName.HR_VACANCY_PAGE);
-                    break;
-                case ADMIN:
-                    setAllNecessaryAttributeForAdmin(session);
-                    response.sendRedirect(PageName.WORK_WITH_USER);
-                    break;
-                case CANDIDATE:
-                    List<Hiring> hiringListForCandidate = hiringService.getAllHiringsByHrId(user.getID());
-                    setAllNecessaryAttributeForUser(session, hiringListForCandidate);
-                    response.sendRedirect(PageName.USER_VACANCY_PAGE);
-                    break;
+                switch (user.getUserRole()) {
+                    case HR:
+                        List<Hiring> hiringListForHr = hiringService.getAllHiringsByHrId(user.getID());
+                        setAllNecessaryAttributeForUser(session, hiringListForHr);
+                        response.sendRedirect(PageName.HR_VACANCY_PAGE);
+                        break;
+                    case ADMIN:
+                        setAllNecessaryAttributeForAdmin(session);
+                        response.sendRedirect(PageName.WORK_WITH_USER);
+                        break;
+                    case CANDIDATE:
+                        List<Hiring> hiringListForCandidate = hiringService.getAllHiringsByHrId(user.getID());
+                        setAllNecessaryAttributeForUser(session, hiringListForCandidate);
+                        response.sendRedirect(PageName.USER_VACANCY_PAGE);
+                        break;
+                }
+                return;
+            } catch (ServiceException e) {
+                LOGGER.error(e.getMessage());
+                throw new CommandException(e);
             }
-            response.sendRedirect(PageName.INDEX_PAGE);
-        } catch (ServiceException e) {
-            LOGGER.error(e.getMessage());
-            throw new CommandException(e);
+            //response.sendRedirect(PageName.INDEX_PAGE);
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);
