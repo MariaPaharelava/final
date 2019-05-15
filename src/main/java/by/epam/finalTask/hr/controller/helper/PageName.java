@@ -5,7 +5,6 @@ package by.epam.finalTask.hr.controller.helper;
  */
 
 public class PageName {
-
     public static final String INDEX_PAGE = "index.jsp";
     public static final String USER_VACANCY_PAGE = "UserVacancyShow.jsp";
     public static final String USERS_VACANCY = "UsersVacancy.jsp";

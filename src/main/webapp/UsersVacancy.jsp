@@ -69,7 +69,7 @@
                         <li class="w3-padding-8">${hiring.comment}</li>
                     </c:if>
                     <c:if test="${empty hiring.comment}">
-                        <li class="w3-text-grey w3-padding-8"><fmt:message key="local.lable.no.value"/></li>
+                        <li class="w3-text-grey w3-padding-8"><fmt:message key="local.label.no.value"/></li>
                     </c:if>
 
                     <li class="w3-padding-8">${hiring.hiringStatus}</li>
@@ -81,7 +81,7 @@
                         </c:if>
                         <c:if test="${empty hiring.offerEmount or hiring.offerEmount == 0}">
                             <h3 class="w3-text-grey w3-wide">
-                                <fmt:message key="local.lable.no.value"/></h3>
+                                <fmt:message key="local.label.no.value"/></h3>
                             <span class="w3-opacity w3-text-wight">___</span>
                         </c:if>
                     </li>

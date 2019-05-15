@@ -51,7 +51,7 @@ public class AuthorizationCommand implements Command {
 
         String login = request.getParameter(ENTER_LOGIN);
         String password = request.getParameter(ENTER_PASSWORD);
-        User user = null;
+        User user;
 
         try {
             try {

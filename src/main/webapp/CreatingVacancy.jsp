@@ -7,6 +7,7 @@
 <fmt:setBundle basename="local"/>
 
 <!DOCTYPE html>
+<html>
 <title><fmt:message key="local.title.create.vacancy"/></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,7 +61,8 @@
           action="FontController" method="post">
         <input name="command" value="create-vacancy" type="hidden"/>
 
-        <h2 class="w3-center"><fmt:message key="local.title.create.vacancy"/> <i class="fa fa-edit"></i></h2>
+        <h2 class="w3-center"><fmt:message key="local.title.create.vacancy"/>
+            <i class="fa fa-edit"></i></h2>
 
         <div class="w3-row w3-section">
             <div class="w3-rest">

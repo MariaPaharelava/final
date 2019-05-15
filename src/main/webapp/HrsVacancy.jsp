@@ -7,7 +7,7 @@
 <fmt:setBundle basename="local"/>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <title><fmt:message key="local.button.hiring"/></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,7 +72,7 @@
                     </c:if>
                     <c:if test="${empty hiring.comment}">
                         <li class="w3-text-grey w3-padding-8">
-                            <fmt:message key="local.lable.no.value"/></li>
+                            <fmt:message key="local.label.no.value"/></li>
                     </c:if>
 
                     <li class="w3-padding-8">${hiring.hiringStatus}</li>
@@ -84,7 +84,7 @@
                         </c:if>
                         <c:if test="${empty hiring.offerEmount and hiring.offerEmount == 0}">
                             <h3 class="w3-text-grey w3-wide">
-                                <fmt:message key="local.lable.no.value"/></h3>
+                                <fmt:message key="local.label.no.value"/></h3>
                             <span class="w3-opacity w3-text-wight">___</span>
                         </c:if>
                     </li>
@@ -110,7 +110,8 @@
                         <form action="FontController" method="get">
                             <input name="command" value="edit-hiring_button" type="hidden"/>
                             <input name="index" type="hidden" value="${theCount.index}"/>
-                            <button class="w3-button w3-teal w3-right w3-padding-large" type="submit">Edit
+                            <button class="w3-button w3-teal w3-right w3-padding-large" type="submit">
+                                <fmt:message key="local.button.edit"/>
                             </button>
                         </form>
                     </li>

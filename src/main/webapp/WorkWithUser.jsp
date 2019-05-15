@@ -1,11 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page info="WorkWithUser.jsp" language="java"
          contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<fmt:setLocale value="${sessionScope.local}"/>
+<fmt:setBundle basename="local"/>
+
 <!DOCTYPE html>
-<html lang="en">
-<title>Work With User</title>
+<html>
+<title><fmt:message key="local.button.users"/></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -19,37 +22,40 @@
 </style>
 <body>
 
-<c:set var="pageName" value="WorkWithUser.jsp" scope="session"/>
-
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <a class="w3-bar-item w3-button w3-theme-l1" href="#">Users</a>
+        <a class="w3-bar-item w3-button w3-theme-l1" href="#"><fmt:message key="local.button.users"/></a>
         <div class="w3-dropdown-hover w3-hide-small w3-right">
-            <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
+            <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
+                <i class="fa fa-caret-down"></i></button>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <a class="w3-bar-item w3-button" onclick="">RU</a>
-                <a class="w3-bar-item w3-button" onclick="">EN</a>
+                <a class="w3-bar-item w3-button" onclick="">
+                    <fmt:message key="local.button.ru"/></a>
+                <a class="w3-bar-item w3-button" onclick="">
+                    <fmt:message key="local.button.en"/></a>
             </div>
         </div>
+
         <a class="w3-bar-item w3-button w3-right"
-           href="${pageContext.servletContext.contextPath}/index.jsp" onclick="${sessionScope.clear()}">Logout</a>
+           href="${pageContext.servletContext.contextPath}/index.jsp">
+            <fmt:message key="local.button.out"/></a>
     </div>
 </div>
 
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main w3-animate-left" style="margin:3.7%;">
 
-    <h2 class="w3-center">All Users</h2>
+    <h2 class="w3-center"><fmt:message key="local.button.users"/></h2>
 
     <table class="w3-table-all w3-margin-top" id="myTable">
         <tr>
             <th style="width:5%;"></th>
-            <th style="width:30%;">Surname</th>
-            <th style="width:20%;">Name</th>
-            <th style="width:20%;">Role</th>
-            <th style="width:20%;">Login</th>
-            <th style="width:5%; ">Delete</th>
+            <th style="width:30%;"><fmt:message key="local.create.akk.surname"/></th>
+            <th style="width:20%;"><fmt:message key="local.create.akk.name"/></th>
+            <th style="width:20%;"><fmt:message key="local.create.akk.role"/></th>
+            <th style="width:20%;"><fmt:message key="local.create.akk.login"/></th>
+            <th style="width:5%; "><fmt:message key="local.button.delete"/></th>
         </tr>
         <c:forEach var="user" items="${sessionScope.users}" varStatus="theCount">
             <tr id="${theCount.index}">
@@ -97,36 +103,41 @@
                     <span onclick="document.getElementById('id01').style.display='none'" style="margin-right:20%;"
                           class="w3-button w3-xlarge w3-light-grey w3-display-topright" title="Close Modal">x</span>
                 </div>
-                <label><b>Surname</b></label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Surname"
+                <label><b><fmt:message key="local.create.akk.surname"/></b></label>
+                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                       placeholder="<fmt:message key="local.create.akk.enter.surname"/>"
                        name="enterSurname" required value="${requestScope.enterSurname}">
 
-                <label><b>Name</b></label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Name"
+                <label><b><fmt:message key="local.create.akk.name"/></b></label>
+                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                       placeholder="<fmt:message key="local.create.akk.enter.name"/>"
                        name="enterName" required value="${requestScope.enterName}">
 
-                <label><b>Login</b></label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username"
+                <label><b><fmt:message key="local.create.akk.login"/></b></label>
+                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                       placeholder="<fmt:message key="local.create.akk.enter.login"/>"
                        name="enterLogin" required value="${requestScope.enterLogin}">
 
-                <label><b>Password</b></label>
-                <input class="w3-input w3-border" type="password" placeholder="Enter Password"
+                <label><b><fmt:message key="local.create.akk.password"/></b></label>
+                <input class="w3-input w3-border" type="password"
+                       placeholder="<fmt:message key="local.create.akk.enter.password"/>"
                        name="enterPassword" required value="${requestScope.enterPassword}">
+
                 <div class="w3-row w3-section w3-text-black">
-                    <h5 class="w3-left">Select role: </h5><br><br>
+                    <h5 class="w3-left"><fmt:message key="local.label.select.status"/> </h5><br><br>
                     <div style="margin:1%;">
                         <p>
                             <input class="w3-radio" style="width:20%" name="enterStatus" type="radio" checked
-                                   value="${"USER"}"> User<br>
-                            <input class="w3-radio" style="width:20%" name="enterStatus" type="radio" value="${"HR"}">
-                            HR<br>
+                                   value="${"USER"}"> <fmt:message key="local.role.candidate"/><br>
                             <input class="w3-radio" style="width:20%" name="enterStatus" type="radio"
-                                   value="${"ADMIN"}"> Admin
+                                   value="${"HR"}"> <fmt:message key="local.role.hr"/><br>
+                            <input class="w3-radio" style="width:20%" name="enterStatus" type="radio"
+                                   value="${"ADMIN"}"> <fmt:message key="local.role.admin"/>
                         </p>
                     </div>
                 </div>
                 <button class="w3-button w3-center w3-teal w3-section w3-padding" type="submit"
-                        style="width:100%;">OK
+                        style="width:100%;"><fmt:message key="local.button.ok"/>
                 </button>
                 <!-- role -->
             </div>
@@ -137,7 +148,7 @@
 
 <footer id="myFooter">
     <div class="w3-container w3-theme-l1 w3-center w3-display-bottommiddle" style="width:100%;">
-        <p><a>Powered by Pogorelova Maria</a></p>
+        <p><a><fmt:message key="local.footer"/></a></p>
     </div>
 </footer>
 

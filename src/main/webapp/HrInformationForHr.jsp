@@ -1,9 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page info="HrInformationForHr.jsp" language="java"
          contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<fmt:setLocale value="${sessionScope.local}"/>
+<fmt:setBundle basename="local"/>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <title>Information</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,27 +20,39 @@
 
 </style>
 <body>
-<c:set var="pageName" value="HrInformationForHr.jsp" scope="session"/>
-
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
         <a class="w3-bar-item w3-button"
-           href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">Vacancy</a>
+           href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">
+            <fmt:message key="local.button.vacancy"/></a>
+
+        <a class="w3-bar-item w3-button"
+           href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">
+            <fmt:message key="local.button.info"/></a>
+
         <a class="w3-bar-item w3-button w3-theme-l1"
-           href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">My Info</a>
-        <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">Hiring</a>
-        <a class="w3-bar-item w3-button" href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">Add
-            Vacancy</a>
+           href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">
+            <fmt:message key="local.button.hiring"/></a>
+
+        <a class="w3-bar-item w3-button"
+           href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">
+            <fmt:message key="local.button.add.vacancy"/></a>
+
         <div class="w3-dropdown-hover w3-hide-small w3-right">
-            <button class="w3-button" title="More">Language <i class="fa fa-caret-down"></i></button>
+            <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
+                <i class="fa fa-caret-down"></i></button>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <a class="w3-bar-item w3-button" onclick="">RU</a>
-                <a class="w3-bar-item w3-button" onclick="">EN</a>
+                <a class="w3-bar-item w3-button" onclick="">
+                    <fmt:message key="local.button.ru"/></a>
+                <a class="w3-bar-item w3-button" onclick="">
+                    <fmt:message key="local.button.en"/></a>
             </div>
         </div>
+
         <a class="w3-bar-item w3-button w3-right"
-           href="${pageContext.servletContext.contextPath}/index.jsp">Logout</a>
+           href="${pageContext.servletContext.contextPath}/index.jsp">
+            <fmt:message key="local.button.out"/></a>
     </div>
 </div>
 
@@ -82,7 +96,7 @@
 
 <footer id="myFooter">
     <div class="w3-container w3-theme-l1 w3-center w3-display-bottommiddle" style="width:100%;">
-        <p><a>Powered by Pogorelova Maria</a></p>
+        <p><a><fmt:message key="local.footer"/></a></p>
     </div>
 </footer>
 

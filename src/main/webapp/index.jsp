@@ -3,6 +3,10 @@
 
 <%@ page info="index.jsp" language="java"
          contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<fmt:setLocale value="${sessionScope.local}"/>
+<fmt:setBundle basename="local" var="loc"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +16,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Time to find a job</title>
+    <title><fmt:message key="local.title.index"/></title>
     <style>
         body, h1 {
             font-family: "Raleway", sans-serif
@@ -28,31 +32,8 @@
             background-size: cover;
         }
     </style>
-
-    <fmt:setLocale value="${sessionScope.local}"/>
-    <fmt:setBundle basename="local" var="loc"/>
-
-    <fmt:message bundle="${loc}" key="local.login" var="login"/>
-    <fmt:message bundle="${loc}" key="local.create.akk" var="createAkk"/>
-    <fmt:message bundle="${loc}" key="local.button.language" var="language"/>
-
-    <fmt:message bundle="${loc}" key="local.login.login" var="loginLogin"/>
-    <fmt:message bundle="${loc}" key="local.login.password" var="loginPassword"/>
-    <fmt:message bundle="${loc}" key="local.login.enter.login" var="loginEnterLogin"/>
-
-    <fmt:message bundle="${loc}" key="local.create.akk.surname" var="createAkkSurname"/>
-    <fmt:message bundle="${loc}" key="local.create.akk.enter.surname" var="createAkkEnterSurname"/>
-    <fmt:message bundle="${loc}" key="local.create.akk.enter.name" var="createAkkEnterName"/>
-    <fmt:message bundle="${loc}" key="local.create.akk.name" var="createAkkName"/>
-    <fmt:message bundle="${loc}" key="local.create.akk.enter.login" var="createAkkEnterLogin"/>
-    <fmt:message bundle="${loc}" key="local.create.akk.login" var="createAkkLogin"/>
-    <fmt:message bundle="${loc}" key="local.create.akk.enter.password" var="createAkkEnterPassword"/>
-    <fmt:message bundle="${loc}" key="local.create.akk.password" var="createAkkPassword"/>
-
-    <fmt:message bundle="${loc}" key="local.lable" var="lable"/>
-    <fmt:message bundle="${loc}" key="local.button.out" var="out"/>
-
 </head>
+
 <body>
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
@@ -66,20 +47,26 @@
     <div class="w3-top">
         <div class="w3-bar w3-black w3-card">
             <a class="w3-bar-item w3-button"
-               onclick="document.getElementById('id01').style.display='block'">${login}</a>
+               onclick="document.getElementById('id01').style.display='block'">
+                <fmt:message key="local.create.akk.login"/></a>
             <a class="w3-bar-item w3-button"
-               onclick="document.getElementById('id02').style.display='block'">${createAkk}</a>
+               onclick="document.getElementById('id02').style.display='block'">
+                <fmt:message key="local.create.akk"/></a>
             <div class="w3-dropdown-hover w3-hide-small w3-right">
-                <button class="w3-button" title="More">${language} <i class="fa fa-caret-down"></i></button>
-                <form action="FontController" method="post">
+                <button class="w3-button" title="More"><b>
+                    <fmt:message key="local.button.language"/></b>
+                    <i class="fa fa-caret-down"></i></button>
+                <
+                <div class="w3-dropdown-hover w3-hide-small w3-right">
+                    <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
+                        <i class="fa fa-caret-down"></i></button>
                     <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                        <input name="command" value="change-local" type="hidden">
-
-                        <a class="w3-bar-item w3-button" name="local">RU</a>
-                        <a class="w3-bar-item w3-button" name="local">EN</a>
+                        <a class="w3-bar-item w3-button" onclick="">
+                            <fmt:message key="local.button.ru"/></a>
+                        <a class="w3-bar-item w3-button" onclick="">
+                            <fmt:message key="local.button.en"/></a>
                     </div>
-                </form>
-
+                </div>
             </div>
         </div>
     </div>
@@ -98,15 +85,17 @@
             <input name="command" value="authorization" type="hidden"/>
 
             <div class="w3-section">
-                <label class="w3-white"><b>${loginLogin}</b></label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="${createAkkEnterLogin}"
+                <label class="w3-white"><b><fmt:message key="local.create.akk.login"/></b></label>
+                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                       placeholder="<fmt:message key="local.create.akk.enter.login"/>"
                        name="enterLogin" required value="${requestScope.createAkkEnterLogin}">
-                <label class="w3-white"><b>${loginPassword}</b></label>
-                <input class="w3-input w3-border" type="password" placeholder="${createAkkEnterPassword}"
+                <label class="w3-white"><b><fmt:message key="local.create.akk.password"/></b></label>
+                <input class="w3-input w3-border" type="password"
+                       placeholder="<fmt:message key="local.create.akk.enter.password"/>"
                        name="enterPassword" required value="${requestScope.createAkkEnterPassword}">
 
                 <button class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
-                        type="submit">${loginEnterLogin}</button>
+                        type="submit"><fmt:message key="local.login.enter.login"/></button>
             </div>
         </form>
 
@@ -126,31 +115,36 @@
 
                 <input name="command" value="registration" type="hidden"/>
 
-                <label class="w3-white"><b>${createAkkSurname}</b></label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="${createAkkEnterSurname}"
+                <label class="w3-white"><b><fmt:message key="local.create.akk.surname"/></b></label>
+                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                       placeholder="<fmt:message key="local.create.akk.enter.surname"/>"
                        name="enterUserSurname" required value="${requestScope.enterUserSurname}">
 
-                <label class="w3-white"><b>${createAkkName}</b></label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="${createAkkEnterName}"
+                <label class="w3-white"><b><fmt:message key="local.create.akk.name"/></b></label>
+                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                       placeholder="<fmt:message key="local.create.akk.enter.name"/>"
                        name="enterUserName" required value="${requestScope.enterUserName}">
 
-                <label class="w3-white"><b>${createAkkLogin}</b></label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="${createAkkEnterLogin}"
+                <label class="w3-white"><b><fmt:message key="local.create.akk.login"/></b></label>
+                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                       placeholder="<fmt:message key="local.create.akk.enter.login"/>"
                        name="enterLogin" required value="${requestScope.enterLogin}">
 
-                <label class="w3-white"><b>${createAkkPassword}</b></label>
-                <input class="w3-input w3-border" type="password" placeholder="${createAkkEnterPassword}"
+                <label class="w3-white"><b><fmt:message key="local.create.akk.password"/></b></label>
+                <input class="w3-input w3-border" type="password"
+                       placeholder="<fmt:message key="local.create.akk.enter.password"/>"
                        name="enterPassword" required value="${requestScope.enterPassword}">
 
 
-                <button class="w3-button w3-block w3-teal w3-right w3-section w3-padding" type="submit">OK</button>
+                <button class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
+                        type="submit"><fmt:message key="local.button.ok"/></button>
             </div>
         </form>
     </div>
 </div>
 
 <div class="w3-text-white w3-display-bottomleft w3-padding-large">
-    Powered by Pogorelova Maria
+    <p><a><fmt:message key="local.footer"/></a></p>
 </div>
 
 </body>
