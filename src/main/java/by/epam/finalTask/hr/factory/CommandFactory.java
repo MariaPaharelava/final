@@ -4,6 +4,7 @@ import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.command.impl.AuthorizationCommand;
 import by.epam.finalTask.hr.command.impl.RegistrationCommand;
+import by.epam.finalTask.hr.command.impl.SetLocalCommand;
 import by.epam.finalTask.hr.command.impl.admin.AddUserCommand;
 import by.epam.finalTask.hr.command.impl.admin.DeleteUserCommand;
 import by.epam.finalTask.hr.command.impl.hr.*;
@@ -88,7 +89,7 @@ public class CommandFactory {
                 break;
             }
             case CHANGE_LOCAL: {
-
+                command = new SetLocalCommand(languageFactory);
                 break;
             }
         }

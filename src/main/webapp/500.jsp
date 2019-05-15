@@ -15,10 +15,19 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-    html, body, h1, h2, h3, h4, h5, h6 {
-        font-family: "Raleway", sans-serif;
+    body, h1 {
+        font-family: "Raleway", sans-serif
     }
 
+    body, html {
+        height: 100%
+    }
+
+    .bgimg {
+        min-height: 100%;
+        background: url('pictures/bumaga_myatyy.jpg') center;
+        background-size: cover;
+    }
 </style>
 <body>
 

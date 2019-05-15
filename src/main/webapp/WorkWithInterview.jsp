@@ -19,6 +19,7 @@
     }
 </style>
 <body>
+<c:set var="pageName" value="WorkWithInterview.jsp" scope="session"/>
 
 <!-- Navbar -->
 <div class="w3-top">

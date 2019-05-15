@@ -22,6 +22,7 @@
 </style>
 <body>
 
+<c:set var="pageName" value="HrsVacancy.jsp" scope="session"/>
 
 <!-- Navbar -->
 <div class="w3-top">

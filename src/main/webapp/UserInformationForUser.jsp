@@ -20,6 +20,7 @@
 
 </style>
 <body>
+<c:set var="pageName" value="UserInformationForUser.jsp" scope="session"/>
 
 <!-- Navbar -->
 <div class="w3-top">

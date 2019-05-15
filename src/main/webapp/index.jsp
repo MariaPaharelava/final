@@ -4,12 +4,11 @@
 <%@ page info="index.jsp" language="java"
          contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<fmt:setLocale value="${sessionScope.local}"/>
-<fmt:setBundle basename="local" var="loc"/>
-
 <!DOCTYPE html>
 <html>
 <head>
+    <fmt:setLocale value="${sessionScope.local}"/>
+    <fmt:setBundle basename="local"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -36,13 +35,9 @@
 
 <body>
 
+<c:set var="pageName" value="index.jsp" scope="session"/>
+
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-
-    <div class="w3-display-middle">
-        <h1 class="w3-jumbo w3-animate-top">${lable}</h1>
-        <hr class="w3-border-grey" style="margin:auto;width:40%">
-    </div>
-
     <!-- NAVIGATION START-->
     <div class="w3-top">
         <div class="w3-bar w3-black w3-card">
@@ -52,26 +47,27 @@
             <a class="w3-bar-item w3-button"
                onclick="document.getElementById('id02').style.display='block'">
                 <fmt:message key="local.create.akk"/></a>
+
             <div class="w3-dropdown-hover w3-hide-small w3-right">
-                <button class="w3-button" title="More"><b>
-                    <fmt:message key="local.button.language"/></b>
+                <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
                     <i class="fa fa-caret-down"></i></button>
-                <
-                <div class="w3-dropdown-hover w3-hide-small w3-right">
-                    <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
-                        <i class="fa fa-caret-down"></i></button>
-                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                        <a class="w3-bar-item w3-button" onclick="">
-                            <fmt:message key="local.button.ru"/></a>
-                        <a class="w3-bar-item w3-button" onclick="">
-                            <fmt:message key="local.button.en"/></a>
-                    </div>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <form action="FontController" method="get">
+                        <input type="hidden" name="command" value="change-local">
+                        <button class="w3-bar-item w3-button" value="RU"><fmt:message key="local.button.ru"/></button>
+                        <button class="w3-bar-item w3-button" value="EN"><fmt:message key="local.button.en"/></button>
+                    </form>
                 </div>
             </div>
+
         </div>
     </div>
     <!-- NAVIGATION END -->
+</div>
 
+<div class="w3-display-middle">
+    <h1 class="w3-jumbo w3-animate-top w3-text-white"><fmt:message key="local.title.index"/></h1>
+    <hr class="w3-border-grey" style="margin:auto;width:40%">
 </div>
 
 <!-- LOGIN IN BEGIN-->
