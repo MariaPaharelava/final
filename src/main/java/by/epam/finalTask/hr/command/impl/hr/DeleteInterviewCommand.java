@@ -33,7 +33,7 @@ public class DeleteInterviewCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         HttpSession session = request.getSession(false);
 
-        Integer numberOfHiring = (Integer)session.getAttribute(HIRING_ID);
+        Integer numberOfHiring = (Integer) session.getAttribute(HIRING_ID);
         Integer numberOfInterview = Integer.parseInt(request.getParameter(NUMBER_OF_INTERVIEW));
         try {
             try {
@@ -59,8 +59,8 @@ public class DeleteInterviewCommand implements Command {
         LOGGER.info("Interview with " + interview.getID() + " id was delete");
     }
 
-    private void deleteFromSession(HttpSession session, Integer numberOfInterview){
-        List<Interview> interviewArrayList = (ArrayList<Interview>)session.getAttribute(HIRINGS_INTERVIEW);
+    private void deleteFromSession(HttpSession session, Integer numberOfInterview) {
+        List<Interview> interviewArrayList = (ArrayList<Interview>) session.getAttribute(HIRINGS_INTERVIEW);
         interviewArrayList.remove(numberOfInterview.intValue());
         session.setAttribute(HIRINGS_INTERVIEW, interviewArrayList);
     }

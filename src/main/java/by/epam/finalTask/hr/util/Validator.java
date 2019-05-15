@@ -10,8 +10,6 @@ import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.List;
-
 public class Validator {
     private static final Logger LOGGER = LogManager.getLogger(Validator.class);
 
@@ -23,17 +21,17 @@ public class Validator {
         return validateFromLowerCaseToUpperCase(name);
     }
 
-    public String validateFromLowerCaseToUpperCase(String string){
+    public String validateFromLowerCaseToUpperCase(String string) {
         string = string.replace('-', '_');
         return string.toUpperCase();
     }
 
-    public String validateFromUpperCaseToLowerCase(String string){
+    public String validateFromUpperCaseToLowerCase(String string) {
         string = string.replace('_', '-');
         return string.toLowerCase();
     }
 
-    public String validateFromUpperCaseToLowerCaseForDB(String string){
+    public String validateFromUpperCaseToLowerCaseForDB(String string) {
         return string.toLowerCase();
     }
 
@@ -43,7 +41,7 @@ public class Validator {
         User hr = userService.findById(aHiringList.getHrId());
         Vacancy vacancy = vacancyService.findById(aHiringList.getVacancyId());
         return new HiringForShow(hr.getName(), hr.getSurname(), candidate.getName(),
-                candidate.getSurname(), vacancy.getVacancyPosition(),aHiringList.getOfferEmount(),
+                candidate.getSurname(), vacancy.getVacancyPosition(), aHiringList.getOfferEmount(),
                 aHiringList.getComment(), aHiringList.getHiringStatus());
     }
 }

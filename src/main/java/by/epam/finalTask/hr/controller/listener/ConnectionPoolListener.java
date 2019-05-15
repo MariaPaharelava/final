@@ -20,7 +20,7 @@ public class ConnectionPoolListener implements ServletContextListener {
             LOGGER.info("Connection pool initialized successfully");
         } catch (ConnectionPoolException e) {
             throw new ConnectionPoolNotInitializedException("Connection cannot be initialized", e);
-        } catch (Throwable e){
+        } catch (Throwable e) {
             LOGGER.error(e.getMessage());
         }
     }

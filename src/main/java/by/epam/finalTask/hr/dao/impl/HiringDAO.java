@@ -3,10 +3,7 @@ package by.epam.finalTask.hr.dao.impl;
 import by.epam.finalTask.hr.dao.builder.BuilderDAO;
 import by.epam.finalTask.hr.dao.connectionpool.exception.DAOException;
 import by.epam.finalTask.hr.entity.Hiring;
-import by.epam.finalTask.hr.entity.User;
 import by.epam.finalTask.hr.util.Validator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.util.List;

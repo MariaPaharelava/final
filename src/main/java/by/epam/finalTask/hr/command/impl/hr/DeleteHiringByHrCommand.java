@@ -56,8 +56,8 @@ public class DeleteHiringByHrCommand implements Command {
         LOGGER.info("Hiring with " + hiring.getID() + " id was delete");
     }
 
-    private void deleteFromSession(HttpSession session, Integer numberOfHiring){
-        List<HiringForShow> hiringForShowList = (ArrayList<HiringForShow>)session.getAttribute(HIRINGS);
+    private void deleteFromSession(HttpSession session, Integer numberOfHiring) {
+        List<HiringForShow> hiringForShowList = (ArrayList<HiringForShow>) session.getAttribute(HIRINGS);
         hiringForShowList.remove(numberOfHiring.intValue());
         session.setAttribute(HIRINGS, hiringForShowList);
 

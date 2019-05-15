@@ -2,7 +2,8 @@ package by.epam.finalTask.hr.factory;
 
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
-import by.epam.finalTask.hr.command.impl.*;
+import by.epam.finalTask.hr.command.impl.AuthorizationCommand;
+import by.epam.finalTask.hr.command.impl.RegistrationCommand;
 import by.epam.finalTask.hr.command.impl.admin.AddUserCommand;
 import by.epam.finalTask.hr.command.impl.admin.DeleteUserCommand;
 import by.epam.finalTask.hr.command.impl.hr.*;
@@ -78,11 +79,11 @@ public class CommandFactory {
                 command = new DeleteUserCommand(userService);
                 break;
             }
-            case ADD_HIRING:{
-                command = new AddHiringCommand(hiringService,vacancyService, userService);
+            case ADD_HIRING: {
+                command = new AddHiringCommand(hiringService, vacancyService, userService);
                 break;
             }
-            case DELETE_HIRING_BY_USER:{
+            case DELETE_HIRING_BY_USER: {
                 command = new DeleteHiringByUserCommand(hiringService);
                 break;
             }

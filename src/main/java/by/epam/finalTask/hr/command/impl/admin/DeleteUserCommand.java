@@ -31,6 +31,7 @@ public class DeleteUserCommand implements Command {
     public DeleteUserCommand(UserService userService) {
         this.userService = userService;
     }
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         HttpSession session = request.getSession(false);
@@ -40,7 +41,7 @@ public class DeleteUserCommand implements Command {
         try {
             try {
                 deleteUserfromDB(numberOfUser);
-                deleteUserfromSession(session,numberOfUser);
+                deleteUserfromSession(session, numberOfUser);
                 request.getRequestDispatcher(PageName.WORK_WITH_USER).forward(request, response);
             } catch (ServiceException e) {
                 request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
@@ -49,12 +50,14 @@ public class DeleteUserCommand implements Command {
             }
         } catch (ServletException | IOException e) {
             LOGGER.error(e.getMessage());
-            throw new CommandException(e);        }
+            throw new CommandException(e);
+        }
 
 
     }
-    private void deleteUserfromSession(HttpSession session, Integer numberOfUser){
-        List<User> userList = (ArrayList<User>)session.getAttribute(USERS);
+
+    private void deleteUserfromSession(HttpSession session, Integer numberOfUser) {
+        List<User> userList = (ArrayList<User>) session.getAttribute(USERS);
         userList.remove(numberOfUser.intValue());
         session.setAttribute(USERS, userList);
     }

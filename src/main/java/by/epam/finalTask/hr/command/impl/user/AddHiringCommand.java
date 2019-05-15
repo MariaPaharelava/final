@@ -61,7 +61,7 @@ public class AddHiringCommand implements Command {
         }
     }
 
-    private Hiring createObjectOfHiring(HttpSession session, Integer numberOfHiring){
+    private Hiring createObjectOfHiring(HttpSession session, Integer numberOfHiring) {
         List<Vacancy> vacancyList = (List<Vacancy>) session.getAttribute(VACANCIES);
         User user = (User) session.getAttribute(USER);
         Vacancy vacancy = vacancyList.get(numberOfHiring);
@@ -79,6 +79,6 @@ public class AddHiringCommand implements Command {
     }
 
     private void addHiringToDB(Integer numberOfHiring, Hiring hiring) throws ServiceException {
-        hiringService.addHiring(hiring.getCandidateId(),hiring.getHrId(),hiring.getVacancyId());
+        hiringService.addHiring(hiring.getCandidateId(), hiring.getHrId(), hiring.getVacancyId());
     }
 }

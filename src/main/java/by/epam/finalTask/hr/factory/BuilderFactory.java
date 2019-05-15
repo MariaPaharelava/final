@@ -23,7 +23,6 @@ public class BuilderFactory {
     }
 
 
-
     public BuilderDAO<Interview> getBuilderDAOInterview() {
         return new BuilderDAOInterview();
     }

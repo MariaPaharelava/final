@@ -2,7 +2,6 @@ package by.epam.finalTask.hr.dao.builder;
 
 import by.epam.finalTask.hr.entity.Hiring;
 
-import javax.xml.crypto.Data;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

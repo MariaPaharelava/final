@@ -13,7 +13,7 @@ public class VacancyServiceImpl implements VacancyService {
     private final VacancyDAO vacancyDAO;
     private Optional<Vacancy> vacancyOptional;
 
-    public VacancyServiceImpl(VacancyDAO vacancyDAO){
+    public VacancyServiceImpl(VacancyDAO vacancyDAO) {
         this.vacancyDAO = vacancyDAO;
     }
 
@@ -41,7 +41,7 @@ public class VacancyServiceImpl implements VacancyService {
     @Override
     public List<Vacancy> getAllVacancies() throws ServiceException {
         try {
-            return  ((VacancyDAO) vacancyDAO).findAll();
+            return ((VacancyDAO) vacancyDAO).findAll();
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

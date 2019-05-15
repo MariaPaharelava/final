@@ -16,7 +16,7 @@ public class DAOFactory {
     private Connection connection;
     private BuilderFactory builderFactory;
 
-    public DAOFactory(Connection connection, BuilderFactory builderFactory){
+    public DAOFactory(Connection connection, BuilderFactory builderFactory) {
         this.connection = connection;
         this.builderFactory = builderFactory;
     }

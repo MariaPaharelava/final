@@ -44,7 +44,7 @@ public class TableHiringCommand implements Command {
                 List<Interview> interviewList = interviewService.getAllInterviewByHiringId(hiring.getID());
                 session.setAttribute(HIRINGS_INTERVIEW, interviewList);
                 session.setAttribute(HIRING_ID, hiring.getID());
-                request.getRequestDispatcher(PageName.WORK_WITH_INTERVIEW).include(request,response);
+                request.getRequestDispatcher(PageName.WORK_WITH_INTERVIEW).include(request, response);
             } catch (ServiceException e) {
                 request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
                 LOGGER.error(e.getMessage());

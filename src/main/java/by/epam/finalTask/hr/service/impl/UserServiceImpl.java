@@ -1,9 +1,7 @@
 package by.epam.finalTask.hr.service.impl;
 
 import by.epam.finalTask.hr.dao.connectionpool.exception.DAOException;
-import by.epam.finalTask.hr.dao.impl.HiringDAO;
 import by.epam.finalTask.hr.dao.impl.UserDAO;
-import by.epam.finalTask.hr.entity.Hiring;
 import by.epam.finalTask.hr.entity.User;
 import by.epam.finalTask.hr.service.UserService;
 import by.epam.finalTask.hr.service.exception.LoginAlreadyExistsException;
@@ -20,7 +18,7 @@ public class UserServiceImpl implements UserService {
     private final UserDAO userDAO;
     private Optional<User> userOptional;
 
-    public UserServiceImpl(UserDAO userDAO){
+    public UserServiceImpl(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 
@@ -89,7 +87,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() throws ServiceException {
         try {
-            return  ((UserDAO) userDAO).findAll();
+            return ((UserDAO) userDAO).findAll();
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

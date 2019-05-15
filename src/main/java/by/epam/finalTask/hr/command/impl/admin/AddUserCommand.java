@@ -30,6 +30,7 @@ public class AddUserCommand implements Command {
     public AddUserCommand(UserService userService) {
         this.userService = userService;
     }
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         HttpSession session = request.getSession(false);
@@ -52,12 +53,14 @@ public class AddUserCommand implements Command {
             }
         } catch (ServletException | IOException e) {
             LOGGER.error(e.getMessage());
-            throw new CommandException(e);        }
+            throw new CommandException(e);
+        }
 
 
     }
-    private void addUserToSession(HttpSession session, User user){
-        List<User> userArrayList = (ArrayList<User>)session.getAttribute(USERS);
+
+    private void addUserToSession(HttpSession session, User user) {
+        List<User> userArrayList = (ArrayList<User>) session.getAttribute(USERS);
         userArrayList.add(user);
         session.setAttribute(USERS, userArrayList);
     }

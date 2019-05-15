@@ -37,7 +37,7 @@ public class DeleteHiringByUserCommand implements Command {
         try {
             try {
                 deleteHiringfromDB(numberOfHiring);
-                deleteHiringfromSession(session,numberOfHiring);
+                deleteHiringfromSession(session, numberOfHiring);
                 request.getRequestDispatcher(PageName.USERS_VACANCY).forward(request, response);
             } catch (ServiceException e) {
                 request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
@@ -46,12 +46,14 @@ public class DeleteHiringByUserCommand implements Command {
             }
         } catch (ServletException | IOException e) {
             LOGGER.error(e.getMessage());
-            throw new CommandException(e);        }
+            throw new CommandException(e);
+        }
 
 
     }
-    private void deleteHiringfromSession(HttpSession session, Integer numberOfHiring){
-        List<HiringForShow> hiringForShowArrayList = (ArrayList<HiringForShow>)session.getAttribute(HIRINGS);
+
+    private void deleteHiringfromSession(HttpSession session, Integer numberOfHiring) {
+        List<HiringForShow> hiringForShowArrayList = (ArrayList<HiringForShow>) session.getAttribute(HIRINGS);
         hiringForShowArrayList.remove(numberOfHiring.intValue());
         session.setAttribute(HIRINGS, hiringForShowArrayList);
     }

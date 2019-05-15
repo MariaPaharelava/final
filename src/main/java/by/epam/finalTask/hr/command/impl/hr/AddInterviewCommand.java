@@ -30,6 +30,7 @@ public class AddInterviewCommand implements Command {
     public AddInterviewCommand(InterviewService interviewService) {
         this.interviewService = interviewService;
     }
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         HttpSession session = request.getSession(false);
@@ -37,14 +38,14 @@ public class AddInterviewCommand implements Command {
         String type = request.getParameter(ENTER_TYPE);
         String result = request.getParameter(ENTER_RESULT);
         String comment = request.getParameter(ENTER_COMMENT);
-        Integer numberOfHiring = (Integer)session.getAttribute(HIRING_ID);
+        Integer numberOfHiring = (Integer) session.getAttribute(HIRING_ID);
         session.removeAttribute(HIRING_ID);
 
         try {
             try {
                 Interview interview = new Interview(numberOfHiring, type, result, comment);
                 addInterviewToDB(numberOfHiring, interview);
-                addInterviewToSession(session,interview);
+                addInterviewToSession(session, interview);
                 request.getRequestDispatcher(PageName.WORK_WITH_INTERVIEW).forward(request, response);
             } catch (ServiceException e) {
                 request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
@@ -53,12 +54,14 @@ public class AddInterviewCommand implements Command {
             }
         } catch (ServletException | IOException e) {
             LOGGER.error(e.getMessage());
-            throw new CommandException(e);        }
+            throw new CommandException(e);
+        }
 
 
     }
-    private void addInterviewToSession(HttpSession session, Interview interview){
-        List<Interview> interviewArrayList = (ArrayList<Interview>)session.getAttribute(HIRINGS_INTERVIEW);
+
+    private void addInterviewToSession(HttpSession session, Interview interview) {
+        List<Interview> interviewArrayList = (ArrayList<Interview>) session.getAttribute(HIRINGS_INTERVIEW);
         Date data = new Date(System.currentTimeMillis());
         interview.setInterviewDate(data);
         interviewArrayList.add(interview);

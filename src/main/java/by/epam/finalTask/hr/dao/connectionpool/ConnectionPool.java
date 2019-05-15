@@ -37,10 +37,9 @@ public class ConnectionPool {
                 }
             } catch (ConnectionPoolException e) {
                 LOGGER.error("Can not create pool" + e.getMessage());
-            } catch (Throwable e){
+            } catch (Throwable e) {
                 LOGGER.info(e.getMessage());
-            }
-            finally {
+            } finally {
                 lock.unlock();
             }
         }
@@ -60,7 +59,7 @@ public class ConnectionPool {
         }
     }
 
-    public void initPoolData(){
+    public void initPoolData() {
         try {
             Class.forName(driverName); //просто загружает класс, включая запуск его статических инициализаторов
             givenAwayConnectionQueue = new ArrayBlockingQueue<>(poolSize);

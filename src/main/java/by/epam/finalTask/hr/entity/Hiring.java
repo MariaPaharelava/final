@@ -6,14 +6,14 @@ import by.epam.finalTask.hr.entity.enums.HiringStatus;
 import java.sql.Date;
 import java.util.Objects;
 
-public class Hiring implements Indentifable{
-    private Integer        hiringId;
-    private Integer      hrId;
-    private Integer      candidateId;
-    private Integer      vacancyId;
-    private Date         creationDate;
-    private Double       offerEmount;
-    private String       comment;
+public class Hiring implements Indentifable {
+    private Integer hiringId;
+    private Integer hrId;
+    private Integer candidateId;
+    private Integer vacancyId;
+    private Date creationDate;
+    private Double offerEmount;
+    private String comment;
     private HiringStatus hiringStatus;
 
     public Hiring(int hiringId, int hrId, int candidateId, int vacancyId, Date creationDate, Double offerEmount, String comment, HiringStatus hiringStatus) {
@@ -26,6 +26,7 @@ public class Hiring implements Indentifable{
         this.comment = comment;
         this.hiringStatus = hiringStatus;
     }
+
     public Hiring(int hrId, int candidateId, int vacancyId) {
         this.hrId = hrId;
         this.candidateId = candidateId;
@@ -42,7 +43,7 @@ public class Hiring implements Indentifable{
         this.hiringStatus = hiringStatus;
     }
 
-    public Hiring(){
+    public Hiring() {
 
     }
 

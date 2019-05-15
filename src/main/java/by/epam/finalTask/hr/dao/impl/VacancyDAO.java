@@ -22,7 +22,7 @@ import java.util.Optional;
 // todo джава скрипт обрабатывал ввод на клиенте и потом что-то еще обрабатывало на сервере
 
 
-public class VacancyDAO extends AbstractDAO<Vacancy>{
+public class VacancyDAO extends AbstractDAO<Vacancy> {
     private static final String SQL_SEARCH_ALL_VACANCY = "SELECT `vacancy_position_id`, `vacancy_position`, `vacancy_description`, `hr_id`  FROM `vacancy`;";
     private static final String SQL_SEARCH_VACANCY_BY_ID = "SELECT `vacancy_position_id`, `vacancy_position`, `vacancy_description`, `hr_id` FROM `vacancy` WHERE `vacancy_position_id` = ?;";
     private static final String SQL_SEARCH_VACANCY_BY_VACANCY = "SELECT `vacancy_position_id`, `vacancy_position`, `vacancy_description`, `hr_id` FROM `vacancy` WHERE `vacancy_position` = ?, `vacancy_description` = ?,`hr_id` = ?;";
@@ -49,7 +49,7 @@ public class VacancyDAO extends AbstractDAO<Vacancy>{
         return executeQueryForSingleResult(SQL_SEARCH_VACANCY_BY_ID, position, description);
     }
 
-    public Optional<Vacancy> findEntityByEntity(String name, String description,  Integer hrId) throws DAOException {
+    public Optional<Vacancy> findEntityByEntity(String name, String description, Integer hrId) throws DAOException {
         return executeQueryForSingleResult(SQL_SEARCH_VACANCY_BY_VACANCY, name, description, hrId);
     }
 
@@ -61,7 +61,7 @@ public class VacancyDAO extends AbstractDAO<Vacancy>{
     @Override
     public void save(Vacancy entity) throws DAOException {
         if (entity.getID() == null) {
-            executeUpdate(SQL_ADD_VACANCY, entity.getVacancyPosition(), entity.getVacancyDescrintion(), entity.getUserId() );
+            executeUpdate(SQL_ADD_VACANCY, entity.getVacancyPosition(), entity.getVacancyDescrintion(), entity.getUserId());
         } else {
             executeUpdate(SQL_UPDATE_VACANCY_BY_ID, entity.getID());
         }
