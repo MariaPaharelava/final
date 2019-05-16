@@ -6,7 +6,7 @@
 <fmt:setBundle basename="local"/>
 <!DOCTYPE html>
 <html>
-<title>Information</title>
+<title><fmt:message key="local.button.info"/></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -65,32 +65,40 @@
 
     <form class="w3-container w3-card-4 w3-light-grey w3-text-blue"
           style="margin-left: 30%; margin-right: 30%;">
-        <h2 class="w3-center">Your Information</h2>
+        <h2 class="w3-center"><fmt:message key="local.button.info"/></h2>
 
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
             <div class="w3-rest">
-                <a class="w3-input" name="first" type="text">Surname: ${sessionScope.user.surname}</a>
+                <a class="w3-input" name="first" type="text">
+                    <fmt:message key="local.create.akk.surname"/>:
+                    ${sessionScope.user.surname}</a>
             </div>
         </div>
 
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
             <div class="w3-rest">
-                <a class="w3-input" name="last" type="text">Name : ${sessionScope.user.name}</a>
+                <a class="w3-input" name="last" type="text">
+                    <fmt:message key="local.create.akk.name"/>:
+                    ${sessionScope.user.name}</a>
             </div>
         </div>
 
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
             <div class="w3-rest">
-                <a class="w3-input" name="email" type="text">Login : ${sessionScope.user.login}</a>
+                <a class="w3-input" name="email" type="text">
+                    <fmt:message key="local.create.akk.login"/>:
+                    ${sessionScope.user.login}</a>
             </div>
         </div>
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
             <div class="w3-rest">
-                <a class="w3-input" name="email" type="text">Role : ${sessionScope.user.userRole}</a>
+                <a class="w3-input" name="email" type="text">
+                    <fmt:message key="local.create.akk.role"/>:
+                    ${sessionScope.user.userRole}</a>
             </div>
         </div>
     </form>

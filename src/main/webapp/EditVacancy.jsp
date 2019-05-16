@@ -21,25 +21,25 @@
 </style>
 <body>
 
-<c:set var="pageName" value="EditVacancy.jsp" scope="session"/>
+<c:set var="pageName" value="jsp/hr/EditVacancy.jsp" scope="session"/>
 
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
         <a class="w3-bar-item w3-button"
-           href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">
+           href="${pageContext.servletContext.contextPath}/jsp/hr/HrVacancyShow.jsp">
             <fmt:message key="local.button.vacancy"/></a>
 
         <a class="w3-bar-item w3-button w3-theme-l1"
-           href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">
+           href="${pageContext.servletContext.contextPath}/jsp/hr/HrInformationForHr.jsp">
             <fmt:message key="local.button.info"/></a>
 
         <a class="w3-bar-item w3-button"
-           href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">
+           href="${pageContext.servletContext.contextPath}/jsp/hr/HrsVacancy.jsp">
             <fmt:message key="local.button.hiring"/></a>
 
         <a class="w3-bar-item w3-button"
-           href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">
+           href="${pageContext.servletContext.contextPath}/jsp/CreatingVacancy.jsp">
             <fmt:message key="local.button.add.vacancy"/></a>
 
         <div class="w3-dropdown-hover w3-hide-small w3-right">
@@ -67,7 +67,7 @@
     <form action="FontController" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue" style="margin-left: 30%; margin-right: 30%;">
         <input name="command" value="edit-hiring" type="hidden"/>
 
-        <h2 class="w3-center"><fmt:message key="local.title.edit.vacancies"/>
+        <h2 class="w3-center"><fmt:message key="local.button.vacancy"/>
             <i class="fa fa-pencil-square-o"></i></h2>
 
         <div class="w3-row w3-section">

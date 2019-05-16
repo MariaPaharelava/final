@@ -22,24 +22,21 @@
 </style>
 <body>
 
-<c:set var="pageName" value="UsersVacancy.jsp" scope="session"/>
+<c:set var="pageName" value="/jsp/candidate/UsersVacancy.jsp" scope="session"/>
 
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <c:url value="UserVacancyShow.jsp" var="newUrlVacancy" />
         <a class="w3-bar-item w3-button"
-           href="<c:out value="${ newUrlVacancy }"/>">
+           href="${pageContext.servletContext.contextPath}/jsp/candidate/UserVacancyShow.jsp">
             <fmt:message key="local.button.vacancy"/></a>
 
-        <c:url value="UserInformationForUser.jsp" var="newUrlInfo" />
         <a class="w3-bar-item w3-button"
-           href="<c:out value="${ newUrlInfo }"/>">
+           href="${pageContext.servletContext.contextPath}/UserInformationForUser.jsp">
             <fmt:message key="local.button.info"/></a>
 
-        <c:url value="UsersVacancy.jsp" var="newUrlHiring" />
         <a class="w3-bar-item w3-button w3-theme-l1"
-           href="<c:out value="${ newUrlHiring }"/>">
+           href="${pageContext.servletContext.contextPath}/UsersVacancy.jsp">
             <fmt:message key="local.button.hiring"/></a>
 
         <div class="w3-dropdown-hover w3-hide-small w3-right">
@@ -83,7 +80,7 @@
                     <li class="w3-padding-4">
                         <c:if test="${not empty hiring.offerEmount and hiring.offerEmount != 0}">
                             <h3 class="w3-wide">$ ${hiring.offerEmount}</h3>
-                            <span class="w3-opacity">per month</span>
+                            <span class="w3-opacity"><fmt:message key="local.label.permonth"/></span>
                         </c:if>
                         <c:if test="${empty hiring.offerEmount or hiring.offerEmount == 0}">
                             <h3 class="w3-text-grey w3-wide">

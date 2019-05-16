@@ -86,7 +86,7 @@
                     <li class="w3-padding-4">
                         <c:if test="${not empty hiring.offerEmount and hiring.offerEmount != 0}">
                             <h3 class="w3-wide">$ ${hiring.offerEmount}</h3>
-                            <span class="w3-opacity">per month</span>
+                            <span class="w3-opacity"><fmt:message key="local.label.permonth"/></span>
                         </c:if>
                         <c:if test="${empty hiring.offerEmount and hiring.offerEmount == 0}">
                             <h3 class="w3-text-grey w3-wide">
@@ -117,7 +117,7 @@
                             <input name="command" value="edit-hiring_button" type="hidden"/>
                             <input name="index" type="hidden" value="${theCount.index}"/>
                             <button class="w3-button w3-teal w3-right w3-padding-large" type="submit">
-                                <fmt:message key="local.button.edit"/>
+                                <fmt:message key="local.title.edit.vacancies"/>
                             </button>
                         </form>
                     </li>

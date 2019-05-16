@@ -20,9 +20,8 @@ public class LanguageFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         String codeRequest = request.getCharacterEncoding();
-        String contentType = request.getContentType();
         // установка кодировки из параметров фильтра, если не установлена
-        if (code != null && !code.equalsIgnoreCase(codeRequest) && contentType != null && contentType.startsWith(FILTERABLE_CONTENT_TYPE)) {
+        if (code != null && !code.equalsIgnoreCase(codeRequest)) {
             request.setCharacterEncoding(code);
             response.setCharacterEncoding(code);
         }

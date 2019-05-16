@@ -93,7 +93,7 @@
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
             <div class="w3-rest">
                 <a class="w3-input" name="email" type="text">
-                    <fmt:message key="local.create.akk.role"/> :
+                    <fmt:message key="local.create.akk.role"/>:
                     ${sessionScope.user.userRole}</a>
             </div>
         </div>

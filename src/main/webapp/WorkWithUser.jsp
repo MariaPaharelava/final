@@ -26,7 +26,9 @@
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <a class="w3-bar-item w3-button w3-theme-l1" href="#"><fmt:message key="local.button.users"/></a>
+        <a class="w3-bar-item w3-button w3-theme-l1"
+           href="${pageContext.servletContext.contextPath}/WorkWithUser.jsp">
+        <fmt:message key="local.button.users"/></a>
         <div class="w3-dropdown-hover w3-hide-small w3-right">
             <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
                 <i class="fa fa-caret-down"></i></button>

@@ -23,12 +23,6 @@
         height: 100%
     }
 
-    .bgimg {
-        min-height: 100%;
-        background: url('pictures/bumaga_myatyy.jpg') center;
-        background-size: cover;
-    }
-
 </style>
 <body>
 <c:set var="pageName" value="500.jsp" scope="session"/>
