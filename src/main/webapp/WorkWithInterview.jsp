@@ -80,7 +80,7 @@
                     <td>
                         <div class="w3-col" style="width:50px"><i class="w3-xlarge fa fa-laptop"></i></div>
                     </td>
-                    <td><ltg:time date="${hiringsInterview.interviewDate}" language="${sessionScope.local}"/></td>
+                    <td><ltg:time date="${hiringsInterview.interviewDate}"/></td>
                     <td>${hiringsInterview.interviewType}</td>
                     <td>${hiringsInterview.comment}</td>
                     <td>

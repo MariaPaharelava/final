@@ -1,0 +1,54 @@
+drop database company;
+CREATE DATABASE IF NOT EXISTS Company;
+
+USE Company;
+
+CREATE TABLE IF NOT EXISTS users(
+    users_id       SMALLINT UNSIGNED AUTO_INCREMENT   NOT NULL,
+	login          VARCHAR(40)                          NOT NULL,
+	users_password VARCHAR(40)                          NOT NULL,
+	fname          VARCHAR(40)                          NOT NULL,
+	lname          VARCHAR(40)                          NOT NULL,
+    users_role     ENUM('admin', 'candidate', 'hr')   NOT NULL,
+	CONSTRAINT pk_users PRIMARY KEY (users_id)
+ );
+
+ CREATE TABLE IF NOT EXISTS vacancy(
+	vacancy_position_id   SMALLINT    UNSIGNED NOT NULL AUTO_INCREMENT,
+	vacancy_position      varchar(40)          NOT NULL,
+	vacancy_description   TINYTEXT             NULL,
+	hr_id                 SMALLINT    UNSIGNED NOT NULL,
+	CONSTRAINT pk_vacancy PRIMARY KEY (vacancy_position_id),
+	CONSTRAINT fk_vacancy_hr        FOREIGN KEY (hr_id)
+	REFERENCES users (users_id)   ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+ CREATE TABLE IF NOT EXISTS hiring(
+	hiring_id      SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	hr_id          SMALLINT UNSIGNED NOT NULL,
+	candidate_id   SMALLINT UNSIGNED NOT NULL,
+	creation_date  TIMESTAMP         NOT NULL default current_timestamp,
+	hiring_status  ENUM('in_anticipation','inital_contact','screening_interviews','technical_interviews','offer_made','employed') default 'in_anticipation',
+	vacancy_id     SMALLINT UNSIGNED NOT NULL,
+    offer_emount   DECIMAL(10, 2) UNSIGNED   NULL,
+    hiring_comment TINYTEXT          NULL,
+    CONSTRAINT pk_hiring           PRIMARY KEY (hiring_id),
+	  CONSTRAINT fk_hiring_candidate FOREIGN KEY (candidate_id)
+		REFERENCES users (users_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_hiring_hr        FOREIGN KEY (hr_id)
+		REFERENCES users (users_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_hiring_vacancy     FOREIGN KEY (vacancy_id)
+		REFERENCES vacancy (vacancy_position_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+ CREATE TABLE IF NOT EXISTS interview(
+    interview_id     SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    hiring_id        SMALLINT UNSIGNED NOT NULL,
+    interview_date   TIMESTAMP         NOT NULL default current_timestamp,
+    interview_type   ENUM('phone_interview','face_to_face_interview')  NOT NULL,
+    result           varchar(40) NULL,
+	interview_comment  TINYTEXT    NULL,
+	  CONSTRAINT pk_interview        PRIMARY KEY (interview_id),
+    CONSTRAINT fk_interview_hiring FOREIGN KEY (hiring_id)
+		REFERENCES hiring (hiring_id) ON DELETE CASCADE ON UPDATE CASCADE
+);

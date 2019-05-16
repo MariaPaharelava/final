@@ -78,24 +78,24 @@
             <span onclick="document.getElementById('id01').style.display='none'"
                   class="w3-button w3-xlarge w3-white w3-display-topright" title="Close Modal">x</span>
         </div>
-        <form class="w3-container" action="FontController" method="post">
-            <input name="command" value="authorization" type="hidden"/>
+        <c:catch var="exception">
+            <form class="w3-container" action="FontController" method="post">
+                <input name="command" value="authorization" type="hidden"/>
+                <div class="w3-section">
+                    <label class="w3-white"><b><fmt:message key="local.create.akk.login"/></b></label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text"
+                           placeholder="<fmt:message key="local.create.akk.enter.login"/>"
+                           name="enterLogin" required value="${requestScope.createAkkEnterLogin}">
+                    <label class="w3-white"><b><fmt:message key="local.create.akk.password"/></b></label>
+                    <input class="w3-input w3-border" type="password"
+                           placeholder="<fmt:message key="local.create.akk.enter.password"/>"
+                           name="enterPassword" required value="${requestScope.createAkkEnterPassword}">
 
-            <div class="w3-section">
-                <label class="w3-white"><b><fmt:message key="local.create.akk.login"/></b></label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text"
-                       placeholder="<fmt:message key="local.create.akk.enter.login"/>"
-                       name="enterLogin" required value="${requestScope.createAkkEnterLogin}">
-                <label class="w3-white"><b><fmt:message key="local.create.akk.password"/></b></label>
-                <input class="w3-input w3-border" type="password"
-                       placeholder="<fmt:message key="local.create.akk.enter.password"/>"
-                       name="enterPassword" required value="${requestScope.createAkkEnterPassword}">
-
-                <button class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
-                        type="submit"><fmt:message key="local.login.enter.login"/></button>
-            </div>
-        </form>
-
+                    <button class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
+                            type="submit"><fmt:message key="local.login.enter.login"/></button>
+                </div>
+            </form>
+        </c:catch>
     </div>
 </div>
 <!-- LOGIN IN END-->

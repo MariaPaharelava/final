@@ -7,18 +7,12 @@
     <tlib-version>2.1</tlib-version>
     <short-name>tlg</short-name>
     <uri>localetags</uri>
-
     <tag>
         <name>time</name>
         <tag-class>by.epam.finalTask.hr.tld.DateTag</tag-class>
         <body-content>empty</body-content>
         <attribute>
             <name>date</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>language</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

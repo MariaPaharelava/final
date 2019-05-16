@@ -20,6 +20,15 @@ public class User implements Indentifable {
         setUserRole(userRole);
     }
 
+    public User(Integer userID, String login, String password, String surname, String name, String userRole) {
+        this.userID = userID;
+        this.login = login;
+        this.password = password;
+        this.surname = surname;
+        this.name = name;
+        setUserRole(userRole);
+    }
+
     public User() {
     }
 
@@ -96,7 +105,7 @@ public class User implements Indentifable {
             return false;
         }
         User user = (User) o;
-        return userID.equals(user.userID) &&
+        return userID == user.userID &&
                 Objects.equals(login, user.login) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(surname, user.surname) &&

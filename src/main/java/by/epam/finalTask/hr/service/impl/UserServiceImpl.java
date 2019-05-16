@@ -6,6 +6,7 @@ import by.epam.finalTask.hr.entity.User;
 import by.epam.finalTask.hr.service.UserService;
 import by.epam.finalTask.hr.service.exception.LoginAlreadyExistsException;
 import by.epam.finalTask.hr.service.exception.PasswordNotEquals;
+import by.epam.finalTask.hr.service.exception.StringTooLongException;
 import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
+    private static final int MAX_LENGTH = 255;
     private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
     private final UserDAO userDAO;
     private Optional<User> userOptional;
@@ -26,13 +28,27 @@ public class UserServiceImpl implements UserService {
     public User registerUser(String surname, String name, String login, String password, String role) throws ServiceException {
         User user = null;
         try {
+            if (surname.equals("") || name.equals("") ||
+                    login.equals("") || password.equals("") || role.equals("")) {
+                LOGGER.warn("One of string are empty");
+                throw new StringTooLongException("One of string are empty");
+            }
+
+            if (surname.length() > MAX_LENGTH || name.length() > MAX_LENGTH ||
+                    login.length() > MAX_LENGTH || password.length() > MAX_LENGTH ||
+                    role.length() > MAX_LENGTH) {
+                LOGGER.warn("String too long");
+                throw new StringTooLongException("String too long");
+            }
+
             userOptional = ((UserDAO) userDAO).findUserByLogin(login);
-            if (userOptional.isPresent()) {
+            if (userOptional != null) {
                 LOGGER.warn("Warning the login already exists");
                 throw new LoginAlreadyExistsException("Warning the login already exists");
             }
+
             user = new User(login, password, surname, name, role);
-            ((UserDAO) userDAO).save(user);
+            userDAO.save(user);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

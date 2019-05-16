@@ -23,34 +23,41 @@
         height: 100%
     }
 
+    .bgimg {
+        min-height: 100%;
+        background: url('pictures/bumaga_myatyy.jpg') center;
+        background-size: cover;
+    }
+
 </style>
 <body>
 <c:set var="pageName" value="500.jsp" scope="session"/>
 
-<!-- Navbar -->
-<div class="w3-top">
-    <div class="w3-bar w3-black w3-card">
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card">
 
-        <a class="w3-bar-item w3-button w3-right"
-           href="${pageContext.servletContext.contextPath}/index.jsp">
-            <fmt:message key="local.button.back"/></a>
+            <a class="w3-bar-item w3-button w3-right"
+               href="${pageContext.servletContext.contextPath}/index.jsp">
+                <fmt:message key="local.button.back"/></a>
 
-        <div class="w3-dropdown-hover w3-hide-small w3-right">
-            <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
-                <i class="fa fa-caret-down"></i></button>
-            <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <form action="FontController" method="get">
-                    <input type="hidden" name="command" value="change-local">
-                    <button name="local" class="w3-bar-item w3-button" value="RU">
-                        <fmt:message key="local.button.ru"/></button>
-                    <button name="local" class="w3-bar-item w3-button" value="EN">
-                        <fmt:message key="local.button.en"/></button>
-                </form>
+            <div class="w3-dropdown-hover w3-hide-small w3-right">
+                <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
+                    <i class="fa fa-caret-down"></i></button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <form action="FontController" method="get">
+                        <input type="hidden" name="command" value="change-local">
+                        <button name="local" class="w3-bar-item w3-button" value="RU">
+                            <fmt:message key="local.button.ru"/></button>
+                        <button name="local" class="w3-bar-item w3-button" value="EN">
+                            <fmt:message key="local.button.en"/></button>
+                    </form>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
+
 
 <div class="w3-main w3-animate-left" style="margin-top:10%">
     <div class="w3-main w3-animate-left">
@@ -60,7 +67,6 @@
     </div>
     <!-- END MAIN -->
 </div>
-
 <!-- Pagination -->
 
 <footer id="myFooter">
@@ -68,6 +74,5 @@
         <p><a><fmt:message key="local.footer"/></a></p>
     </div>
 </footer>
-
 </body>
 </html>
