@@ -28,9 +28,7 @@ public abstract class AbstractDAO<T> implements DAO<T> {
     protected int executeUpdate(String query, Object... params) throws DAOException {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             prepareStatement(statement, params);
-
             LOGGER.debug("Prepared statement: {}", statement);
-            System.out.println(connection.isClosed());
             return statement.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -48,7 +46,6 @@ public abstract class AbstractDAO<T> implements DAO<T> {
                     resultList.add(builtObject);
                 }
             }
-            System.out.println(connection.isClosed());
         } catch (SQLException e) {
             throw new DAOException(e);
         }

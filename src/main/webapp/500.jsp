@@ -23,13 +23,9 @@
         height: 100%
     }
 
-    .bgimg {
-        min-height: 100%;
-        background: url('pictures/bumaga_myatyy.jpg') center;
-        background-size: cover;
-    }
 </style>
 <body>
+<c:set var="pageName" value="500.jsp" scope="session"/>
 
 <!-- Navbar -->
 <div class="w3-top">
@@ -43,10 +39,13 @@
             <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
                 <i class="fa fa-caret-down"></i></button>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <a class="w3-bar-item w3-button" onclick="">
-                    <fmt:message key="local.button.ru"/></a>
-                <a class="w3-bar-item w3-button" onclick="">
-                    <fmt:message key="local.button.en"/></a>
+                <form action="FontController" method="get">
+                    <input type="hidden" name="command" value="change-local">
+                    <button name="local" class="w3-bar-item w3-button" value="RU">
+                        <fmt:message key="local.button.ru"/></button>
+                    <button name="local" class="w3-bar-item w3-button" value="EN">
+                        <fmt:message key="local.button.en"/></button>
+                </form>
             </div>
         </div>
 

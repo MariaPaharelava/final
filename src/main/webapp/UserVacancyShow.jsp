@@ -27,17 +27,17 @@
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
-        <c:url value="UserVacancyShow.jsp" var="newUrlVacancy" />
+        <c:url value="UserVacancyShow.jsp" var="newUrlVacancy"/>
         <a class="w3-bar-item w3-button w3-theme-l1"
            href="<c:out value="${ newUrlVacancy }"/>">
             <fmt:message key="local.button.vacancy"/></a>
 
-        <c:url value="UserInformationForUser.jsp" var="newUrlInfo" />
+        <c:url value="UserInformationForUser.jsp" var="newUrlInfo"/>
         <a class="w3-bar-item w3-button"
            href="<c:out value="${ newUrlInfo }"/>">
             <fmt:message key="local.button.info"/></a>
 
-        <c:url value="UsersVacancy.jsp" var="newUrlHiring" />
+        <c:url value="UsersVacancy.jsp" var="newUrlHiring"/>
         <a class="w3-bar-item w3-button"
            href="<c:out value="${ newUrlHiring }"/>">
             <fmt:message key="local.button.hiring"/></a>
@@ -46,8 +46,13 @@
             <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
                 <i class="fa fa-caret-down"></i></button>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <a class="w3-bar-item w3-button" onclick=""><fmt:message key="local.button.ru"/></a>
-                <a class="w3-bar-item w3-button" onclick=""><fmt:message key="local.button.en"/></a>
+                <form action="FontController" method="get">
+                    <input type="hidden" name="command" value="change-local">
+                    <button name="local" class="w3-bar-item w3-button" value="RU">
+                        <fmt:message key="local.button.ru"/></button>
+                    <button name="local" class="w3-bar-item w3-button" value="EN">
+                        <fmt:message key="local.button.en"/></button>
+                </form>
             </div>
         </div>
 

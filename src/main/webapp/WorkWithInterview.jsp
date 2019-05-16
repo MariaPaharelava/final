@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="ltg" uri="localetags" %>
 <%@ page info="WorkWithInterview.jsp" language="java"
          contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <fmt:setLocale value="${sessionScope.local}"/>
@@ -44,10 +45,13 @@
             <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
                 <i class="fa fa-caret-down"></i></button>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <a class="w3-bar-item w3-button" onclick="">
-                    <fmt:message key="local.button.ru"/></a>
-                <a class="w3-bar-item w3-button" onclick="">
-                    <fmt:message key="local.button.en"/></a>
+                <form action="FontController" method="get">
+                    <input type="hidden" name="command" value="change-local">
+                    <button name="local" class="w3-bar-item w3-button" value="RU">
+                        <fmt:message key="local.button.ru"/></button>
+                    <button name="local" class="w3-bar-item w3-button" value="EN">
+                        <fmt:message key="local.button.en"/></button>
+                </form>
             </div>
         </div>
 
@@ -76,7 +80,7 @@
                     <td>
                         <div class="w3-col" style="width:50px"><i class="w3-xlarge fa fa-laptop"></i></div>
                     </td>
-                    <td>${hiringsInterview.interviewDate}</td>
+                    <td><ltg:time date="${hiringsInterview.interviewDate}" language="${sessionScope.local}"/></td>
                     <td>${hiringsInterview.interviewType}</td>
                     <td>${hiringsInterview.comment}</td>
                     <td>

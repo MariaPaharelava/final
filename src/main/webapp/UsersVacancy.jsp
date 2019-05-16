@@ -46,9 +46,13 @@
             <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
                 <i class="fa fa-caret-down"></i></button>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <a class="w3-bar-item w3-button" onclick=""><fmt:message key="local.button.ru"/></a>
-                <a class="w3-bar-item w3-button" onclick=""><fmt:message key="local.button.en"/></a>
-            </div>
+                <form action="FontController" method="get">
+                    <input type="hidden" name="command" value="change-local">
+                    <button name="local" class="w3-bar-item w3-button" value="RU">
+                        <fmt:message key="local.button.ru"/></button>
+                    <button name="local" class="w3-bar-item w3-button" value="EN">
+                        <fmt:message key="local.button.en"/></button>
+                </form>            </div>
         </div>
 
         <a class="w3-bar-item w3-button w3-right"
