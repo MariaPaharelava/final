@@ -14,7 +14,6 @@ public class DateTag extends TagSupport {
     private static final Logger LOGGER = LogManager.getLogger(DateTag.class);
 
     private static final String RU_PATTERN = "dd.MM.yyyy";
-
     private Date date;
 
     public DateTag() {
@@ -23,7 +22,6 @@ public class DateTag extends TagSupport {
     public void setDate(Date date) {
         this.date = date;
     }
-
 
     @Override
     public int doStartTag() throws JspException {
@@ -38,4 +36,3 @@ public class DateTag extends TagSupport {
         return SKIP_BODY;
     }
 }
-

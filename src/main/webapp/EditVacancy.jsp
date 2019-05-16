@@ -21,25 +21,25 @@
 </style>
 <body>
 
-<c:set var="pageName" value="jsp/hr/EditVacancy.jsp" scope="session"/>
+<c:set var="pageName" value="EditVacancy.jsp" scope="session"/>
 
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
         <a class="w3-bar-item w3-button"
-           href="${pageContext.servletContext.contextPath}/jsp/hr/HrVacancyShow.jsp">
+           href="${pageContext.servletContext.contextPath}/HrVacancyShow.jsp">
             <fmt:message key="local.button.vacancy"/></a>
 
         <a class="w3-bar-item w3-button w3-theme-l1"
-           href="${pageContext.servletContext.contextPath}/jsp/hr/HrInformationForHr.jsp">
+           href="${pageContext.servletContext.contextPath}/HrInformationForHr.jsp">
             <fmt:message key="local.button.info"/></a>
 
         <a class="w3-bar-item w3-button"
-           href="${pageContext.servletContext.contextPath}/jsp/hr/HrsVacancy.jsp">
+           href="${pageContext.servletContext.contextPath}/HrsVacancy.jsp">
             <fmt:message key="local.button.hiring"/></a>
 
         <a class="w3-bar-item w3-button"
-           href="${pageContext.servletContext.contextPath}/jsp/CreatingVacancy.jsp">
+           href="${pageContext.servletContext.contextPath}/CreatingVacancy.jsp">
             <fmt:message key="local.button.add.vacancy"/></a>
 
         <div class="w3-dropdown-hover w3-hide-small w3-right">
@@ -73,7 +73,9 @@
         <div class="w3-row w3-section">
             <div class="w3-rest">
                 <h5 class="w3-left w3-text-black"><fmt:message key="local.label.salary"/>: </h5>
-                <input class="w3-input w3-border" name="salary" type="text" placeholder="Salary">
+                <input class="w3-input w3-border" name="salary" type="text"
+                       placeholder="<fmt:message key="local.label.salary"/>"
+                       minlength="1" maxlength="255">
             </div>
         </div>
 
@@ -104,8 +106,10 @@
         </div>
         <div class="w3-row w3-section">
             <div class="w3-rest">
-                <h5 class="w3-left w3-text-black"><fmt:message key="local.button.cancel"/>: </h5>
-                <input class="w3-input w3-border" name="comment" type="text" placeholder="New Comment">
+                <h5 class="w3-left w3-text-black"><fmt:message key="local.label.comment"/>: </h5>
+                <input class="w3-input w3-border" name="comment" type="text"
+                       placeholder="<fmt:message key="local.label.comment"/>"
+                       minlength="1" maxlength="255">
             </div>
         </div>
         <p>

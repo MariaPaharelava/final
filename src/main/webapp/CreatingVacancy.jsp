@@ -76,7 +76,8 @@
             <div class="w3-rest">
                 <input class="w3-input w3-border" name="enterVacancyName" type="text"
                        placeholder="<fmt:message key="local.enter.position"/>"
-                       required value="${requestScope.enterVacancyName}">
+                       required value="${requestScope.enterVacancyName}"
+                       minlength="1" maxlength="255">
             </div>
         </div>
 
@@ -84,7 +85,8 @@
             <div class="w3-rest">
                 <input class="w3-input w3-border" name="enterVacancyDescription" type="text"
                        placeholder="<fmt:message key="local.enter.description"/>"
-                       required value="${requestScope.enterVacancyDescription}">
+                       required value="${requestScope.enterVacancyDescription}"
+                       minlength="1" maxlength="255">
             </div>
         </div>
 

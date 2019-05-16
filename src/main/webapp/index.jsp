@@ -85,11 +85,13 @@
                     <label class="w3-white"><b><fmt:message key="local.create.akk.login"/></b></label>
                     <input class="w3-input w3-border w3-margin-bottom" type="text"
                            placeholder="<fmt:message key="local.create.akk.enter.login"/>"
-                           name="enterLogin" required value="${requestScope.createAkkEnterLogin}">
+                           name="enterLogin" required value="${requestScope.createAkkEnterLogin}"
+                           minlength="1" maxlength="255">
                     <label class="w3-white"><b><fmt:message key="local.create.akk.password"/></b></label>
                     <input class="w3-input w3-border" type="password"
                            placeholder="<fmt:message key="local.create.akk.enter.password"/>"
-                           name="enterPassword" required value="${requestScope.createAkkEnterPassword}">
+                           name="enterPassword" required value="${requestScope.createAkkEnterPassword}"
+                           minlength="1" maxlength="255">
 
                     <button class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
                             type="submit"><fmt:message key="local.login.enter.login"/></button>
@@ -115,22 +117,26 @@
                 <label class="w3-white"><b><fmt:message key="local.create.akk.surname"/></b></label>
                 <input class="w3-input w3-border w3-margin-bottom" type="text"
                        placeholder="<fmt:message key="local.create.akk.enter.surname"/>"
-                       name="enterUserSurname" required value="${requestScope.enterUserSurname}">
+                       name="enterUserSurname" required value="${requestScope.enterUserSurname}"
+                       minlength="1" maxlength="255">
 
                 <label class="w3-white"><b><fmt:message key="local.create.akk.name"/></b></label>
                 <input class="w3-input w3-border w3-margin-bottom" type="text"
                        placeholder="<fmt:message key="local.create.akk.enter.name"/>"
-                       name="enterUserName" required value="${requestScope.enterUserName}">
+                       name="enterUserName" required value="${requestScope.enterUserName}"
+                       minlength="1" maxlength="255">
 
                 <label class="w3-white"><b><fmt:message key="local.create.akk.login"/></b></label>
                 <input class="w3-input w3-border w3-margin-bottom" type="text"
                        placeholder="<fmt:message key="local.create.akk.enter.login"/>"
-                       name="enterLogin" required value="${requestScope.enterLogin}">
+                       name="enterLogin" required value="${requestScope.enterLogin}"
+                       minlength="1" maxlength="255">
 
                 <label class="w3-white"><b><fmt:message key="local.create.akk.password"/></b></label>
                 <input class="w3-input w3-border" type="password"
                        placeholder="<fmt:message key="local.create.akk.enter.password"/>"
-                       name="enterPassword" required value="${requestScope.enterPassword}">
+                       name="enterPassword" required value="${requestScope.enterPassword}"
+                       minlength="1" maxlength="255">
 
 
                 <button class="w3-button w3-block w3-teal w3-right w3-section w3-padding"

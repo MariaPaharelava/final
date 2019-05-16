@@ -112,22 +112,26 @@
                 <label><b><fmt:message key="local.create.akk.surname"/></b></label>
                 <input class="w3-input w3-border w3-margin-bottom" type="text"
                        placeholder="<fmt:message key="local.create.akk.enter.surname"/>"
-                       name="enterSurname" required value="${requestScope.enterSurname}">
+                       name="enterSurname" required value="${requestScope.enterSurname}"
+                       minlength="1" maxlength="255">
 
                 <label><b><fmt:message key="local.create.akk.name"/></b></label>
                 <input class="w3-input w3-border w3-margin-bottom" type="text"
                        placeholder="<fmt:message key="local.create.akk.enter.name"/>"
-                       name="enterName" required value="${requestScope.enterName}">
+                       name="enterName" required value="${requestScope.enterName}"
+                       minlength="1" maxlength="255">
 
                 <label><b><fmt:message key="local.create.akk.login"/></b></label>
                 <input class="w3-input w3-border w3-margin-bottom" type="text"
                        placeholder="<fmt:message key="local.create.akk.enter.login"/>"
-                       name="enterLogin" required value="${requestScope.enterLogin}">
+                       name="enterLogin" required value="${requestScope.enterLogin}"
+                       minlength="1" maxlength="255">
 
                 <label><b><fmt:message key="local.create.akk.password"/></b></label>
                 <input class="w3-input w3-border" type="password"
                        placeholder="<fmt:message key="local.create.akk.enter.password"/>"
-                       name="enterPassword" required value="${requestScope.enterPassword}">
+                       name="enterPassword" required value="${requestScope.enterPassword}"
+                       minlength="1" maxlength="255">
 
                 <div class="w3-row w3-section w3-text-black">
                     <h5 class="w3-left"><fmt:message key="local.label.select.status"/> </h5><br><br>

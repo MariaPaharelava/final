@@ -22,13 +22,13 @@
 </style>
 <body>
 
-<c:set var="pageName" value="/jsp/candidate/UsersVacancy.jsp" scope="session"/>
+<c:set var="pageName" value="UsersVacancy.jsp" scope="session"/>
 
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
         <a class="w3-bar-item w3-button"
-           href="${pageContext.servletContext.contextPath}/jsp/candidate/UserVacancyShow.jsp">
+           href="${pageContext.servletContext.contextPath}/UserVacancyShow.jsp">
             <fmt:message key="local.button.vacancy"/></a>
 
         <a class="w3-bar-item w3-button"

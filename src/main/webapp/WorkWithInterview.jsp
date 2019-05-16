@@ -149,7 +149,8 @@
                     <h5 class="w3-left w3-text-black"><fmt:message key="local.label.result"/>: </h5>
                     <input class="w3-input w3-border" name="enterResult" type="text"
                            value="${requestScope.enterResult}"
-                           placeholder="<fmt:message key="local.create.enter.result"/>">
+                           placeholder="<fmt:message key="local.create.enter.result"/>"
+                           minlength="1" maxlength="255">
                 </div>
             </div>
 
@@ -158,7 +159,8 @@
                     <h5 class="w3-left w3-text-black"><fmt:message key="local.label.comment"/>: </h5>
                     <input class="w3-input w3-border" name="enterComment" type="text"
                            value="${requestScope.enterComment}"
-                           placeholder="<fmt:message key="local.create.enter.comment"/>">
+                           placeholder="<fmt:message key="local.create.enter.comment"/>"
+                           minlength="1" maxlength="255">
                 </div>
             </div>
             <p>

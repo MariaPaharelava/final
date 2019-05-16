@@ -29,11 +29,11 @@
            href="${pageContext.servletContext.contextPath}/UserVacancyShow.jsp">
             <fmt:message key="local.button.vacancy"/></a>
 
-        <a class="w3-bar-item w3-button"
+        <a class="w3-bar-item w3-button w3-theme-l1"
            href="${pageContext.servletContext.contextPath}/UserInformationForUser.jsp">
             <fmt:message key="local.button.info"/></a>
 
-        <a class="w3-bar-item w3-button w3-theme-l1"
+        <a class="w3-bar-item w3-button"
            href="${pageContext.servletContext.contextPath}/UsersVacancy.jsp">
             <fmt:message key="local.button.hiring"/></a>
 
