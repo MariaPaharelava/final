@@ -6,6 +6,7 @@ import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.dao.connectionpool.ConnectionPool;
 import by.epam.finalTask.hr.factory.*;
+import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -68,6 +69,8 @@ public class FontController extends HttpServlet {
         } catch (CommandException e) {
             response.sendError(SERVER_ERROR);
             LOGGER.error(e.getMessage());
+        } catch (ServiceException e) {
+            e.printStackTrace();
         }
     }
 

@@ -33,25 +33,20 @@ public class TableHiringCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException {
         HttpSession session = request.getSession(false);
 
         Integer numberOfHiring = Integer.parseInt(request.getParameter(NUMBER_OF_HIRING));
         try {
-            try {
                 List<Hiring> hiringList = hiringService.getAllHirings();
                 Hiring hiring = hiringList.get(numberOfHiring);
                 List<Interview> interviewList = interviewService.getAllInterviewByHiringId(hiring.getID());
                 session.setAttribute(HIRINGS_INTERVIEW, interviewList);
                 session.setAttribute(HIRING_ID, hiring.getID());
                 response.sendRedirect(PageName.WORK_WITH_INTERVIEW);
-            } catch (ServiceException e) {
-                response.sendRedirect(PageName.INDEX_PAGE);
-                LOGGER.error(e.getMessage());
-                throw new CommandException(e);
-            }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+            throw new CommandException(e);
         }
     }
 }

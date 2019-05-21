@@ -40,6 +40,7 @@
     <!-- NAVIGATION START-->
     <div class="w3-top">
         <div class="w3-bar w3-black w3-card">
+
             <a class="w3-bar-item w3-button"
                onclick="document.getElementById('id01').style.display='block'">
                 <fmt:message key="local.create.akk.login"/></a>

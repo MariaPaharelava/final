@@ -4,7 +4,7 @@ import by.epam.finalTask.hr.dao.connectionpool.exception.DAOException;
 import by.epam.finalTask.hr.dao.impl.VacancyDAO;
 import by.epam.finalTask.hr.entity.Vacancy;
 import by.epam.finalTask.hr.service.VacancyService;
-import by.epam.finalTask.hr.service.exception.StringTooLongException;
+import by.epam.finalTask.hr.util.Validator;
 import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,10 +13,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class VacancyServiceImpl implements VacancyService {
-    private static final int MAX_LENGTH = 255;
     private static final Logger LOGGER = LogManager.getLogger(VacancyServiceImpl.class);
     private final VacancyDAO vacancyDAO;
     private Optional<Vacancy> vacancyOptional;
+    private Validator validator = new Validator();
+
 
     public VacancyServiceImpl(VacancyDAO vacancyDAO) {
         this.vacancyDAO = vacancyDAO;
@@ -26,18 +27,12 @@ public class VacancyServiceImpl implements VacancyService {
     public Vacancy addVacancy(String name, String description, int hr_id) throws ServiceException {
         Vacancy vacancy = null;
         try {
-            if (description.equals("") || name.equals("") || hr_id == 0) {
-                LOGGER.warn("One of string are empty");
-                throw new StringTooLongException("One of string are empty");
-            }
-            if (description.length() > MAX_LENGTH ||
-                    name.length() > MAX_LENGTH || hr_id > MAX_LENGTH) {
-                LOGGER.warn("String too long");
-                throw new StringTooLongException("String too long");
-            }
+            validator.stringInformationIsBetweenNullAndNotMuchMoreMaxLength(description, name);
+            validator.integerInformationIsNotNull(hr_id);
             vacancy = new Vacancy(description, name, hr_id);
-            ((VacancyDAO) vacancyDAO).save(vacancy);
+            vacancyDAO.save(vacancy);
         } catch (DAOException e) {
+            LOGGER.error(e.getMessage());
             throw new ServiceException(e);
         }
         return vacancy;
@@ -46,8 +41,9 @@ public class VacancyServiceImpl implements VacancyService {
     @Override
     public void removeVacancy(int id) throws ServiceException {
         try {
-            ((VacancyDAO) vacancyDAO).delete(id);
+            vacancyDAO.delete(id);
         } catch (DAOException e) {
+            LOGGER.error(e.getMessage());
             throw new ServiceException(e);
         }
     }
@@ -55,8 +51,9 @@ public class VacancyServiceImpl implements VacancyService {
     @Override
     public List<Vacancy> getAllVacancies() throws ServiceException {
         try {
-            return ((VacancyDAO) vacancyDAO).findAll();
+            return vacancyDAO.findAll();
         } catch (DAOException e) {
+            LOGGER.error(e.getMessage());
             throw new ServiceException(e);
         }
     }
@@ -65,11 +62,12 @@ public class VacancyServiceImpl implements VacancyService {
     public Vacancy findById(Integer id) throws ServiceException {
         Vacancy vacancy = null;
         try {
-            vacancyOptional = ((VacancyDAO) vacancyDAO).findEntityById(id);
+            vacancyOptional = (vacancyDAO).findEntityById(id);
             if (vacancyOptional.isPresent()) {
                 vacancy = vacancyOptional.get();
             }
         } catch (DAOException e) {
+            LOGGER.error(e.getMessage());
             throw new ServiceException(e);
         }
         return vacancy;
@@ -80,11 +78,12 @@ public class VacancyServiceImpl implements VacancyService {
                                                 String description) throws ServiceException {
         Vacancy vacancy = null;
         try {
-            vacancyOptional = ((VacancyDAO) vacancyDAO).findEntityByPositionAndDescription(position, description);
+            vacancyOptional = vacancyDAO.findEntityByPositionAndDescription(position, description);
             if (vacancyOptional.isPresent()) {
                 vacancy = vacancyOptional.get();
             }
         } catch (DAOException e) {
+            LOGGER.error(e.getMessage());
             throw new ServiceException(e);
         }
         return vacancy;

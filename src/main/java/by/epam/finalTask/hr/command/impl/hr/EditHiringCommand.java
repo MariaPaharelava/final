@@ -42,7 +42,7 @@ public class EditHiringCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException {
         HttpSession session = request.getSession(false);
 
         String salary = request.getParameter(ENTER_SALARY);
@@ -51,7 +51,6 @@ public class EditHiringCommand implements Command {
 
         status = validator.validateFromLowerCaseToUpperCase(status);
         try {
-            try {
                 Integer hiringID = (Integer) session.getAttribute(HIRING_ID);
                 Integer numberOfHiring = (Integer) session.getAttribute(NUMBER_OF_HIRING);
                 Hiring hiringNew = hiringService.changeHiring(hiringID,
@@ -60,12 +59,7 @@ public class EditHiringCommand implements Command {
                 session.removeAttribute(NUMBER_OF_HIRING);
                 session.removeAttribute(HIRING_ID);
                 response.sendRedirect(PageName.HRS_VACANCY);
-            } catch (ServiceException e) {
-                LOGGER.info(e.getMessage());
-                response.sendRedirect(PageName.INDEX_PAGE);
-                throw new CommandException(e);
-            }
-        } catch (IOException e) {
+            } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);
         }

@@ -25,30 +25,13 @@
 
 </style>
 <body>
-<c:set var="pageName" value="500.jsp" scope="session"/>
-
     <!-- Navbar -->
     <div class="w3-top">
         <div class="w3-bar w3-black w3-card">
 
             <a class="w3-bar-item w3-button w3-right"
-               href="${pageContext.servletContext.contextPath}/index.jsp">
+               href="${pageContext.servletContext.contextPath}/${sessionScope.pageName}">
                 <fmt:message key="local.button.back"/></a>
-
-            <div class="w3-dropdown-hover w3-hide-small w3-right">
-                <button class="w3-button" title="More"><fmt:message key="local.button.language"/>
-                    <i class="fa fa-caret-down"></i></button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                    <form action="FontController" method="get">
-                        <input type="hidden" name="command" value="change-local">
-                        <button name="local" class="w3-bar-item w3-button" value="RU">
-                            <fmt:message key="local.button.ru"/></button>
-                        <button name="local" class="w3-bar-item w3-button" value="EN">
-                            <fmt:message key="local.button.en"/></button>
-                    </form>
-                </div>
-            </div>
-
         </div>
     </div>
 

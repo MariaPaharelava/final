@@ -93,7 +93,7 @@
                             <input name="command" value="delete-hiring-by-user" type="hidden"/>
                             <input name="index" type="hidden" value="${theCount.index}"/>
                             <button class="w3-button w3-red w3-padding-large">
-                                <fmt:message key="local.button.delete"/>
+                                <fmt:message key="local.button.cancel"/>
                             </button>
                         </form>
                     </li>

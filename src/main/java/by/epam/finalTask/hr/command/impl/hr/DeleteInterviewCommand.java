@@ -30,22 +30,16 @@ public class DeleteInterviewCommand implements Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException {
         HttpSession session = request.getSession(false);
 
         Integer numberOfHiring = (Integer) session.getAttribute(HIRING_ID);
         Integer numberOfInterview = Integer.parseInt(request.getParameter(NUMBER_OF_INTERVIEW));
         try {
-            try {
                 deleteFromDB(numberOfInterview, numberOfHiring);
                 deleteFromSession(session, numberOfInterview);
                 response.sendRedirect(PageName.WORK_WITH_INTERVIEW);
                 session.removeAttribute(HIRING_ID);
-            } catch (ServiceException e) {
-                response.sendRedirect(PageName.INDEX_PAGE);
-                LOGGER.error(e.getMessage());
-                throw new CommandException(e);
-            }
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);

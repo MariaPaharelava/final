@@ -9,7 +9,6 @@ import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,7 +31,7 @@ public class AddUserCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException {
         HttpSession session = request.getSession(false);
 
         String surname = request.getParameter(ENTER_SURNAME);
@@ -41,16 +40,10 @@ public class AddUserCommand implements Command {
         String password = request.getParameter(ENTER_PASSWORD);
         String role = request.getParameter(ENTER_ROLE);
         try {
-            try {
-                User user = new User(login, password, surname, name, role);
-                addUserToSession(session, user);
-                addUserToDB(user);
-                response.sendRedirect(PageName.WORK_WITH_USER);
-            } catch (ServiceException e) {
-                response.sendRedirect(PageName.INDEX_PAGE);
-                LOGGER.error(e.getMessage());
-                throw new CommandException(e);
-            }
+            User user = new User(login, password, surname, name, role);
+            addUserToSession(session, user);
+            addUserToDB(user);
+            response.sendRedirect(PageName.WORK_WITH_USER);
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);

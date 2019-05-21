@@ -15,7 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPool {
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
-    private static ConnectionPool instance;
+    private static volatile ConnectionPool instance;
     private static Lock lock = new ReentrantLock();
 
     private BlockingQueue<Connection> connectionQueue;
@@ -37,8 +37,6 @@ public class ConnectionPool {
                 }
             } catch (ConnectionPoolException e) {
                 LOGGER.error("Can not create pool" + e.getMessage());
-            } catch (Throwable e) {
-                LOGGER.info(e.getMessage());
             } finally {
                 lock.unlock();
             }

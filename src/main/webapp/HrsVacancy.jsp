@@ -114,7 +114,7 @@
                             </button>
                         </form>
                         <form action="FontController" method="get">
-                            <input name="command" value="edit-hiring_button" type="hidden"/>
+                            <input name="command" value="edit-hiring-button" type="hidden"/>
                             <input name="index" type="hidden" value="${theCount.index}"/>
                             <button class="w3-button w3-teal w3-right w3-padding-large" type="submit">
                                 <fmt:message key="local.title.edit.vacancies"/>

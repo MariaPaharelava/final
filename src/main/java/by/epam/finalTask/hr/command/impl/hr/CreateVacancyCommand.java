@@ -30,7 +30,7 @@ public class CreateVacancyCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException {
         HttpSession session = request.getSession(false);
 
         String vacancyName = request.getParameter(ENTER_VACANCY_NAME);
@@ -46,7 +46,7 @@ public class CreateVacancyCommand implements Command {
             session.removeAttribute(VACANCIES);
             session.setAttribute(VACANCIES, vacancyListNew);
             response.sendRedirect(PageName.CREATING_VACANCY);
-        } catch (IOException | ServiceException e) {
+        } catch (IOException e) {
             LOGGER.info(e.getMessage());
             throw new CommandException(e);
         }

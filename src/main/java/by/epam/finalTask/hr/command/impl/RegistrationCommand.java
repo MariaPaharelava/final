@@ -15,11 +15,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class RegistrationCommand implements Command {
-    public static final String ENTER_USER_SURNAME = "enterUserSurname";
-    public static final String ENTER_USER_NAME = "enterUserName";
-    public static final String ENTER_LOGIN = "enterLogin";
-    public static final String ENTER_PASSWORD = "enterPassword";
-    public static final String ENTER_ROLE = "enterRole";
+    private static final String ENTER_USER_SURNAME = "enterUserSurname";
+    private static final String ENTER_USER_NAME = "enterUserName";
+    private static final String ENTER_LOGIN = "enterLogin";
+    private static final String ENTER_PASSWORD = "enterPassword";
+    private static final String ENTER_ROLE = "enterRole";
     private static final String ERROR_MESSAGES = "errorMessage";
     private static final Logger LOGGER = LogManager.getLogger(RegistrationCommand.class);
 
@@ -30,7 +30,7 @@ public class RegistrationCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException {
         HttpSession session = request.getSession(true);
         String surname = request.getParameter(ENTER_USER_SURNAME);
         String name = request.getParameter(ENTER_USER_NAME);
@@ -39,19 +39,16 @@ public class RegistrationCommand implements Command {
         String role = request.getParameter(ENTER_ROLE);
 
         try {
-            User user = null;
             if (role == null) {
-                user = userService.registerUser(login, password, surname, name, "candidate");
+                userService.registerUser(login, password, surname, name, "candidate");
 
             } else {
-                user = userService.registerUser(login, password, surname, name, role);
+                userService.registerUser(login, password, surname, name, role);
             }
             response.sendRedirect(PageName.INDEX_PAGE);
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new CommandException(e);
-        } catch (ServiceException e) {
-            LOGGER.error(e.getMessage());
         }
     }
 }

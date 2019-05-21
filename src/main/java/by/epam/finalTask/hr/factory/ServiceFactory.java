@@ -12,10 +12,10 @@ import by.epam.finalTask.hr.service.impl.HiringServiceImpl;
 import by.epam.finalTask.hr.service.impl.InterviewServiceImpl;
 import by.epam.finalTask.hr.service.impl.UserServiceImpl;
 import by.epam.finalTask.hr.service.impl.VacancyServiceImpl;
+import by.epam.finalTask.hr.util.Validator;
 
 public class ServiceFactory {
     private DAOFactory daoFactory;
-
     public ServiceFactory(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
     }

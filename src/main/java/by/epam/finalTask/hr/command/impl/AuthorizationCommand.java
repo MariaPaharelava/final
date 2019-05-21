@@ -70,7 +70,7 @@ public class AuthorizationCommand implements Command {
                         response.sendRedirect(PageName.WORK_WITH_USER);
                         break;
                     case CANDIDATE:
-                        List<Hiring> hiringListForCandidate = hiringService.getAllHiringsByHrId(user.getID());
+                        List<Hiring> hiringListForCandidate = hiringService.getAllHiringsByUserId(user.getID());
                         setAllNecessaryAttributeForUser(session, hiringListForCandidate);
                         response.sendRedirect(PageName.USER_VACANCY_PAGE);
                         break;
