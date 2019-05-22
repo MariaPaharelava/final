@@ -9,11 +9,9 @@ import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,20 +28,16 @@ public class DeleteInterviewCommand implements Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession(false);
 
         Integer numberOfHiring = (Integer) session.getAttribute(HIRING_ID);
         Integer numberOfInterview = Integer.parseInt(request.getParameter(NUMBER_OF_INTERVIEW));
-        try {
-                deleteFromDB(numberOfInterview, numberOfHiring);
-                deleteFromSession(session, numberOfInterview);
-                response.sendRedirect(PageName.WORK_WITH_INTERVIEW);
-                session.removeAttribute(HIRING_ID);
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage());
-            throw new CommandException(e);
-        }
+        deleteFromDB(numberOfInterview, numberOfHiring);
+        deleteFromSession(session, numberOfInterview);
+        session.removeAttribute(HIRING_ID);
+        return PageName.WORK_WITH_INTERVIEW;
+
     }
 
     private void deleteFromDB(Integer numberOfInterview, Integer numberOfHiring) throws ServiceException {

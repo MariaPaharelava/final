@@ -1,6 +1,7 @@
 package by.epam.finalTask.hr.factory;
 
 import by.epam.finalTask.hr.dao.builder.BuilderDAO;
+import by.epam.finalTask.hr.dao.connectionpool.PooledConnection;
 import by.epam.finalTask.hr.dao.impl.HiringDAO;
 import by.epam.finalTask.hr.dao.impl.InterviewDAO;
 import by.epam.finalTask.hr.dao.impl.UserDAO;

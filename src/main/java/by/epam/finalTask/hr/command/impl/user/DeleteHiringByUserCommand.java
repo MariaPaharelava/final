@@ -29,27 +29,12 @@ public class DeleteHiringByUserCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession(false);
-
         Integer numberOfHiring = Integer.parseInt(request.getParameter(NUMBER_OF_HIRING));
-
-        try {
-            try {
-                deleteHiringfromDB(numberOfHiring);
-                deleteHiringfromSession(session, numberOfHiring);
-                response.sendRedirect(PageName.USERS_VACANCY);
-            } catch (ServiceException e) {
-                response.sendRedirect(PageName.INDEX_PAGE);
-                LOGGER.error(e.getMessage());
-                throw new CommandException(e);
-            }
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage());
-            throw new CommandException(e);
-        }
-
-
+        deleteHiringfromDB(numberOfHiring);
+        deleteHiringfromSession(session, numberOfHiring);
+        return PageName.USERS_VACANCY;
     }
 
     private void deleteHiringfromSession(HttpSession session, Integer numberOfHiring) {

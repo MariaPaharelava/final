@@ -28,21 +28,16 @@ public class EditHiringButtonCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession(false);
 
         Integer numberOfHiring = Integer.parseInt(request.getParameter(NUMBER_OF_HIRING));
+        List<Hiring> hiringList = hiringService.getAllHirings();
+        Hiring hiring = hiringList.get(numberOfHiring);
+        session.setAttribute(HIRING_ID, hiring.getID());
+        session.setAttribute(NUMBER_OF_HIRING, numberOfHiring);
+        return PageName.EDIT_VACANCY;
 
-        try {
-            List<Hiring> hiringList = hiringService.getAllHirings();
-            Hiring hiring = hiringList.get(numberOfHiring);
-            session.setAttribute(HIRING_ID, hiring.getID());
-            session.setAttribute(NUMBER_OF_HIRING, numberOfHiring);
-            response.sendRedirect(PageName.EDIT_VACANCY);
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage());
-            throw new CommandException(e);
-        }
     }
 }
 

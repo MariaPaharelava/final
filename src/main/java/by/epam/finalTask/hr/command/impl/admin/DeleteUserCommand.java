@@ -27,19 +27,14 @@ public class DeleteUserCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession(false);
 
         Integer numberOfUser = Integer.parseInt(request.getParameter(NUMBER_OF_USER));
+        deleteUserFromDB(numberOfUser);
+        deleteUserFromSession(session, numberOfUser);
+        return PageName.WORK_WITH_USER;
 
-        try {
-            deleteUserFromDB(numberOfUser);
-            deleteUserFromSession(session, numberOfUser);
-            response.sendRedirect(PageName.WORK_WITH_USER);
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage());
-            throw new CommandException(e);
-        }
     }
 
     private void deleteUserFromSession(HttpSession session, Integer numberOfUser) {

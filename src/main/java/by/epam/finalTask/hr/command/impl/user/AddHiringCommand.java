@@ -15,11 +15,9 @@ import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.List;
 
 public class AddHiringCommand implements Command {
@@ -39,26 +37,13 @@ public class AddHiringCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession(false);
-
         Integer numberOfHiring = Integer.parseInt(request.getParameter(NUMBER_OF_HIRING));
-
-        try {
-            try {
-                Hiring hiring = createObjectOfHiring(session, numberOfHiring);
-                addHiringToDB(numberOfHiring, hiring);
-                addHiringToSession(session, hiring);
-                response.sendRedirect(PageName.USER_VACANCY_PAGE);
-            } catch (ServiceException e) {
-                response.sendRedirect(PageName.INDEX_PAGE);
-                LOGGER.error(e.getMessage());
-                throw new CommandException(e);
-            }
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage());
-            throw new CommandException(e);
-        }
+        Hiring hiring = createObjectOfHiring(session, numberOfHiring);
+        addHiringToDB(numberOfHiring, hiring);
+        addHiringToSession(session, hiring);
+        return PageName.USER_VACANCY_PAGE;
     }
 
     private Hiring createObjectOfHiring(HttpSession session, Integer numberOfHiring) {

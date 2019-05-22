@@ -2,6 +2,7 @@ package by.epam.finalTask.hr.dao.impl;
 
 import by.epam.finalTask.hr.dao.DAO;
 import by.epam.finalTask.hr.dao.builder.BuilderDAO;
+import by.epam.finalTask.hr.dao.connectionpool.PooledConnection;
 import by.epam.finalTask.hr.dao.connectionpool.exception.DAOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

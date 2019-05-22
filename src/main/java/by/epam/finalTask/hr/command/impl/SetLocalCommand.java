@@ -24,18 +24,13 @@ public class SetLocalCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+    public String execute(HttpServletRequest request, HttpServletResponse response){
         String languageString = request.getParameter(LANGUAGE_ATTRIBUTE);
         Language language = languageFactory.getLanguage(languageString);
-        try {
-            HttpSession session = request.getSession();
-            session.setAttribute(LANGUAGE_ATTRIBUTE, language.name().toLowerCase());
-            String pageName = (String) session.getAttribute(PAGE_NAME);
-            response.sendRedirect(pageName);
-            LOGGER.info("Language was installed");
-        } catch (IOException e) {
-            LOGGER.info(e.getMessage());
-            throw new CommandException(e);
-        }
+        HttpSession session = request.getSession();
+        session.setAttribute(LANGUAGE_ATTRIBUTE, language.name().toLowerCase());
+        String pageName = (String) session.getAttribute(PAGE_NAME);
+        LOGGER.info("Language was installed");
+        return pageName;
     }
 }

@@ -31,7 +31,7 @@ public class AddUserCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession(false);
 
         String surname = request.getParameter(ENTER_SURNAME);
@@ -39,15 +39,10 @@ public class AddUserCommand implements Command {
         String login = request.getParameter(ENTER_LOGIN);
         String password = request.getParameter(ENTER_PASSWORD);
         String role = request.getParameter(ENTER_ROLE);
-        try {
-            User user = new User(login, password, surname, name, role);
-            addUserToSession(session, user);
-            addUserToDB(user);
-            response.sendRedirect(PageName.WORK_WITH_USER);
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage());
-            throw new CommandException(e);
-        }
+        User user = new User(login, password, surname, name, role);
+        addUserToSession(session, user);
+        addUserToDB(user);
+        return PageName.WORK_WITH_USER;
     }
 
     private void addUserToSession(HttpSession session, User user) {

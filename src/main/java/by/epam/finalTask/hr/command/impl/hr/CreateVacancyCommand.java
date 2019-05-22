@@ -10,11 +10,9 @@ import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.List;
 
 public class CreateVacancyCommand implements Command {
@@ -30,26 +28,20 @@ public class CreateVacancyCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession(false);
 
         String vacancyName = request.getParameter(ENTER_VACANCY_NAME);
         String vacancyDescription = request.getParameter(ENTER_VACANCY_DESCRIPTION);
-        try {
-            User user = (User) session.getAttribute(USER);
-            List<Vacancy> vacancyList = (List<Vacancy>) session.getAttribute(VACANCIES);
+        User user = (User) session.getAttribute(USER);
+        List<Vacancy> vacancyList = (List<Vacancy>) session.getAttribute(VACANCIES);
 
-            Vacancy vacancy = new Vacancy(vacancyName, vacancyDescription, user.getUserID());
-            vacancyService.addVacancy(vacancyName, vacancyDescription, user.getUserID());
+        Vacancy vacancy = new Vacancy(vacancyName, vacancyDescription, user.getUserID());
+        vacancyService.addVacancy(vacancyName, vacancyDescription, user.getUserID());
 
-            List<Vacancy> vacancyListNew = vacancyService.getAllVacancies();
-            session.removeAttribute(VACANCIES);
-            session.setAttribute(VACANCIES, vacancyListNew);
-            response.sendRedirect(PageName.CREATING_VACANCY);
-        } catch (IOException e) {
-            LOGGER.info(e.getMessage());
-            throw new CommandException(e);
-        }
-
+        List<Vacancy> vacancyListNew = vacancyService.getAllVacancies();
+        session.removeAttribute(VACANCIES);
+        session.setAttribute(VACANCIES, vacancyListNew);
+        return PageName.CREATING_VACANCY;
     }
 }

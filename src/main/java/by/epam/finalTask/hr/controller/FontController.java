@@ -3,8 +3,8 @@ package by.epam.finalTask.hr.controller;
 
 import by.epam.finalTask.hr.command.Command;
 import by.epam.finalTask.hr.command.exception.CommandException;
-import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.dao.connectionpool.ConnectionPool;
+import by.epam.finalTask.hr.dao.connectionpool.PooledConnection;
 import by.epam.finalTask.hr.factory.*;
 import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
@@ -58,19 +58,21 @@ public class FontController extends HttpServlet {
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String commandName = request.getParameter(COMMAND);
         LOGGER.info("Take command: ", commandName);
-        Command command = null;
+        Command command;
         Connection connection = null;
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = connectionPool.getConnection();
             CommandFactory commandFactory = createCommandFactory(connection);
             command = commandFactory.create(commandName);
-            command.execute(request, response);
+            String pageName = command.execute(request, response);
+            response.sendRedirect(pageName);
             ConnectionPool.getInstance().closeConnection(connection);
         } catch (CommandException e) {
             response.sendError(SERVER_ERROR);
             LOGGER.error(e.getMessage());
         } catch (ServiceException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
     }
 

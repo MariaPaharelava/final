@@ -29,18 +29,13 @@ public class DeleteHiringByHrCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession(false);
 
         Integer numberOfHiring = Integer.parseInt(request.getParameter(NUMBER_OF_HIRING));
-        try {
-            deleteFromDB(numberOfHiring);
-            deleteFromSession(session, numberOfHiring);
-            response.sendRedirect(PageName.HRS_VACANCY);
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage());
-            throw new CommandException(e);
-        }
+        deleteFromDB(numberOfHiring);
+        deleteFromSession(session, numberOfHiring);
+        return PageName.HRS_VACANCY;
     }
 
     private void deleteFromDB(Integer numberOfHiring) throws ServiceException {

@@ -31,7 +31,7 @@ public class AddInterviewCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession(false);
 
         String type = request.getParameter(ENTER_TYPE);
@@ -40,15 +40,11 @@ public class AddInterviewCommand implements Command {
         Integer numberOfHiring = (Integer) session.getAttribute(HIRING_ID);
         session.removeAttribute(HIRING_ID);
 
-        try {
-            Interview interview = new Interview(numberOfHiring, type, result, comment);
-            addInterviewToDB(numberOfHiring, interview);
-            addInterviewToSession(session, interview);
-            response.sendRedirect(PageName.WORK_WITH_INTERVIEW);
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage());
-            throw new CommandException(e);
-        }
+        Interview interview = new Interview(numberOfHiring, type, result, comment);
+        addInterviewToDB(numberOfHiring, interview);
+        addInterviewToSession(session, interview);
+        return PageName.WORK_WITH_INTERVIEW;
+
     }
 
     private void addInterviewToSession(HttpSession session, Interview interview) {

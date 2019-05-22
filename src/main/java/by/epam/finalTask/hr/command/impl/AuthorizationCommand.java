@@ -9,18 +9,15 @@ import by.epam.finalTask.hr.entity.Vacancy;
 import by.epam.finalTask.hr.service.HiringService;
 import by.epam.finalTask.hr.service.UserService;
 import by.epam.finalTask.hr.service.VacancyService;
-import by.epam.finalTask.hr.service.exception.LoginAlreadyNoExistsException;
 import by.epam.finalTask.hr.util.HiringForShow;
 import by.epam.finalTask.hr.util.Validator;
 import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,45 +43,36 @@ public class AuthorizationCommand implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession(true);
 
         String login = request.getParameter(ENTER_LOGIN);
         String password = request.getParameter(ENTER_PASSWORD);
         User user;
+        user = userService.authorization(login, password);
+        session.setAttribute(USER, user);
 
-        try {
-            try {
-                user = userService.authorization(login, password);
-
-                session.setAttribute(USER, user);
-
-                switch (user.getUserRole()) {
-                    case HR:
-                        List<Hiring> hiringListForHr = hiringService.getAllHiringsByHrId(user.getID());
-                        setAllNecessaryAttributeForUser(session, hiringListForHr);
-                        response.sendRedirect(PageName.HR_VACANCY_PAGE);
-                        break;
-                    case ADMIN:
-                        setAllNecessaryAttributeForAdmin(session);
-                        response.sendRedirect(PageName.WORK_WITH_USER);
-                        break;
-                    case CANDIDATE:
-                        List<Hiring> hiringListForCandidate = hiringService.getAllHiringsByUserId(user.getID());
-                        setAllNecessaryAttributeForUser(session, hiringListForCandidate);
-                        response.sendRedirect(PageName.USER_VACANCY_PAGE);
-                        break;
-                }
-                return;
-            } catch (ServiceException e) {
-                LOGGER.error(e.getMessage());
-                throw new CommandException(e);
-            }
-            //response.sendRedirect(PageName.INDEX_PAGE);
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage());
-            throw new CommandException(e);
+        String pageName = null;
+        switch (user.getUserRole()) {
+            case HR:
+                List<Hiring> hiringListForHr = hiringService.getAllHiringsByHrId(user.getID());
+                setAllNecessaryAttributeForUser(session, hiringListForHr);
+                pageName = PageName.HR_VACANCY_PAGE;
+                break;
+            case ADMIN:
+                setAllNecessaryAttributeForAdmin(session);
+                pageName = PageName.WORK_WITH_USER;
+                break;
+            case CANDIDATE:
+                List<Hiring> hiringListForCandidate = hiringService.getAllHiringsByUserId(user.getID());
+                setAllNecessaryAttributeForUser(session, hiringListForCandidate);
+                pageName = PageName.USER_VACANCY_PAGE;
+                break;
+            default:
+                pageName = PageName.INDEX_PAGE;
         }
+        return pageName;
+
     }
 
 
