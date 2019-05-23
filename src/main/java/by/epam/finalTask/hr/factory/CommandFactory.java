@@ -6,6 +6,7 @@ import by.epam.finalTask.hr.command.impl.AuthorizationCommand;
 import by.epam.finalTask.hr.command.impl.RegistrationCommand;
 import by.epam.finalTask.hr.command.impl.SetLocalCommand;
 import by.epam.finalTask.hr.command.impl.admin.AddUserCommand;
+import by.epam.finalTask.hr.command.impl.admin.BlockedUserCommand;
 import by.epam.finalTask.hr.command.impl.admin.DeleteUserCommand;
 import by.epam.finalTask.hr.command.impl.hr.*;
 import by.epam.finalTask.hr.command.impl.user.AddHiringCommand;
@@ -90,6 +91,10 @@ public class CommandFactory {
             }
             case CHANGE_LOCAL: {
                 command = new SetLocalCommand(languageFactory);
+                break;
+            }
+            case BLOCKED_USER:{
+                command = new BlockedUserCommand(userService);
                 break;
             }
         }

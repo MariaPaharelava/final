@@ -11,6 +11,7 @@ public class User implements Indentifable {
     private String surname;
     private String name;
     private UserRole userRole;
+    private boolean isBlocked;
 
     public User(String login, String password, String surname, String name, String userRole) {
         this.login = login;
@@ -20,13 +21,14 @@ public class User implements Indentifable {
         setUserRole(userRole);
     }
 
-    public User(Integer userID, String login, String password, String surname, String name, String userRole) {
+    public User(Integer userID, String login, String password, String surname, String name, String userRole, Boolean isBlocked) {
         this.userID = userID;
         this.login = login;
         this.password = password;
         this.surname = surname;
         this.name = name;
         setUserRole(userRole);
+        this.isBlocked = isBlocked;
     }
 
     public User() {
@@ -110,12 +112,21 @@ public class User implements Indentifable {
                 Objects.equals(password, user.password) &&
                 Objects.equals(surname, user.surname) &&
                 Objects.equals(name, user.name) &&
-                userRole == user.userRole;
+                userRole == user.userRole &&
+                isBlocked==user.isBlocked;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userID, login, password, surname, name, userRole);
+        return Objects.hash(userID, login, password, surname, name, userRole, isBlocked);
+    }
+
+    public boolean getBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
     }
 
     @Override

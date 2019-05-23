@@ -59,7 +59,7 @@ public class FontController extends HttpServlet {
         String commandName = request.getParameter(COMMAND);
         LOGGER.info("Take command: ", commandName);
         Command command;
-        Connection connection = null;
+        Connection connection;
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         try {
             connection = connectionPool.getConnection();

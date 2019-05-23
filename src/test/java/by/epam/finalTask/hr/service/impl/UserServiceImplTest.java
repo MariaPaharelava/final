@@ -18,7 +18,8 @@ public class UserServiceImplTest {
             "password",
             "surname",
             "name",
-            "admin"
+            "admin",
+            true
     );
     private static final User EMPTY_LOGIN = new User(
             "",

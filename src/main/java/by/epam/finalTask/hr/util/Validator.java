@@ -47,7 +47,7 @@ public class Validator {
                 aHiringList.getComment(), aHiringList.getHiringStatus());
     }
 
-    public void integerInformationIsNotNull(Integer ... integerValues) throws StringTooLongException {
+    public void integerInformationIsNotNull(Integer... integerValues) throws StringTooLongException {
         for (Integer integerValue : integerValues) {
             if (integerValue == 0) {
                 LOGGER.warn("One of string are empty");
@@ -56,7 +56,7 @@ public class Validator {
         }
     }
 
-    public void stringInformationIsNotNullAndNotMuchMoreMaxLength(String ... strings) throws StringTooLongException {
+    public void stringInformationIsNotNullAndNotMuchMoreMaxLength(String... strings) throws StringTooLongException {
         for (String string : strings) {
             if (string != null && string.length() > MAX_LENGTH) {
                 LOGGER.warn("String too long");
@@ -65,7 +65,7 @@ public class Validator {
         }
     }
 
-    public void stringInformationIsBetweenNullAndNotMuchMoreMaxLength(String ... strings) throws StringTooLongException {
+    public void stringInformationIsBetweenNullAndNotMuchMoreMaxLength(String... strings) throws StringTooLongException {
         for (String string : strings) {
             if (string.equals("")) {
                 LOGGER.warn("One of string are empty");
@@ -74,4 +74,5 @@ public class Validator {
         }
         stringInformationIsNotNullAndNotMuchMoreMaxLength(strings);
     }
+
 }

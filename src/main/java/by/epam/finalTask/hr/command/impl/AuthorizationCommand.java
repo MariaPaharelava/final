@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AuthorizationCommand implements Command {
-    private static final String SERVER_ERROR = "500";
     private static final String ENTER_LOGIN = "enterLogin";
     private static final String ENTER_PASSWORD = "enterPassword";
     private static final String VACANCIES = "vacancies";
@@ -48,11 +47,24 @@ public class AuthorizationCommand implements Command {
 
         String login = request.getParameter(ENTER_LOGIN);
         String password = request.getParameter(ENTER_PASSWORD);
+
         User user;
         user = userService.authorization(login, password);
         session.setAttribute(USER, user);
 
-        String pageName = null;
+        String pageName;
+        if (user.getBlocked()) {
+            session.setAttribute(ERROR_MESSAGES, "User is Blocked");
+            pageName = PageName.INDEX_PAGE;
+            LOGGER.info("Blocked user try to login");
+        } else {
+            pageName = switchUser(user, session);
+        }
+        return pageName;
+    }
+
+    private String switchUser(User user, HttpSession session) throws ServiceException {
+        String pageName;
         switch (user.getUserRole()) {
             case HR:
                 List<Hiring> hiringListForHr = hiringService.getAllHiringsByHrId(user.getID());
@@ -72,9 +84,7 @@ public class AuthorizationCommand implements Command {
                 pageName = PageName.INDEX_PAGE;
         }
         return pageName;
-
     }
-
 
     private void setAllNecessaryAttributeForAdmin(HttpSession session) throws ServiceException {
         List<User> userList = userService.getAllUsers();

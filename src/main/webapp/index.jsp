@@ -70,7 +70,17 @@
 <div class="w3-display-middle">
     <h1 class="w3-jumbo w3-animate-top w3-text-white"><fmt:message key="local.title.index"/></h1>
     <hr class="w3-border-grey" style="margin:auto;width:40%">
+    <c:if test="${sessionScope.errorMessage eq 'User is Blocked'}">
+        <input type="hidden" >
+        <script>
+
+            (function() {
+                $(document).getElementById('id03').style.display = 'block'
+            })();
+        </script>
+    </c:if>
 </div>
+
 
 <!-- LOGIN IN BEGIN-->
 <div id="id01" class="w3-modal">
@@ -79,30 +89,29 @@
             <span onclick="document.getElementById('id01').style.display='none'"
                   class="w3-button w3-xlarge w3-white w3-display-topright" title="Close Modal">x</span>
         </div>
-        <c:catch var="exception">
-            <form class="w3-container" action="FontController" method="post">
-                <input name="command" value="authorization" type="hidden"/>
-                <div class="w3-section">
-                    <label class="w3-white"><b><fmt:message key="local.create.akk.login"/></b></label>
-                    <input class="w3-input w3-border w3-margin-bottom" type="text"
-                           placeholder="<fmt:message key="local.create.akk.enter.login"/>"
-                           name="enterLogin" required value="${requestScope.createAkkEnterLogin}"
-                           minlength="1" maxlength="255">
-                    <label class="w3-white"><b><fmt:message key="local.create.akk.password"/></b></label>
-                    <input class="w3-input w3-border" type="password"
-                           placeholder="<fmt:message key="local.create.akk.enter.password"/>"
-                           name="enterPassword" required value="${requestScope.createAkkEnterPassword}"
-                           minlength="1" maxlength="255">
+        <form class="w3-container" action="FontController" method="post">
+            <input name="command" value="authorization" type="hidden"/>
+            <div class="w3-section">
+                <label class="w3-white"><b><fmt:message key="local.create.akk.login"/></b></label>
+                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                       placeholder="<fmt:message key="local.create.akk.enter.login"/>"
+                       name="enterLogin" required value="${requestScope.createAkkEnterLogin}"
+                       minlength="1" maxlength="255">
+                <label class="w3-white"><b><fmt:message key="local.create.akk.password"/></b></label>
+                <input class="w3-input w3-border" type="password"
+                       placeholder="<fmt:message key="local.create.akk.enter.password"/>"
+                       name="enterPassword" required value="${requestScope.createAkkEnterPassword}"
+                       minlength="1" maxlength="255">
 
-                    <button class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
-                            type="submit"><fmt:message key="local.login.enter.login"/></button>
-                </div>
-            </form>
-        </c:catch>
+                <button class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
+                        type="submit"><fmt:message key="local.login.enter.login"/></button>
+            </div>
+        </form>
     </div>
 </div>
 <!-- LOGIN IN END-->
 
+<!-- CREATE ACCOUNT BEGIN-->
 <div id="id02" class="w3-modal">
     <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
         <div class="w3-center"><br>
@@ -146,6 +155,19 @@
         </form>
     </div>
 </div>
+<!-- CREATE ACCOUNT END-->
+
+<!-- ERROR MASSAGE ADOUT BLOCKED USER BEGIN-->
+<div id="id03" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+        <div class="w3-center"><br>
+            <span onclick="document.getElementById('id03').style.display='none'"
+                  class="w3-button w3-xlarge w3-white w3-display-topright" title="Close Modal">x</span>
+        </div>
+        <label>This Account Was Blocked</label>
+    </div>
+</div>
+<!-- CREATE ACCOUNT END-->
 
 <div class="w3-text-white w3-display-bottomleft w3-padding-large">
     <p><a><fmt:message key="local.footer"/></a></p>

@@ -20,22 +20,22 @@ public class ServiceFactory {
         this.daoFactory = daoFactory;
     }
 
-    public UserService getUserService() {
+    UserService getUserService() {
         UserDAO userDao = (UserDAO) daoFactory.getUserDAO();
         return new UserServiceImpl(userDao);
     }
 
-    public VacancyService getVacancyService() {
+    VacancyService getVacancyService() {
         VacancyDAO vacancyDao = (VacancyDAO) daoFactory.getVacancyDAO();
         return new VacancyServiceImpl(vacancyDao);
     }
 
-    public HiringService getHiringService() {
+    HiringService getHiringService() {
         HiringDAO hiringDao = (HiringDAO) daoFactory.getHiringDAO();
         return new HiringServiceImpl(hiringDao);
     }
 
-    public InterviewService getInterviewService() {
+    InterviewService getInterviewService() {
         InterviewDAO interviewDao = (InterviewDAO) daoFactory.getInterviewDAO();
         return new InterviewServiceImpl(interviewDao);
     }

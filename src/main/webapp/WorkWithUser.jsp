@@ -57,10 +57,11 @@
     <table class="w3-table-all w3-margin-top" id="myTable">
         <tr>
             <th style="width:5%;"></th>
-            <th style="width:30%;"><fmt:message key="local.create.akk.surname"/></th>
+            <th style="width:25%;"><fmt:message key="local.create.akk.surname"/></th>
             <th style="width:20%;"><fmt:message key="local.create.akk.name"/></th>
             <th style="width:20%;"><fmt:message key="local.create.akk.role"/></th>
             <th style="width:20%;"><fmt:message key="local.create.akk.login"/></th>
+            <th style="width:5%; "><fmt:message key="local.button.blocked"/></th>
             <th style="width:5%; "><fmt:message key="local.button.delete"/></th>
         </tr>
         <c:forEach var="user" items="${sessionScope.users}" varStatus="theCount">
@@ -72,6 +73,22 @@
                 <td>${user.name}</td>
                 <td>${user.userRole}</td>
                 <td>${user.login}</td>
+                <td>
+                    <form action="FontController" method="get">
+                        <input name="command" value="blocked-user" type="hidden"/>
+                        <input name="index" type="hidden" value="${theCount.index}"/>
+                        <div style="width:50px">
+                            <c:if test="${user.blocked eq false}">
+                                <button class=" w3-right w3-button w3-wight"><i
+                                        class=" w3-xlarge fa fa-toggle-off"></i></button>
+                            </c:if>
+                            <c:if test="${user.blocked eq true}">
+                                <button class=" w3-right w3-button w3-wight"><i
+                                        class=" w3-xlarge fa fa-toggle-on"></i></button>
+                            </c:if>
+                        </div>
+                    </form>
+                </td>
                 <td>
                     <form action="FontController" method="get">
                         <input name="command" value="delete-user" type="hidden"/>

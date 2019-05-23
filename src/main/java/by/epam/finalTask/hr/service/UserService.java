@@ -15,4 +15,6 @@ public interface UserService {
     User findById(Integer id) throws ServiceException;
 
     List<User> getAllUsers() throws ServiceException;
+
+    void changeUser(Integer id, String surname, String name, String login, String password, String role, Boolean isBlocked) throws ServiceException;
 }

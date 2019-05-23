@@ -88,7 +88,7 @@
                             <h3 class="w3-wide">$ ${hiring.offerEmount}</h3>
                             <span class="w3-opacity"><fmt:message key="local.label.permonth"/></span>
                         </c:if>
-                        <c:if test="${empty hiring.offerEmount and hiring.offerEmount == 0}">
+                        <c:if test="${empty hiring.offerEmount or hiring.offerEmount == 0}">
                             <h3 class="w3-text-grey w3-wide">
                                 <fmt:message key="local.label.no.value"/></h3>
                             <span class="w3-opacity w3-text-wight">___</span>

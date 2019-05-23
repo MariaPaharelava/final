@@ -12,6 +12,7 @@ public class BuilderDAOUser implements BuilderDAO<User> {
     private static final String SQL_FNAME = "fname";
     private static final String SQL_LNAME = "lname";
     private static final String SQL_ROLE = "users_role";
+    private static final String SQL_BLOCKED = "is_blocked";
 
 
     @Override
@@ -23,6 +24,7 @@ public class BuilderDAOUser implements BuilderDAO<User> {
         searchedUser.setSurname(resultSet.getString(SQL_FNAME));
         searchedUser.setName(resultSet.getString(SQL_LNAME));
         searchedUser.setUserRole(resultSet.getString(SQL_ROLE));
+        searchedUser.setBlocked(resultSet.getBoolean(SQL_BLOCKED));
         return searchedUser;
     }
 }

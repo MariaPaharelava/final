@@ -64,6 +64,7 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+
     @Override
     public void removeUser(String login, String password) throws ServiceException {
         User user;
@@ -98,6 +99,17 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsers() throws ServiceException {
         try {
             return userDAO.findAll();
+        } catch (DAOException e) {
+            LOGGER.error(e.getMessage());
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void changeUser(Integer id, String surname, String name, String login, String password, String role, Boolean isBlocked) throws ServiceException {
+        try {
+            User user = new User(id,surname,name,login,password,role,isBlocked);
+            userDAO.save(user);
         } catch (DAOException e) {
             LOGGER.error(e.getMessage());
             throw new ServiceException(e);
