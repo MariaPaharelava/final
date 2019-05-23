@@ -28,17 +28,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User registerUser(String surname, String name,
                              String login, String password, String role) throws ServiceException {
-        User user ;
+        User user = null;
         try {
             validator.stringInformationIsBetweenNullAndNotMuchMoreMaxLength(surname,
                     name,login,password,role);
             userOptional = userDAO.findUserByLogin(login);
-            if (userOptional != null) {
-                LOGGER.warn("Warning the login already exists");
-                throw new LoginAlreadyExistsException("Warning the login already exists");
+            if(!userOptional.isPresent()){
+                user = new User(login, password, surname, name, role);
+                userDAO.save(user);
             }
-            user = new User(login, password, surname, name, role);
-            userDAO.save(user);
         } catch (DAOException e) {
             LOGGER.error(e.getMessage());
             throw new ServiceException(e);
@@ -47,15 +45,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User authorization(String login, String password) throws ServiceException {
+    public User authorization(String login) throws ServiceException {
         User user = null;
         try {
             userOptional = userDAO.findUserByLogin(login);
             if (userOptional.isPresent()) {
                 user = userOptional.get();
-                if (!user.getPassword().equals(password)) {
-                    throw new PasswordNotEquals("Password not equals");
-                }
             }
         } catch (DAOException e) {
             LOGGER.error(e.getMessage());

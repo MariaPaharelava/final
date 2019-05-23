@@ -49,7 +49,18 @@ public class AuthorizationCommand implements Command {
         String password = request.getParameter(ENTER_PASSWORD);
 
         User user;
-        user = userService.authorization(login, password);
+        user = userService.authorization(login);
+
+        if(user == null){
+            session.setAttribute(ERROR_MESSAGES, "User is absent");
+            return PageName.INDEX_PAGE;
+        }
+
+        if(user.getPassword().equals(password)){
+            session.setAttribute(ERROR_MESSAGES, "User write wrong password");
+            return PageName.INDEX_PAGE;
+        }
+
         session.setAttribute(USER, user);
 
         String pageName;

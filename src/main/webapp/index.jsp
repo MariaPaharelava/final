@@ -36,8 +36,8 @@
 
 <c:set var="pageName" value="index.jsp" scope="session"/>
 
+<!-- NAVIGATION START-->
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-    <!-- NAVIGATION START-->
     <div class="w3-top">
         <div class="w3-bar w3-black w3-card">
 
@@ -61,40 +61,155 @@
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
-    <!-- NAVIGATION END -->
 </div>
+<!-- NAVIGATION END -->
 
+<!-- MAIN LABLE -->
 <div class="w3-display-middle">
     <h1 class="w3-jumbo w3-animate-top w3-text-white"><fmt:message key="local.title.index"/></h1>
     <hr class="w3-border-grey" style="margin:auto;width:40%">
 </div>
 
+<!-- IF USER IS BLOCKED -->
 <c:if test="${sessionScope.errorMessage eq 'User is Blocked'}">
-    <input type="hidden" >
-    <script>
-            document.getElementById('id03').style.display = 'block'
-    </script>
+    <div id="03" class="w3-modal w3-display-middle" style="display: block;">
+        <div class="w3-main w3-animate-left w3-modal-content w3-container w3-card-4 w3-light-grey"
+             style="max-width:400px">
+
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id01').style.display='block';
+               document.getElementById('id03').style.display='none'"
+                      class="w3-button w3-xlarge w3-display-topright" title="Close Modal">x</span>
+                <br>
+            </div>
+
+            <div class="w3-center" style="margin-bottom: 40px; margin-top: 10px">
+                <label class="w3-text-center w3-light-grey w3-large">
+                    <fmt:message key="local.label.block"/>
+                </label>
+            </div>
+            <a class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
+               onclick="document.getElementById('id01').style.display='block';
+               document.getElementById('id03').style.display='none'">
+                <fmt:message key="local.button.ok"/>
+            </a>
+        </div>
+    </div>
+    <c:set value="" var="errorMessage" scope="session"/>
+</c:if>
+
+<!-- IF USER IS WRITE ANOTHER PASSWORD -->
+<c:if test="${sessionScope.errorMessage eq 'User write wrong password'}">
+    <div id="04" class="w3-modal w3-display-middle" style="display: block;">
+        <div class="w3-main w3-animate-left w3-modal-content w3-container w3-card-4 w3-light-grey"
+             style="max-width:400px">
+
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id01').style.display='block';
+               document.getElementById('id04').style.display='none'"
+                      class="w3-button w3-xlarge w3-display-topright" title="Close Modal">x</span>
+                <br>
+            </div>
+
+            <div class="w3-center" style="margin-bottom: 40px; margin-top: 10px">
+                <label class="w3-text-center w3-light-grey w3-large">
+                    <fmt:message key="local.label.wrongpassword"/>
+                </label>
+            </div>
+            <a class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
+               onclick="document.getElementById('id01').style.display='block';
+               document.getElementById('id04').style.display='none'">
+                <fmt:message key="local.button.ok"/>
+            </a>
+        </div>
+    </div>
+    <c:set value="" var="errorMessage" scope="session"/>
+</c:if>
+
+<!-- IF USER IS ABSENT -->
+<c:if test="${sessionScope.errorMessage eq 'User is absent'}">
+    <div id="05" class="w3-modal w3-display-middle" style="display: block;">
+        <div class="w3-main w3-animate-left w3-modal-content w3-container w3-card-4 w3-light-grey"
+             style="max-width:400px">
+
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id01').style.display='block';
+               document.getElementById('id05').style.display='none'"
+                      class="w3-button w3-xlarge w3-display-topright" title="Close Modal">x</span>
+                <br>
+            </div>
+
+            <div class="w3-center" style="margin-bottom: 40px; margin-top: 10px">
+                <label class="w3-text-center w3-light-grey w3-large">
+                    <fmt:message key="local.label.absent"/>
+                </label>
+            </div>
+            <a class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
+               onclick="document.getElementById('id01').style.display='block';
+               document.getElementById('id05').style.display='none'">
+                <fmt:message key="local.button.ok"/>
+            </a>
+        </div>
+    </div>
+    <c:set value="" var="errorMessage" scope="session"/>
+</c:if>
+
+<!-- IF USER IS EXIST -->
+<c:if test="${sessionScope.errorMessage eq 'This login is already in use'}">
+    <div id="06" class="w3-modal w3-display-middle" style="display: block;">
+        <div class="w3-main w3-animate-left w3-modal-content w3-container w3-card-4 w3-light-grey"
+             style="max-width:400px">
+
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id01').style.display='block';
+               document.getElementById('id06').style.display='none'"
+                      class="w3-button w3-xlarge w3-display-topright" title="Close Modal">x</span>
+                <br>
+            </div>
+
+            <div class="w3-center" style="margin-bottom: 40px; margin-top: 10px">
+                <label class="w3-text-center w3-light-grey w3-large">
+                    <fmt:message key="local.label.exist"/>
+                </label>
+            </div>
+            <a class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
+               onclick="document.getElementById('id02').style.display='block';
+               document.getElementById('id06').style.display='none'">
+                <fmt:message key="local.button.ok"/>
+            </a>
+        </div>
+    </div>
+    <c:set value="" var="errorMessage" scope="session"/>
 </c:if>
 
 <!-- LOGIN IN BEGIN-->
 <div id="id01" class="w3-modal">
     <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
         <div class="w3-center"><br>
             <span onclick="document.getElementById('id01').style.display='none'"
                   class="w3-button w3-xlarge w3-white w3-display-topright" title="Close Modal">x</span>
         </div>
+
         <form class="w3-container" action="FontController" method="post">
             <input name="command" value="authorization" type="hidden"/>
+
             <div class="w3-section">
-                <label class="w3-white"><b><fmt:message key="local.create.akk.login"/></b></label>
+                <label class="w3-white">
+                    <b><fmt:message key="local.create.akk.login"/></b>
+                </label>
+
                 <input class="w3-input w3-border w3-margin-bottom" type="text"
                        placeholder="<fmt:message key="local.create.akk.enter.login"/>"
                        name="enterLogin" required value="${requestScope.createAkkEnterLogin}"
                        minlength="1" maxlength="255">
-                <label class="w3-white"><b><fmt:message key="local.create.akk.password"/></b></label>
+
+                <label class="w3-white">
+                    <b><fmt:message key="local.create.akk.password"/></b>
+                </label>
+
                 <input class="w3-input w3-border" type="password"
                        placeholder="<fmt:message key="local.create.akk.enter.password"/>"
                        name="enterPassword" required value="${requestScope.createAkkEnterPassword}"
@@ -121,13 +236,19 @@
 
                 <input name="command" value="registration" type="hidden"/>
 
-                <label class="w3-white"><b><fmt:message key="local.create.akk.surname"/></b></label>
+                <label class="w3-white"><b>
+                    <fmt:message key="local.create.akk.surname"/></b>
+                </label>
+
                 <input class="w3-input w3-border w3-margin-bottom" type="text"
                        placeholder="<fmt:message key="local.create.akk.enter.surname"/>"
                        name="enterUserSurname" required value="${requestScope.enterUserSurname}"
                        minlength="1" maxlength="255">
 
-                <label class="w3-white"><b><fmt:message key="local.create.akk.name"/></b></label>
+                <label class="w3-white">
+                    <b><fmt:message key="local.create.akk.name"/></b>
+                </label>
+
                 <input class="w3-input w3-border w3-margin-bottom" type="text"
                        placeholder="<fmt:message key="local.create.akk.enter.name"/>"
                        name="enterUserName" required value="${requestScope.enterUserName}"
@@ -139,12 +260,14 @@
                        name="enterLogin" required value="${requestScope.enterLogin}"
                        minlength="1" maxlength="255">
 
-                <label class="w3-white"><b><fmt:message key="local.create.akk.password"/></b></label>
+                <label class="w3-white"><b>
+                    <fmt:message key="local.create.akk.password"/></b>
+                </label>
+
                 <input class="w3-input w3-border" type="password"
                        placeholder="<fmt:message key="local.create.akk.enter.password"/>"
                        name="enterPassword" required value="${requestScope.enterPassword}"
                        minlength="1" maxlength="255">
-
 
                 <button class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
                         type="submit"><fmt:message key="local.button.ok"/></button>
@@ -154,17 +277,6 @@
 </div>
 <!-- CREATE ACCOUNT END-->
 
-<!-- ERROR MASSAGE ADOUT BLOCKED USER BEGIN-->
-<div id="id03" class="w3-modal">
-    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
-        <div class="w3-center"><br>
-            <span onclick="document.getElementById('id03').style.display='none'"
-                  class="w3-button w3-xlarge w3-white w3-display-topright" title="Close Modal">x</span>
-        </div>
-        <label>This Account Was Blocked</label>
-    </div>
-</div>
-<!-- CREATE ACCOUNT END-->
 
 <div class="w3-text-white w3-display-bottomleft w3-padding-large">
     <p><a><fmt:message key="local.footer"/></a></p>
