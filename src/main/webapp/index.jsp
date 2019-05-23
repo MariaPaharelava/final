@@ -70,17 +70,14 @@
 <div class="w3-display-middle">
     <h1 class="w3-jumbo w3-animate-top w3-text-white"><fmt:message key="local.title.index"/></h1>
     <hr class="w3-border-grey" style="margin:auto;width:40%">
-    <c:if test="${sessionScope.errorMessage eq 'User is Blocked'}">
-        <input type="hidden" >
-        <script>
-
-            (function() {
-                $(document).getElementById('id03').style.display = 'block'
-            })();
-        </script>
-    </c:if>
 </div>
 
+<c:if test="${sessionScope.errorMessage eq 'User is Blocked'}">
+    <input type="hidden" >
+    <script>
+            document.getElementById('id03').style.display = 'block'
+    </script>
+</c:if>
 
 <!-- LOGIN IN BEGIN-->
 <div id="id01" class="w3-modal">
