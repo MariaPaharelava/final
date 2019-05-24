@@ -8,7 +8,9 @@ import java.util.List;
 public interface VacancyService {
     Vacancy addVacancy(String name, String description, int hr_id) throws ServiceException;
 
-    void removeVacancy(int id) throws ServiceException;
+    void removeVacancyById(int id) throws ServiceException;
+
+    void changeVacancyById(int id, String position, String description) throws ServiceException;
 
     List<Vacancy> getAllVacancies() throws ServiceException;
 

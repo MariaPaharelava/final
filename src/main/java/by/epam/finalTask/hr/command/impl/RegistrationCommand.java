@@ -1,7 +1,6 @@
 package by.epam.finalTask.hr.command.impl;
 
 import by.epam.finalTask.hr.command.Command;
-import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.entity.User;
 import by.epam.finalTask.hr.service.UserService;
@@ -38,13 +37,15 @@ public class RegistrationCommand implements Command {
         String password = request.getParameter(ENTER_PASSWORD);
         String role = request.getParameter(ENTER_ROLE);
         if (role == null) {
-            User user = userService.registerUser(login, password, surname, name, "candidate");
-            if(user == null){
-                session.setAttribute(ERROR_MESSAGES,"This login is already in use");
+            User user = userService.registerUser(surname, name, login, password,"candidate");
+            if (user == null) {
+                session.setAttribute(ERROR_MESSAGES, "This login is already in use");
+                LOGGER.info("Attempting to enter an existing login");
             }
         } else {
-            userService.registerUser(login, password, surname, name, role);
+            userService.registerUser(surname, name, login, password, role);
+            LOGGER.info("Registered user with login - " + login);
         }
-        return PageName.INDEX_PAGE;
+        return PageName.INDEX_JSP;
     }
 }

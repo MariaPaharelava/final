@@ -63,6 +63,7 @@
     </div>
 </div>
 
+<!-- FORM -->
 <div class="w3-main w3-animate-left" style="margin-top:3.7%;">
 
     <form class="w3-container w3-card-4 w3-light-grey w3-text-blue" style="margin-left: 30%; margin-right: 30%;"
@@ -98,7 +99,31 @@
     <!-- END MAIN -->
 </div>
 
-<!-- Pagination -->
+<!-- IF VACANCY IS EXIST -->
+<c:if test="${sessionScope.errorMessage eq 'This vacancy is exist'}">
+    <div id="id01" class="w3-modal w3-display-middle" style="display: block;">
+        <div class="w3-main w3-animate-left w3-modal-content w3-container w3-card-4 w3-light-grey"
+             style="max-width:400px">
+
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id01').style.display='none'"
+                      class="w3-button w3-xlarge w3-display-topright" title="Close Modal">x</span>
+                <br>
+            </div>
+
+            <div class="w3-center" style="margin-bottom: 40px; margin-top: 10px">
+                <label class="w3-text-center w3-light-grey w3-large">
+                    <fmt:message key="local.lable.exist.vacancy"/>
+                </label>
+            </div>
+            <a class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
+               onclick="document.getElementById('id01').style.display='none'">
+                <fmt:message key="local.button.ok"/>
+            </a>
+        </div>
+    </div>
+    <c:set value="" var="errorMessage" scope="session"/>
+</c:if>
 
 <footer id="myFooter">
     <div class="w3-container w3-theme-l1 w3-center w3-display-bottommiddle" style="width:100%;">

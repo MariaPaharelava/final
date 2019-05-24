@@ -1,7 +1,6 @@
 package by.epam.finalTask.hr.command.impl.hr;
 
 import by.epam.finalTask.hr.command.Command;
-import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.entity.Hiring;
 import by.epam.finalTask.hr.service.HiringService;
@@ -13,7 +12,6 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +33,7 @@ public class DeleteHiringByHrCommand implements Command {
         Integer numberOfHiring = Integer.parseInt(request.getParameter(NUMBER_OF_HIRING));
         deleteFromDB(numberOfHiring);
         deleteFromSession(session, numberOfHiring);
-        return PageName.HRS_VACANCY;
+        return PageName.HRS_VACANCY_JSP;
     }
 
     private void deleteFromDB(Integer numberOfHiring) throws ServiceException {

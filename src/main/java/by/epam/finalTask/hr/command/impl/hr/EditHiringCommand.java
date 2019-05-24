@@ -49,12 +49,13 @@ public class EditHiringCommand implements Command {
         status = validator.validateFromLowerCaseToUpperCase(status);
         Integer hiringID = (Integer) session.getAttribute(HIRING_ID);
         Integer numberOfHiring = (Integer) session.getAttribute(NUMBER_OF_HIRING);
+
         Hiring hiringNew = hiringService.changeHiring(hiringID,
                 Double.valueOf(salary), status, comment);
         changeHiringFromSession(session, numberOfHiring, hiringNew);
         session.removeAttribute(NUMBER_OF_HIRING);
         session.removeAttribute(HIRING_ID);
-        return PageName.HRS_VACANCY;
+        return PageName.HRS_VACANCY_JSP;
 
     }
 

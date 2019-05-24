@@ -18,5 +18,7 @@ public enum CommandName {
     DELETE_USER,
     ADD_HIRING,
     DELETE_HIRING_BY_USER,
-    BLOCKED_USER
+    BLOCKED_USER,
+    EDIT_VACANCY,
+    EDIT_VACANCY_BUTTON
 }

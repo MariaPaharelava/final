@@ -1,7 +1,6 @@
 package by.epam.finalTask.hr.command.impl.admin;
 
 import by.epam.finalTask.hr.command.Command;
-import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.entity.User;
 import by.epam.finalTask.hr.service.UserService;
@@ -35,7 +34,7 @@ public class BlockedUserCommand implements Command {
         changeBlocked(user);
         blockedUserInDB(user);
         blockedUserInSession(session, numberOfUser, user);
-        return PageName.WORK_WITH_USER;
+        return PageName.WORK_WITH_USER_JSP;
     }
 
     private void blockedUserInSession(HttpSession session, Integer numberOfUser, User user) {

@@ -1,7 +1,6 @@
 package by.epam.finalTask.hr.command.impl.hr;
 
 import by.epam.finalTask.hr.command.Command;
-import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.entity.Interview;
 import by.epam.finalTask.hr.service.InterviewService;
@@ -36,7 +35,7 @@ public class DeleteInterviewCommand implements Command {
         deleteFromDB(numberOfInterview, numberOfHiring);
         deleteFromSession(session, numberOfInterview);
         session.removeAttribute(HIRING_ID);
-        return PageName.WORK_WITH_INTERVIEW;
+        return PageName.WORK_WITH_INTERVIEW_JSP;
 
     }
 

@@ -62,6 +62,7 @@
     </div>
 </div>
 
+<!-- FORM -->
 <div class="w3-main w3-animate-left" style="margin:3.7%;">
 
     <form action="FontController" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue" style="margin-left: 30%; margin-right: 30%;">
@@ -123,8 +124,6 @@
     </form>
     <!-- END MAIN -->
 </div>
-
-<!-- Pagination -->
 
 <footer id="myFooter">
     <div class="w3-container w3-theme-l1 w3-center" style="width:100%;">

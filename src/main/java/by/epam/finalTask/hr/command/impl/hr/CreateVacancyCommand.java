@@ -1,7 +1,6 @@
 package by.epam.finalTask.hr.command.impl.hr;
 
 import by.epam.finalTask.hr.command.Command;
-import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.entity.User;
 import by.epam.finalTask.hr.entity.Vacancy;
@@ -20,6 +19,7 @@ public class CreateVacancyCommand implements Command {
     private static final String ENTER_VACANCY_DESCRIPTION = "enterVacancyDescription";
     private static final String USER = "user";
     private static final String VACANCIES = "vacancies";
+    private static final String ERROR_MESSAGES = "errorMessage";
     private static final Logger LOGGER = LogManager.getLogger(CreateVacancyCommand.class);
     private VacancyService vacancyService;
 
@@ -34,14 +34,34 @@ public class CreateVacancyCommand implements Command {
         String vacancyName = request.getParameter(ENTER_VACANCY_NAME);
         String vacancyDescription = request.getParameter(ENTER_VACANCY_DESCRIPTION);
         User user = (User) session.getAttribute(USER);
+
         List<Vacancy> vacancyList = (List<Vacancy>) session.getAttribute(VACANCIES);
+        Vacancy vacancy = new Vacancy(vacancyDescription, vacancyName, user.getUserID());
+        if(isVacancyListHaveNewVacancy(vacancyList, vacancy)){
+            session.setAttribute(ERROR_MESSAGES, "This vacancy is exist");
+            LOGGER.info("This vacancy is exist");
+            return PageName.CREATING_VACANCY_JSP;
+        }
 
-        Vacancy vacancy = new Vacancy(vacancyName, vacancyDescription, user.getUserID());
         vacancyService.addVacancy(vacancyName, vacancyDescription, user.getUserID());
-
         List<Vacancy> vacancyListNew = vacancyService.getAllVacancies();
-        session.removeAttribute(VACANCIES);
         session.setAttribute(VACANCIES, vacancyListNew);
-        return PageName.CREATING_VACANCY;
+        LOGGER.info("Create vacancy");
+        return PageName.CREATING_VACANCY_JSP;
+    }
+
+    private boolean isVacancyListHaveNewVacancy(List<Vacancy> vacancyList, Vacancy vacancy) {
+        boolean result = false;
+        for (Vacancy aVacancyList : vacancyList) {
+            String vacancyDescription = aVacancyList.getVacancyDescrintion();
+            String vacancyDescriptionNew = vacancy.getVacancyDescrintion();
+            String vacancyName = aVacancyList.getVacancyPosition();
+            String vacancyNameNew = vacancy.getVacancyPosition();
+            if (vacancyDescription.equals(vacancyDescriptionNew) &&
+                    vacancyName.equals(vacancyNameNew)) {
+                result = true;
+            }
+        }
+        return result;
     }
 }

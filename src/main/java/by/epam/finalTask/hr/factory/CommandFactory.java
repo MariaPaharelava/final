@@ -97,6 +97,14 @@ public class CommandFactory {
                 command = new BlockedUserCommand(userService);
                 break;
             }
+            case EDIT_VACANCY:{
+                command = new EditVacancyCommand(vacancyService);
+                break;
+            }
+            case EDIT_VACANCY_BUTTON: {
+                command = new EditVacancyButtonCommand();
+                break;
+            }
         }
         return command;
     }

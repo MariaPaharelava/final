@@ -1,7 +1,6 @@
 package by.epam.finalTask.hr.command.impl.hr;
 
 import by.epam.finalTask.hr.command.Command;
-import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.entity.Hiring;
 import by.epam.finalTask.hr.entity.Interview;
@@ -40,7 +39,7 @@ public class TableHiringCommand implements Command {
         List<Interview> interviewList = interviewService.getAllInterviewByHiringId(hiring.getID());
         session.setAttribute(HIRINGS_INTERVIEW, interviewList);
         session.setAttribute(HIRING_ID, hiring.getID());
-        return PageName.WORK_WITH_INTERVIEW;
+        return PageName.WORK_WITH_INTERVIEW_JSP;
     }
 }
 

@@ -64,17 +64,67 @@
 </div>
 
 <div class="w3-main w3-animate-left" style="margin:3.7%">
-    <c:forEach var="vacancies" items="${sessionScope.vacancies}">
-        <div class="w3-row">
+    <c:forEach var="vacancies" items="${sessionScope.vacancies}" varStatus="theCount">
+        <div class="w3-row" id="${theCount.index}">
             <div class="w3-twothird w3-container">
                 <h1 class="w3-text-teal">${vacancies.vacancyPosition}</h1>
                 <p>${vacancies.vacancyDescrintion}</p>
+                <c:if test="${vacancies.userId eq sessionScope.user.ID}">
+                    <form class="w3-container" action="FontController" method="post">
+                        <input name="command" value="edit-vacancy-button" type="hidden"/>
+                        <input name="index" type="hidden" value="${theCount.index}"/>
+                        <button class="w3-button w3-section w3-blue w3-ripple" type="submit">
+                            <fmt:message key="local.button.edit"/>
+                        </button>
+                    </form>
+                </c:if>
+                <c:if test="${vacancies.userId != sessionScope.user.ID}">
+                    <div class="w3-row w3-container">
+                        <button class="w3-button w3-section w3-gray w3-ripple">
+                            <fmt:message key="local.button.edit"/>
+                        </button>
+                    </div>
+                </c:if>
                 <br/>
             </div>
         </div>
     </c:forEach>
     <!-- END MAIN -->
 </div>
+
+<c:if test="${sessionScope.message eq 'Set vacancy on session'}">
+    <div id="id01" class="w3-modal" style="display: block;">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id01').style.display='none'"
+                      class="w3-button w3-xlarge w3-white w3-display-topright" title="Close Modal">x</span>
+            </div>
+
+            <form class="w3-container" action="FontController" method="post">
+                <input name="command" value="edit-vacancy" type="hidden"/>
+
+                <div class="w3-section">
+
+
+                    <label class="w3-white">
+                        <b><fmt:message key="local.enter.description"/></b>
+                    </label>
+
+                    <input class="w3-input w3-border" type="text"
+                           placeholder="<fmt:message key="local.enter.description"/>"
+                           name="enterVacancyDescription" required
+                           value="${requestScope.enterVacancyDescription}"
+                           minlength="1" maxlength="255">
+
+                    <button class="w3-button w3-block w3-teal w3-right w3-section w3-padding"
+                            onclick="document.getElementById('id01').style.display='none'"
+                            type="submit"><fmt:message key="local.button.ok"/></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</c:if>
 
 <footer id="myFooter">
     <div class="w3-container w3-theme-l1 w3-center">

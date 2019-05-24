@@ -1,7 +1,6 @@
 package by.epam.finalTask.hr.command.impl.user;
 
 import by.epam.finalTask.hr.command.Command;
-import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.entity.Hiring;
 import by.epam.finalTask.hr.service.HiringService;
@@ -10,11 +9,9 @@ import com.google.protobuf.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +31,7 @@ public class DeleteHiringByUserCommand implements Command {
         Integer numberOfHiring = Integer.parseInt(request.getParameter(NUMBER_OF_HIRING));
         deleteHiringfromDB(numberOfHiring);
         deleteHiringfromSession(session, numberOfHiring);
-        return PageName.USERS_VACANCY;
+        return PageName.USERS_VACANCY_JSP;
     }
 
     private void deleteHiringfromSession(HttpSession session, Integer numberOfHiring) {

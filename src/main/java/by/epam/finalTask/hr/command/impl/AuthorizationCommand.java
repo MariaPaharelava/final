@@ -1,7 +1,6 @@
 package by.epam.finalTask.hr.command.impl;
 
 import by.epam.finalTask.hr.command.Command;
-import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.entity.Hiring;
 import by.epam.finalTask.hr.entity.User;
@@ -53,12 +52,12 @@ public class AuthorizationCommand implements Command {
 
         if(user == null){
             session.setAttribute(ERROR_MESSAGES, "User is absent");
-            return PageName.INDEX_PAGE;
+            return PageName.INDEX_JSP;
         }
 
-        if(user.getPassword().equals(password)){
+        if(!user.getPassword().equals(password)){
             session.setAttribute(ERROR_MESSAGES, "User write wrong password");
-            return PageName.INDEX_PAGE;
+            return PageName.INDEX_JSP;
         }
 
         session.setAttribute(USER, user);
@@ -66,7 +65,7 @@ public class AuthorizationCommand implements Command {
         String pageName;
         if (user.getBlocked()) {
             session.setAttribute(ERROR_MESSAGES, "User is Blocked");
-            pageName = PageName.INDEX_PAGE;
+            pageName = PageName.INDEX_JSP;
             LOGGER.info("Blocked user try to login");
         } else {
             pageName = switchUser(user, session);
@@ -80,19 +79,19 @@ public class AuthorizationCommand implements Command {
             case HR:
                 List<Hiring> hiringListForHr = hiringService.getAllHiringsByHrId(user.getID());
                 setAllNecessaryAttributeForUser(session, hiringListForHr);
-                pageName = PageName.HR_VACANCY_PAGE;
+                pageName = PageName.HR_VACANCY_SHOW_JSP;
                 break;
             case ADMIN:
                 setAllNecessaryAttributeForAdmin(session);
-                pageName = PageName.WORK_WITH_USER;
+                pageName = PageName.WORK_WITH_USER_JSP;
                 break;
             case CANDIDATE:
                 List<Hiring> hiringListForCandidate = hiringService.getAllHiringsByUserId(user.getID());
                 setAllNecessaryAttributeForUser(session, hiringListForCandidate);
-                pageName = PageName.USER_VACANCY_PAGE;
+                pageName = PageName.USER_VACANCY_SHOW_JSP;
                 break;
             default:
-                pageName = PageName.INDEX_PAGE;
+                pageName = PageName.INDEX_JSP;
         }
         return pageName;
     }

@@ -74,13 +74,12 @@
 
 <!-- IF USER IS BLOCKED -->
 <c:if test="${sessionScope.errorMessage eq 'User is Blocked'}">
-    <div id="03" class="w3-modal w3-display-middle" style="display: block;">
+    <div id="id03" class="w3-modal w3-display-middle" style="display: block;">
         <div class="w3-main w3-animate-left w3-modal-content w3-container w3-card-4 w3-light-grey"
              style="max-width:400px">
 
             <div class="w3-center"><br>
-                <span onclick="document.getElementById('id01').style.display='block';
-               document.getElementById('id03').style.display='none'"
+                <span onclick="document.getElementById('id03').style.display='none'"
                       class="w3-button w3-xlarge w3-display-topright" title="Close Modal">x</span>
                 <br>
             </div>
@@ -102,13 +101,12 @@
 
 <!-- IF USER IS WRITE ANOTHER PASSWORD -->
 <c:if test="${sessionScope.errorMessage eq 'User write wrong password'}">
-    <div id="04" class="w3-modal w3-display-middle" style="display: block;">
+    <div id="id04" class="w3-modal w3-display-middle" style="display: block;">
         <div class="w3-main w3-animate-left w3-modal-content w3-container w3-card-4 w3-light-grey"
              style="max-width:400px">
 
             <div class="w3-center"><br>
-                <span onclick="document.getElementById('id01').style.display='block';
-               document.getElementById('id04').style.display='none'"
+                <span onclick="document.getElementById('id04').style.display='none'"
                       class="w3-button w3-xlarge w3-display-topright" title="Close Modal">x</span>
                 <br>
             </div>
@@ -130,13 +128,12 @@
 
 <!-- IF USER IS ABSENT -->
 <c:if test="${sessionScope.errorMessage eq 'User is absent'}">
-    <div id="05" class="w3-modal w3-display-middle" style="display: block;">
+    <div id="id05" class="w3-modal w3-display-middle" style="display: block;">
         <div class="w3-main w3-animate-left w3-modal-content w3-container w3-card-4 w3-light-grey"
              style="max-width:400px">
 
             <div class="w3-center"><br>
-                <span onclick="document.getElementById('id01').style.display='block';
-               document.getElementById('id05').style.display='none'"
+                <span onclick="document.getElementById('id05').style.display='none'"
                       class="w3-button w3-xlarge w3-display-topright" title="Close Modal">x</span>
                 <br>
             </div>
@@ -158,13 +155,12 @@
 
 <!-- IF USER IS EXIST -->
 <c:if test="${sessionScope.errorMessage eq 'This login is already in use'}">
-    <div id="06" class="w3-modal w3-display-middle" style="display: block;">
+    <div id="id06" class="w3-modal w3-display-middle" style="display: block;">
         <div class="w3-main w3-animate-left w3-modal-content w3-container w3-card-4 w3-light-grey"
              style="max-width:400px">
 
             <div class="w3-center"><br>
-                <span onclick="document.getElementById('id01').style.display='block';
-               document.getElementById('id06').style.display='none'"
+                <span onclick="document.getElementById('id06').style.display='none'"
                       class="w3-button w3-xlarge w3-display-topright" title="Close Modal">x</span>
                 <br>
             </div>
@@ -276,7 +272,6 @@
     </div>
 </div>
 <!-- CREATE ACCOUNT END-->
-
 
 <div class="w3-text-white w3-display-bottomleft w3-padding-large">
     <p><a><fmt:message key="local.footer"/></a></p>

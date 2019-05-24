@@ -1,7 +1,6 @@
 package by.epam.finalTask.hr.command.impl.hr;
 
 import by.epam.finalTask.hr.command.Command;
-import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.entity.Interview;
 import by.epam.finalTask.hr.service.InterviewService;
@@ -12,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +41,7 @@ public class AddInterviewCommand implements Command {
         Interview interview = new Interview(numberOfHiring, type, result, comment);
         addInterviewToDB(numberOfHiring, interview);
         addInterviewToSession(session, interview);
-        return PageName.WORK_WITH_INTERVIEW;
+        return PageName.WORK_WITH_INTERVIEW_JSP;
 
     }
 

@@ -1,7 +1,6 @@
 package by.epam.finalTask.hr.command.impl.admin;
 
 import by.epam.finalTask.hr.command.Command;
-import by.epam.finalTask.hr.command.exception.CommandException;
 import by.epam.finalTask.hr.controller.helper.PageName;
 import by.epam.finalTask.hr.entity.User;
 import by.epam.finalTask.hr.service.UserService;
@@ -12,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +40,7 @@ public class AddUserCommand implements Command {
         User user = new User(login, password, surname, name, role);
         addUserToSession(session, user);
         addUserToDB(user);
-        return PageName.WORK_WITH_USER;
+        return PageName.WORK_WITH_USER_JSP;
     }
 
     private void addUserToSession(HttpSession session, User user) {

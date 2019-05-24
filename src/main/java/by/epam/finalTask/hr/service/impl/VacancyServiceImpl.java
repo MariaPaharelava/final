@@ -39,9 +39,23 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
-    public void removeVacancy(int id) throws ServiceException {
+    public void removeVacancyById(int id) throws ServiceException {
         try {
             vacancyDAO.delete(id);
+        } catch (DAOException e) {
+            LOGGER.error(e.getMessage());
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void changeVacancyById(int id, String position, String description) throws ServiceException {
+        try {
+            vacancyOptional = vacancyDAO.findEntityById(id);
+            Vacancy vacancy = vacancyOptional.get();
+            vacancy.setVacancyPosition(position);
+            vacancy.setVacancyDescrintion(description);
+            vacancyDAO.save(vacancy);
         } catch (DAOException e) {
             LOGGER.error(e.getMessage());
             throw new ServiceException(e);
