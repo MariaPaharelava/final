@@ -96,10 +96,11 @@
                     </li>
 
                     <li class="w3-light-grey w3-padding-8 w3-container w3-center">
-                        <form action="FontController" method="get">
+                        <form action="FontController" method="post">
                             <input name="command" value="table-hiring" type="hidden"/>
                             <input name="table" type="hidden" value="${theCount.index}"/>
-                            <button class="w3-button w3-teal w3-left w3-center w3-padding-large" style="width:100%;" type="submit">
+                            <button class="w3-button w3-teal w3-left w3-center w3-padding-large"
+                                    style="width:100%;" type="submit">
                                 <fmt:message key="local.button.interview"/>
                             </button>
                         </form>

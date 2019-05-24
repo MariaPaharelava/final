@@ -105,6 +105,10 @@ public class CommandFactory {
                 command = new EditVacancyButtonCommand();
                 break;
             }
+            case DELETE_VACANCY:{
+                command = new DeleteVacancyCommand(vacancyService);
+                break;
+            }
         }
         return command;
     }

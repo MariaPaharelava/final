@@ -70,18 +70,36 @@
                 <h1 class="w3-text-teal">${vacancies.vacancyPosition}</h1>
                 <p>${vacancies.vacancyDescrintion}</p>
                 <c:if test="${vacancies.userId eq sessionScope.user.ID}">
-                    <form class="w3-container" action="FontController" method="post">
-                        <input name="command" value="edit-vacancy-button" type="hidden"/>
-                        <input name="index" type="hidden" value="${theCount.index}"/>
-                        <button class="w3-button w3-section w3-blue w3-ripple" type="submit">
-                            <fmt:message key="local.button.edit"/>
-                        </button>
-                    </form>
+                    <div class="w3-row">
+                        <form class="w3-quarter" action="FontController" method="post">
+                            <input name="command" value="edit-vacancy-button" type="hidden"/>
+                            <input name="index" type="hidden" value="${theCount.index}"/>
+                            <button class="w3-button w3-section w3-blue w3-ripple" type="submit"
+                                    style="min-width:80px">
+                                <fmt:message key="local.button.edit"/>
+                            </button>
+                        </form>
+                        <form class="w3-quarter" action="FontController" method="post">
+                            <input name="command" value="delete-vacancy" type="hidden"/>
+                            <input name="index" type="hidden" value="${theCount.index}"/>
+                            <button class="w3-button w3-section w3-red w3-ripple" type="submit"
+                                    style="min-width:80px">
+                                <fmt:message key="local.button.delete"/>
+                            </button>
+                        </form>
+                    </div>
                 </c:if>
                 <c:if test="${vacancies.userId != sessionScope.user.ID}">
-                    <div class="w3-row w3-container">
-                        <button class="w3-button w3-section w3-gray w3-ripple">
+                    <div class="w3-quarter">
+                        <button class="w3-button w3-section w3-gray w3-ripple"
+                                style="min-width:80px">
                             <fmt:message key="local.button.edit"/>
+                        </button>
+                    </div>
+                    <div class="w3-quarter">
+                        <button class="w3-button w3-section w3-gray w3-ripple"
+                                style="min-width:80px">
+                            <fmt:message key="local.button.delete"/>
                         </button>
                     </div>
                 </c:if>
